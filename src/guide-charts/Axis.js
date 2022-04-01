@@ -16,8 +16,6 @@ const Axis = ({dimensions, dimension, scale }) => {
 } 
 
 function HorizontalAxis({ dimensions, scale }) {
-    // const ticks = [-3600, -3300, -3000, -2700, -2400, -2100, -1800, -1500, -1200, -900, -600, -300, 0]
-    // const ticks = [-60, -55, -50, -45, -40, -35, -30, -25, -20, -15, -10, -5, 0]
     const ticks = [-300, -250, -200, -150, -100, -50, 0]
 
     return (
@@ -29,6 +27,29 @@ function HorizontalAxis({ dimensions, scale }) {
             />
             {ticks.map(tick => (
                 <g key={tick}>
+                    {tick === 0 
+                    ?
+                    <rect
+                        x='-1'
+                        y='-2.95'
+                        rx='3.5'
+                        ry='3.5'
+                        fill="#dadada"
+                        width='12'
+                        height='11'
+                        transform={`translate(${scale(tick) - 5}, 9.25)`}
+                    />
+                    :
+                    <rect
+                        x='-7.25'
+                        y='-2.95'
+                        rx='3.5'
+                        ry='3.5'
+                        fill="#dadada"
+                        width='25'
+                        height='11'
+                        transform={`translate(${scale(tick) - 5}, 9.25)`}
+                    />}
                     <text
                         className='text-[9px]'
                         textAnchor="middle"
