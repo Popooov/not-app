@@ -1,0 +1,1 @@
+export const CtrXdist = props => <p>CtrXdist: {props.CtrXdist}</p>

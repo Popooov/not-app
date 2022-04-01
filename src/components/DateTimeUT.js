@@ -1,0 +1,1 @@
+export const DateTimeUT = props => <p>DateTimeUT: {props.DateTimeUT}</p>

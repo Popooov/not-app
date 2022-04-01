@@ -1,0 +1,1 @@
+export const ActualRAhours = props => <p>ActualRAhours: {props.ActualRAhours}</p>

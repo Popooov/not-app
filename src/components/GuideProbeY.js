@@ -1,0 +1,1 @@
+export const GuideProbeY = props => <p>GuideProbeY: {props.GuideProbeY}</p>

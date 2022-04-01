@@ -1,0 +1,1 @@
+export const FocusDeltaPos = props => <p>FocusDeltaPos: {props.FocusDeltaPos}</p>

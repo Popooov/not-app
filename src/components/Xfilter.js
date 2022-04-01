@@ -1,0 +1,1 @@
+export const Xfilter = props => <p>Xfilter: {props.Xfilter}</p>

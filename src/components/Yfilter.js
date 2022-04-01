@@ -1,0 +1,1 @@
+export const Yfilter = props => <p>Yfilter: {props.Yfilter}</p>
