@@ -4,7 +4,7 @@ const Line = ({ data, xAccessor, yAccessor, color }) => {
   const path = d3.line()
     .x(xAccessor)
     .y(yAccessor)
-    .curve(d3.curveMonotoneY)
+    // .curve(d3.curveMonotoneY)
     (data)
 
   return (

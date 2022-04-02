@@ -1,20 +1,28 @@
 import { useState, useEffect, useCallback, useRef } from "react"
-import linesData from '../utils/linesData'
+// import linesData from '../utils/linesData'
+
+const linesData = []
+
+for (let i = -299; i <= 0; i++) {
+    linesData.push(
+        {
+            x: i,
+            y1: 0,
+            y2: 0
+        }
+    )
+}
 
 const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec }, enabled) => {
-
     const [ lineData, setLineData ] = useState(linesData)
     const id = useRef()
-
-
-    // console.log('useLineData', lineData, enabled)
     
     const start = useCallback(() => {
         let count = 0
         id.current = setInterval(() => {
             setLineData(prevState => {
                 const [first, ...rest] = prevState
-                if (!IntensityOffsetXarcsec && !IntensityOffsetYarcsec) {
+                if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
                     return [...rest, {
                         x: count++, 
                         y1: 0, 
@@ -30,8 +38,9 @@ const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec }, enabled
             })
         }, 1000)
     }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec])
+
     const stop = () => clearInterval(id.current)
-    
+
     useEffect(() => {
         enabled && start()
 

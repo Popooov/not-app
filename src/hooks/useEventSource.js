@@ -6,7 +6,7 @@ export const useEventSource = () => {
     // const [eventSource, setEventSource] = useState(new EventSource('http://www.not.iac.es/observing/dyn/hiresdata.php'))
     const eventSourceRef = useRef(new EventSource('http://www.not.iac.es/observing/dyn/hiresdata.php'))
 
-    console.log(eventSourceRef.current)
+    // console.log(eventSourceRef.current)
     const openConnection = useCallback(
         () => eventSourceRef.current.onmessage = (e) => setStatusData(JSON.parse(e.data)), []
     )
@@ -16,10 +16,8 @@ export const useEventSource = () => {
     useEffect(() => {
         enabled && openConnection()
 
-        return () => closeConnection()
-    })
-
-    console.log('event hook', statusData)
+        // return () => !enabled && closeConnection()
+    }, [enabled, openConnection, closeConnection])
 
     return { 
         enabled,

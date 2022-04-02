@@ -2,7 +2,7 @@ export const yScales = [
     {yScaleArcSec3: [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3]},
     {yScaleArcSec2: [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2]},
     {yScaleArcSec1: [-1, -0.5, 0, 0.5, 1]},
-    {yScaleArcSec0: [-0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5]},   
+    {yScaleArcHalfSec: [-0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5]},   
 ]
 
 export const xScales = [
@@ -11,3 +11,6 @@ export const xScales = [
     {xScale15min: [-900, -750, -600, -450, -300, -150, 0]},
     {xScale5min: [-300, -250, -200, -150, -100, -50, 0]},
 ]
+
+export const xScalesNames = ['5 min', '15 min', '30min', '60min']
+export const yScalesNames = ['0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']

@@ -2,8 +2,8 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
-export default function ScaleListBox() {
-  const [selected, setSelected] = useState()
+export default function ScaleListBox({ scaleNames }) {
+  const [selected, setSelected] = useState(scaleNames[0])
 
   return (
     <div className="w-24">
@@ -25,15 +25,15 @@ export default function ScaleListBox() {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {people.map((person, personIdx) => (
+              {scaleNames.map((scale, index) => (
                 <Listbox.Option
-                  key={personIdx}
+                  key={index}
                   className={({ active }) =>
                     `cursor-default select-none relative py-2 pl-10 pr-4 ${
                       active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'
                     }`
                   }
-                  value={person}
+                  value={scale}
                 >
                   {({ selected }) => (
                     <>
@@ -42,7 +42,7 @@ export default function ScaleListBox() {
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
-                        {person.name}
+                        {scale}
                       </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">

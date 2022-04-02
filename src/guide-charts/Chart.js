@@ -25,6 +25,14 @@ const Chart = ({ lineData, xAccessor, offsetXAccessor, offsetYAccessor, dimensio
                     strokeWidth='0.5'
                     style={{'strokeDasharray': '0, 0'}}
                 />
+                <line // middle horizontal line
+                    y1={dimensions.boundedHeight / 2}
+                    x2={dimensions.boundedWidth} 
+                    y2={dimensions.boundedHeight / 2} 
+                    // stroke='#66BB6A' // green
+                    stroke='#dadada' // green
+                    strokeWidth='0.5'
+                />
                 <Line
                     data={lineData}
                     xAccessor={d => x2Scale(xAccessor(d))}
@@ -36,14 +44,6 @@ const Chart = ({ lineData, xAccessor, offsetXAccessor, offsetYAccessor, dimensio
                     xAccessor={d => x2Scale(xAccessor(d))}
                     yAccessor={d => yScale(offsetYAccessor(d))}
                     color='#1976D2' // blue
-                />
-                <line // middle horizontal line
-                    y1={dimensions.boundedHeight / 2}
-                    x2={dimensions.boundedWidth} 
-                    y2={dimensions.boundedHeight / 2} 
-                    // stroke='#66BB6A' // green
-                    stroke='#dadada' // green
-                    strokeWidth='0.5'
                 />
                 <line // last vertical line
                     x1={dimensions.boundedWidth}
