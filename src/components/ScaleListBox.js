@@ -29,7 +29,7 @@ export default function ScaleListBox({ scaleNames }) {
                 <Listbox.Option
                   key={index}
                   className={({ active }) =>
-                    `cursor-default select-none relative py-2 pl-10 pr-4 ${
+                    `cursor-default select-none relative py-2 pl-6 pr-4 ${
                       active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'
                     }`
                   }
@@ -45,8 +45,8 @@ export default function ScaleListBox({ scaleNames }) {
                         {scale}
                       </span>
                       {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                          <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-2 text-amber-600">
+                          <CheckIcon className="w-3 h-3" aria-hidden="true" />
                         </span>
                       ) : null}
                     </>

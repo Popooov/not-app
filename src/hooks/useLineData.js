@@ -14,30 +14,52 @@ for (let i = -299; i <= 0; i++) {
 }
 
 const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec }, enabled) => {
-    const [ lineData, setLineData ] = useState(linesData)
+    // const [ lineData, setLineData ] = useState(linesData) ActualRAhours ActualDECdeg
+    const lineData = useRef(linesData)
+
     const id = useRef()
-    
+    console.log(lineData.current)
     const start = useCallback(() => {
         let count = 0
         id.current = setInterval(() => {
-            setLineData(prevState => {
-                const [first, ...rest] = prevState
-                if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
-                    return [...rest, {
-                        x: count++, 
-                        y1: 0, 
-                        y2: 0
-                    }]
-                }
-
-                return [...rest, {
+            const [first, ...rest] = lineData.current
+            if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
+                return lineData.current = [...rest, {
                     x: count++, 
-                    y1: IntensityOffsetXarcsec, 
-                    y2: IntensityOffsetYarcsec
+                    y1: 0, 
+                    y2: 0
                 }]
-            })
+            }
+
+            return lineData.current = [...rest, {
+                x: count++, 
+                y1: IntensityOffsetXarcsec, 
+                y2: IntensityOffsetYarcsec
+            }]
         }, 1000)
     }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec])
+
+    // const start = useCallback(() => {
+    //     let count = 0
+    //     id.current = setInterval(() => {
+    //         setLineData(prevState => {
+    //             const [first, ...rest] = prevState
+    //             if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
+    //                 return [...rest, {
+    //                     x: count++, 
+    //                     y1: 0, 
+    //                     y2: 0
+    //                 }]
+    //             }
+
+    //             return [...rest, {
+    //                 x: count++, 
+    //                 y1: IntensityOffsetXarcsec, 
+    //                 y2: IntensityOffsetYarcsec
+    //             }]
+    //         })
+    //     }, 1000)
+    // }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec])
 
     const stop = () => clearInterval(id.current)
 
@@ -47,7 +69,7 @@ const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec }, enabled
         return () => stop()
     }, [enabled, start])
 
-    return lineData
+    return lineData.current
 }
 
 

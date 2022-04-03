@@ -12,5 +12,5 @@ export const xScales = [
     {xScale5min: [-300, -250, -200, -150, -100, -50, 0]},
 ]
 
-export const xScalesNames = ['5 min', '15 min', '30min', '60min']
+export const xScalesNames = ['5 min', '15 min', '30 min', '60 min']
 export const yScalesNames = ['0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
