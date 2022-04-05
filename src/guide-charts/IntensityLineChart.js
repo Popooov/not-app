@@ -3,6 +3,7 @@ import { useChartDimensions } from '../hooks/useChartDimensions'
 import useLineData from '../hooks/useLineData'
 import ScaleListBox from '../components/ScaleListBox'
 import { yScalesNames, xScalesNames } from '../utils/customScales'
+import { useEffect, useState } from 'react'
 
 const IntensityLineChart = ({ data, enabled }) => {
     const lineData = useLineData(data, enabled)

@@ -1,65 +1,36 @@
-import { useState, useEffect, useCallback, useRef } from "react"
-// import linesData from '../utils/linesData'
+import { line } from "d3"
+import { useState, useEffect, useCallback, useRef, useContext } from "react"
+import EventSourceContext from '../context/eventSourceContext'
+import linesData from '../utils/linesData'
 
-const linesData = []
+// { IntensityOffsetXarcsec, IntensityOffsetYarcsec }
 
-for (let i = -299; i <= 0; i++) {
-    linesData.push(
-        {
-            x: i,
-            y1: 0,
-            y2: 0
-        }
-    )
-}
-
-const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec }, enabled) => {
-    // const [ lineData, setLineData ] = useState(linesData) ActualRAhours ActualDECdeg
-    const lineData = useRef(linesData)
-
+const useLineData = ({Xfilter, Yfilter}, enabled) => {
+    // const { statusData, enabled } = useContext(EventSourceContext)
+    const [ lineData, setLineData ] = useState(linesData)
+    const count = useRef(0)
     const id = useRef()
-    console.log(lineData.current)
+
     const start = useCallback(() => {
-        let count = 0
         id.current = setInterval(() => {
-            const [first, ...rest] = lineData.current
-            if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
-                return lineData.current = [...rest, {
-                    x: count++, 
-                    y1: 0, 
-                    y2: 0
+            setLineData(prevState => {
+                let [first, ...rest] = prevState
+                if (Xfilter === undefined && Yfilter === undefined) {
+                    return [...rest, {
+                        x: count.current++, 
+                        y1: 0, 
+                        y2: 0
+                    }]
+                }
+
+                return [...rest, {
+                    x1: count.current++, 
+                    y1: Xfilter, 
+                    y2: Yfilter
                 }]
-            }
-
-            return lineData.current = [...rest, {
-                x: count++, 
-                y1: IntensityOffsetXarcsec, 
-                y2: IntensityOffsetYarcsec
-            }]
+            })
         }, 1000)
-    }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec])
-
-    // const start = useCallback(() => {
-    //     let count = 0
-    //     id.current = setInterval(() => {
-    //         setLineData(prevState => {
-    //             const [first, ...rest] = prevState
-    //             if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
-    //                 return [...rest, {
-    //                     x: count++, 
-    //                     y1: 0, 
-    //                     y2: 0
-    //                 }]
-    //             }
-
-    //             return [...rest, {
-    //                 x: count++, 
-    //                 y1: IntensityOffsetXarcsec, 
-    //                 y2: IntensityOffsetYarcsec
-    //             }]
-    //         })
-    //     }, 1000)
-    // }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec])
+    }, [Xfilter, Yfilter])
 
     const stop = () => clearInterval(id.current)
 
@@ -69,7 +40,10 @@ const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec }, enabled
         return () => stop()
     }, [enabled, start])
 
-    return lineData.current
+    console.log(lineData)
+
+
+    return lineData
 }
 
 
