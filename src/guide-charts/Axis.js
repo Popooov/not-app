@@ -17,7 +17,7 @@ const Axis = ({dimensions, dimension, scale }) => {
 
 function HorizontalAxis({ dimensions, scale }) {
     const ticks = [-300, -250, -200, -150, -100, -50, 0]
-
+        
     return (
         <g transform={`translate(0, ${dimensions.boundedHeight})`}>
             <line 
@@ -73,7 +73,7 @@ function HorizontalAxis({ dimensions, scale }) {
 }
 
 function VerticalAxis({ dimensions, scale }) {
-    // const ticks = scale.ticks(9)
+    // const ticks = scale.ticks()
     const ticks =  [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3]
 
     return (

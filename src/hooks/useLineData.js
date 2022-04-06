@@ -1,40 +1,36 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import linesData from '../utils/linesData'
 
-// { IntensityOffsetXarcsec, IntensityOffsetYarcsec }
-
 const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, Yfilter }, enabled) => {
-    // const { statusData, enabled } = useContext(EventSourceContext)
-    const lineData = useRef(linesData)
+    const [ lineData, setLineData ] = useState(linesData)
     const count = useRef(0)
-    const id = useRef()
 
-    useEffect(() => {
-        id.current = enabled && setInterval(() => {
-            count.current++
-                let [first, ...rest] = lineData.current
-                if (Xfilter === undefined && Yfilter === undefined) {
-                    return lineData.current = [...rest, {
-                        x: count.current, 
-                        y1: 0, 
-                        y2: 0
-                    }]
-                }
-
-                return lineData.current = [...rest, {
+    const lines = useCallback(() => {
+        count.current++
+        setLineData((prevState) => {
+            let [first, ...rest] = prevState
+            if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
+                return [...rest, {
                     x: count.current, 
-                    y1: Xfilter, 
-                    y2: Yfilter
+                    y1: 0, 
+                    y2: 0
                 }]
-        }, 800)
+            }
+    
+            return [...rest, {
+                x: count.current, 
+                y1: IntensityOffsetXarcsec, 
+                y2: IntensityOffsetYarcsec
+            }]
+        })
+    }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec])
 
-        return () => clearInterval(id.current)
-    }, [enabled, Xfilter, Yfilter])
+    useEffect(() => enabled && lines(), [enabled, lines])
 
-    console.log(lineData.current)
+    console.log(lineData)
 
 
-    return lineData.current
+    return lineData
 }
 
 

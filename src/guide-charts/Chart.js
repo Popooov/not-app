@@ -13,6 +13,7 @@ const Chart = ({ lineData, xAccessor, offsetXAccessor, offsetYAccessor, dimensio
         
 
     const yScale = d3.scaleLinear()
+        // .domain(d3.extent(lineData, offsetYAccessor))
         .domain([-3, 3])
         .range([dimensions.boundedHeight, 0])
     
