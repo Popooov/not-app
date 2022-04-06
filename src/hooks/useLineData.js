@@ -1,49 +1,40 @@
-import { line } from "d3"
-import { useState, useEffect, useCallback, useRef, useContext } from "react"
-import EventSourceContext from '../context/eventSourceContext'
+import { useState, useEffect, useCallback, useRef } from "react"
 import linesData from '../utils/linesData'
 
 // { IntensityOffsetXarcsec, IntensityOffsetYarcsec }
 
-const useLineData = ({Xfilter, Yfilter}, enabled) => {
+const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, Yfilter }, enabled) => {
     // const { statusData, enabled } = useContext(EventSourceContext)
-    const [ lineData, setLineData ] = useState(linesData)
+    const lineData = useRef(linesData)
     const count = useRef(0)
     const id = useRef()
 
-    const start = useCallback(() => {
-        id.current = setInterval(() => {
-            setLineData(prevState => {
-                let [first, ...rest] = prevState
+    useEffect(() => {
+        id.current = enabled && setInterval(() => {
+            count.current++
+                let [first, ...rest] = lineData.current
                 if (Xfilter === undefined && Yfilter === undefined) {
-                    return [...rest, {
-                        x: count.current++, 
+                    return lineData.current = [...rest, {
+                        x: count.current, 
                         y1: 0, 
                         y2: 0
                     }]
                 }
 
-                return [...rest, {
-                    x1: count.current++, 
+                return lineData.current = [...rest, {
+                    x: count.current, 
                     y1: Xfilter, 
                     y2: Yfilter
                 }]
-            })
-        }, 1000)
-    }, [Xfilter, Yfilter])
+        }, 800)
 
-    const stop = () => clearInterval(id.current)
+        return () => clearInterval(id.current)
+    }, [enabled, Xfilter, Yfilter])
 
-    useEffect(() => {
-        enabled && start()
-
-        return () => stop()
-    }, [enabled, start])
-
-    console.log(lineData)
+    console.log(lineData.current)
 
 
-    return lineData
+    return lineData.current
 }
 
 

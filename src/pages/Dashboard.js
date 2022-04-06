@@ -1,6 +1,4 @@
 // import { useEventSource } from '../hooks/useEventSource'
-import { useContext } from 'react'
-import EventSourceContext from '../context/eventSourceContext'
 import IntensityLineChart from '../guide-charts/IntensityLineChart'
 import {
     Actual,
@@ -15,8 +13,7 @@ import {
     Others,
     Rotation } from '../containers/exports'
 
-export const Dashboard = () => {
-    const { statusData, enabled } = useContext(EventSourceContext)
+export const Dashboard = ({ statusData, enabled }) => {
     // console.log(statusData)
     return (
         <>
