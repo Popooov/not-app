@@ -18,7 +18,7 @@ const Chart = ({ lineData, xAccessor, offsetXAccessor, offsetYAccessor, dimensio
         .range([dimensions.boundedHeight, 0])
     
     return (
-        <svg className="w-80 h-52">
+        <svg className="w-84 h-52" viewBox="0 5 370 210">
             <g className='translate-x-10 translate-y-10'>
                 <line // first horizontal line
                     x2={dimensions.boundedWidth} 
