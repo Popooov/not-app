@@ -2,8 +2,7 @@ import Chart from './Chart'
 import { useChartDimensions } from '../hooks/useChartDimensions'
 import useLineData from '../hooks/useLineData'
 import ScaleListBox from '../components/ScaleListBox'
-import { yScalesNames, xScalesNames } from '../utils/customScales'
-import { useEffect, useState } from 'react'
+import { yScalesNames, xScalesNames, xScales, yScales } from '../utils/customScales'
 
 const IntensityLineChart = ({ data, enabled }) => {
     const lineData = useLineData(data, enabled)
@@ -22,9 +21,9 @@ const IntensityLineChart = ({ data, enabled }) => {
                 
             </div>
             <div className='mb-3 flex justify-around items-center'>
-                <ScaleListBox scaleNames={xScalesNames} />
+                <ScaleListBox scaleNames={xScalesNames} scaleType={xScales} />
                 <button>reset</button>
-                <ScaleListBox scaleNames={yScalesNames}/>
+                <ScaleListBox scaleNames={yScalesNames} scaleType={yScales} />
             </div>
         </>
     )

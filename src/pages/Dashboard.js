@@ -14,7 +14,7 @@ import {
     Rotation } from '../containers/exports'
 
 export const Dashboard = ({ statusData, enabled }) => {
-    // console.log(statusData)
+
     return (
         <>
             <IntensityLineChart

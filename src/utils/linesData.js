@@ -1,6 +1,6 @@
 const linesData = []
 
-for (let i = -299; i <= 0; i++) {
+for (let i = -3599; i <= 0; i++) {
     linesData.push(
         {
             x: i,
