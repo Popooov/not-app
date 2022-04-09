@@ -1,13 +1,15 @@
 import { useState } from "react"
-import { xScales, yScales } from '../utils/customScales'
+import { scaleTypes } from '../utils/customScales'
 
 const useSelectedScale = (scaleName, scaleType) => {
     const [ selected, setSelected ] = useState(scaleName)
+    console.log('hook', scaleTypes(scaleType, selected))
+
 
     return {
         selected,
         setSelected,
-        // type: scaleType[selected]
+        type: scaleTypes(scaleType, selected)
     }
     
 }

@@ -1,10 +1,8 @@
 import Axis from "./Axis"
 import Line from './Line'
-import useSelectedScale from "../hooks/useSelectedScale"
 import * as d3 from 'd3'
 
 const Chart = ({ lineData, xAccessor, offsetXAccessor, offsetYAccessor, dimensions }) => {
-    const { scaleType } = useSelectedScale()
 
     const xStaticScale = d3.scaleLinear()
         .domain([-lineData.length, 0])

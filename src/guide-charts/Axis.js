@@ -28,7 +28,7 @@ function HorizontalAxis({ dimensions, scale }) {
             />
             {ticks.map(tick => (
                 <g key={tick}>
-                    {
+                    {/* {
                         tick === 0 
                         ? 
                             <rect
@@ -52,7 +52,7 @@ function HorizontalAxis({ dimensions, scale }) {
                                 height='11'
                                 transform={`translate(${scale(tick) - 5}, 9.25)`}
                             />
-                    }
+                    } */}
                     <text
                         className={`${ticks.length === 13 ? 'text-[7px]' : 'text-[9px]'}`}
                         textAnchor="middle"
