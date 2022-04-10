@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import Chart from './Chart'
 import { useChartDimensions } from '../hooks/useChartDimensions'
 import useLineData from '../hooks/useLineData'
 import ScaleListBox from '../components/ScaleListBox'
+import { scaleNames } from '../utils/customScales'
 
 const IntensityLineChart = ({ data, enabled }) => {
+    const [ selected, setSelected ] = useState()
     const lineData = useLineData(data, enabled)
     const [ ref, dimensions ] = useChartDimensions()
 
@@ -20,9 +23,9 @@ const IntensityLineChart = ({ data, enabled }) => {
                 
             </div>
             <div className='mb-3 flex justify-evenly items-center'>
-                <ScaleListBox scale='x' />
+                <ScaleListBox scale='x' selected={selected} setSelected={setSelected} />
                 <button>reset</button>
-                <ScaleListBox scale='y' />
+                <ScaleListBox scale='y' selected={selected} setSelected={setSelected} />
             </div>
         </>
     )

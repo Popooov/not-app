@@ -1,11 +1,9 @@
 import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
-import useSelectedScale from '../hooks/useSelectedScale'
 import { scaleNames } from '../utils/customScales'
 
-export default function ScaleListBox({ scale }) {
-  const { selected, setSelected } = useSelectedScale(scaleNames(scale)[0], scale)
+export default function ScaleListBox({ scale, selected, setSelected }) {
 
 //  console.log(scaleType)
   return (
