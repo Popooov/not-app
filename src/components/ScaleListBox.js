@@ -2,10 +2,12 @@ import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import { scaleNames } from '../utils/customScales'
+import useSelectedScale from '../hooks/useSelectedScale'
 
 export default function ScaleListBox({ scale, selected, setSelected }) {
+  const { selectedScale } = useSelectedScale(scaleNames(scale)[0])
 
-//  console.log(scaleType)
+  console.log(selectedScale)
   return (
     <div className="w-24">
       <Listbox

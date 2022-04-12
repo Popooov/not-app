@@ -5,9 +5,7 @@ import { HeaderContainer } from './containers/exports'
 import { Dashboard } from './pages/Dashboard'
 
 function App() {
-  // const { enabled, setEnabled, statusData } = useEventSource()
   const { enabled, setEnabled, statusData } = useEventSource()
-
 
   return (
     <div className='flex flex-col flex-wrap'>

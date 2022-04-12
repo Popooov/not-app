@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import linesData from '../utils/linesData'
-import useSelectedScale from "./useSelectedScale"
+// import useSelectedScale from "./useSelectedScale"
 
 const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec }, enabled) => {
     const [ lineData, setLineData ] = useState(linesData)
@@ -29,7 +29,6 @@ const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec }, enabled
     useEffect(() => enabled && lines(), [enabled, lines])
 
     // console.log(lineData)
-
 
     return lineData
 }
