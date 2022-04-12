@@ -6,14 +6,18 @@ import ScaleListBox from '../components/ScaleListBox'
 import { scaleNames } from '../utils/customScales'
 
 const IntensityLineChart = ({ data, enabled }) => {
-    const [ selected, setSelected ] = useState()
     const lineData = useLineData(data, enabled)
+    const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[0])
+    const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
+    const [ timeCut, setTimeCut ] = useState()
     const [ ref, dimensions ] = useChartDimensions()
 
     return (
         <>
             <div ref={ref} className='mb-3'>
                 <Chart
+                    selectedScaleX={selectedScaleX}
+                    selectedScaleY={selectedScaleY}
                     dimensions={dimensions}
                     lineData={lineData}
                     xAccessor={d => d.x}
@@ -23,9 +27,9 @@ const IntensityLineChart = ({ data, enabled }) => {
                 
             </div>
             <div className='mb-3 flex justify-evenly items-center'>
-                <ScaleListBox scale='x' selected={selected} setSelected={setSelected} />
+                <ScaleListBox scale={scaleNames('x')} selected={selectedScaleX} setSelected={setSelectedScaleX} />
                 <button>reset</button>
-                <ScaleListBox scale='y' selected={selected} setSelected={setSelected} />
+                <ScaleListBox scale={scaleNames('y')} selected={selectedScaleY} setSelected={setSelectedScaleY} />
             </div>
         </>
     )

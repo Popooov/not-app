@@ -2,7 +2,14 @@ import Axis from "./Axis"
 import Line from './Line'
 import * as d3 from 'd3'
 
-const Chart = ({ lineData, xAccessor, offsetXAccessor, offsetYAccessor, dimensions }) => {
+const Chart = ({ 
+    lineData, 
+    xAccessor, 
+    offsetXAccessor, 
+    offsetYAccessor,
+    selectedScaleX,
+    selectedScaleY, 
+    dimensions }) => {
 
     const xStaticScale = d3.scaleLinear()
         .domain([-lineData.length, 0])
@@ -66,11 +73,13 @@ const Chart = ({ lineData, xAccessor, offsetXAccessor, offsetYAccessor, dimensio
                     style={{'strokeDasharray': '0, 0'}}
                 />
                 <Axis
+                    selectedScale={selectedScaleX}
                     dimensions={dimensions}
                     dimension='x'
                     scale={xStaticScale}
                 />
                 <Axis
+                    selectedScale={selectedScaleY}
                     dimensions={dimensions}
                     dimension='y'
                     scale={yAutoScale}

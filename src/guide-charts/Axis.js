@@ -1,23 +1,28 @@
+import { scaleTypes } from "../utils/customScales"
+
 const axisComponentsByDimension = {
     x: HorizontalAxis,
     y: VerticalAxis
 }
 
-const Axis = ({dimensions, dimension, scale }) => {
+const Axis = ({dimensions, dimension, selectedScale, scale }) => {
     const Component = axisComponentsByDimension[dimension]
     if(!Component) return null
 
     return (
         <Component
+            dimension={dimension}
             dimensions={dimensions}
+            selectedScale={selectedScale}
             scale={scale}
         />
     )
 } 
 
-function HorizontalAxis({ dimensions, scale }) {
+function HorizontalAxis({ dimension, dimensions, scale, selectedScale }) {
     // const ticks = [-300, -250, -200, -150, -100, -50, 0]
-    const ticks = [-3600, -3300, -3000, -2700, -2400, -2100, -1800, -1500, -1200, -900, -600, -300, 0]
+    // const ticks = [-3600, -3300, -3000, -2700, -2400, -2100, -1800, -1500, -1200, -900, -600, -300, 0]
+    const ticks = scaleTypes(dimension, selectedScale)
 
     return (
         <g transform={`translate(0, ${dimensions.boundedHeight})`}>
@@ -75,9 +80,10 @@ function HorizontalAxis({ dimensions, scale }) {
     )
 }
 
-function VerticalAxis({ dimensions, scale }) {
-    const ticks = scale.ticks()
+function VerticalAxis({ dimension, dimensions, scale, selectedScale }) {
+    // const ticks = scale.ticks()
     // const ticks =  [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3]
+    const ticks = scaleTypes(dimension, selectedScale)
 
     return (
         <g>
