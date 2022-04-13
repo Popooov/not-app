@@ -1,6 +1,7 @@
 import Axis from "./Axis"
 import Line from './Line'
 import * as d3 from 'd3'
+import { scaleTypes } from "../utils/customScales"
 
 const Chart = ({ 
     lineData, 
@@ -11,27 +12,30 @@ const Chart = ({
     selectedScaleY, 
     dimensions }) => {
 
-    const xStaticScale = d3.scaleLinear()
+    const staticScaleX = d3.scaleLinear()
         .domain([-lineData.length, 0])
         .range([0, dimensions.boundedWidth])
 
-    const xDynamicScale = d3.scaleLinear()
+    const dynamicScaleX = d3.scaleLinear()
         .domain(d3.extent(lineData, xAccessor))
         .range([0, dimensions.boundedWidth])
+
+    const staticScaleY = d3.scaleLinear()
+        .domain(d3.extent(scaleTypes('y', selectedScaleY)))
+        .range([dimensions.boundedHeight, 0])
         
-    const yAutoScale = d3.scaleLinear()
+    const dynamicScaleY = d3.scaleLinear()
         .domain([d3.max(lineData, offsetXAccessor), d3.min(lineData, offsetYAccessor)])
-        // .domain([-3, 3])
         .range([dimensions.boundedHeight, 0])
 
-    const offsetXScale = d3.scaleLinear()
-        .domain(d3.extent(lineData, offsetXAccessor))
-        // .domain([-3, 3])
+    const offsetXScale = selectedScaleY === 'auto' 
+        ? d3.scaleLinear().domain(d3.extent(lineData, offsetXAccessor))
+        : d3.scaleLinear().domain(d3.extent(scaleTypes('y', selectedScaleY)))
         .range([dimensions.boundedHeight, 0])
         
-    const offsetYScale = d3.scaleLinear()
-        .domain(d3.extent(lineData, offsetYAccessor))
-        // .domain([-3, 3])
+    const offsetYScale = selectedScaleY === 'auto'
+        ? d3.scaleLinear().domain(d3.extent(lineData, offsetYAccessor))
+        : d3.scaleLinear().domain(d3.extent(scaleTypes('y', selectedScaleY)))
         .range([dimensions.boundedHeight, 0])
     
     return (
@@ -53,13 +57,13 @@ const Chart = ({
                 />
                 <Line
                     data={lineData}
-                    xAccessor={d => xDynamicScale(xAccessor(d))}
+                    xAccessor={d => dynamicScaleX(xAccessor(d))}
                     yAccessor={d => offsetXScale(offsetXAccessor(d))}
                     color='#D32F2F' // red
                 />
                 <Line
                     data={lineData}
-                    xAccessor={d => xDynamicScale(xAccessor(d))}
+                    xAccessor={d => dynamicScaleX(xAccessor(d))}
                     yAccessor={d => offsetYScale(offsetYAccessor(d))}
                     color='#1976D2' // blue
                 />
@@ -76,13 +80,14 @@ const Chart = ({
                     selectedScale={selectedScaleX}
                     dimensions={dimensions}
                     dimension='x'
-                    scale={xStaticScale}
+                    scale={staticScaleX}
                 />
                 <Axis
                     selectedScale={selectedScaleY}
                     dimensions={dimensions}
                     dimension='y'
-                    scale={yAutoScale}
+                    scale={staticScaleY}
+                    dynamicScale={dynamicScaleY}
                 />
             </g>
         </svg>

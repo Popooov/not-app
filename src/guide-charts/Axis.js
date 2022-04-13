@@ -5,7 +5,7 @@ const axisComponentsByDimension = {
     y: VerticalAxis
 }
 
-const Axis = ({dimensions, dimension, selectedScale, scale }) => {
+const Axis = ({dimensions, dimension, selectedScale, scale, ...restProps }) => {
     const Component = axisComponentsByDimension[dimension]
     if(!Component) return null
 
@@ -15,6 +15,7 @@ const Axis = ({dimensions, dimension, selectedScale, scale }) => {
             dimensions={dimensions}
             selectedScale={selectedScale}
             scale={scale}
+            {...restProps}
         />
     )
 } 
@@ -80,11 +81,11 @@ function HorizontalAxis({ dimension, dimensions, scale, selectedScale }) {
     )
 }
 
-function VerticalAxis({ dimension, dimensions, scale, selectedScale }) {
+function VerticalAxis({ dimension, dimensions, scale, dynamicScale, selectedScale }) {
     // const ticks = scale.ticks()
     // const ticks =  [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3]
-    const ticks = scaleTypes(dimension, selectedScale)
-
+    const ticks = selectedScale === 'auto' ? scale.ticks() : scaleTypes(dimension, selectedScale)
+    // console.log(scale);
     return (
         <g>
             <line 

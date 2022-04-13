@@ -6,10 +6,9 @@ import ScaleListBox from '../components/ScaleListBox'
 import { scaleNames } from '../utils/customScales'
 
 const IntensityLineChart = ({ data, enabled }) => {
-    const lineData = useLineData(data, enabled)
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[0])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
-    const [ timeCut, setTimeCut ] = useState()
+    const lineData = useLineData(data, enabled, selectedScaleX)
     const [ ref, dimensions ] = useChartDimensions()
 
     return (

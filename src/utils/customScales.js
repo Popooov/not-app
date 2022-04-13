@@ -18,7 +18,7 @@ export const scaleTypes = (scaleType, scaleName) => {
 }
 
 export const scaleNames = (scaleName) => {
-    const yScalesNames = ['0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
+    const yScalesNames = ['0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec', 'auto']
     const xScalesNames = ['5 min', '15 min', '30 min', '60 min']
     
     if(scaleName === 'y') return yScalesNames
