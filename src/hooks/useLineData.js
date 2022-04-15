@@ -6,6 +6,8 @@ const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, 
     const [ lineData, setLineData ] = useState(linesData)
     const count = useRef(0)
 
+    const handleResetLines = () => setLineData(linesData)
+
     const lines = useCallback(() => {
         count.current++
         setLineData((prevState) => {
