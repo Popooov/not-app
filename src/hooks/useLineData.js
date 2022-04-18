@@ -4,43 +4,63 @@ import linesData from '../utils/linesData'
 
 const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, Yfilter, TimeST }, enabled, selectedScaleX) => {
     const [ lineData, setLineData ] = useState(linesData)
-    const count = useRef(0)
+    const count = useRef(-1)
 
-    const handleResetLines = () => setLineData(linesData)
+    const handleResetLines = () => {
+        count.current = -1
+        setLineData(linesData)
+    }
 
     const lines = useCallback(() => {
         count.current++
         setLineData((prevState) => {
             let [first, ...rest] = prevState
-            console.log(TimeST)
-            if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
-                return [...rest, {
-                    x: count.current, 
-                    y1: 0, 
-                    y2: 0
-                }]
-            }
-    
+            // console.log(TimeST)
+            // if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
+            //     return [...rest, {
+            //         TimeST,
+            //         x: count.current, 
+            //         y1: 0, 
+            //         y2: 0
+            //     }]
+            // }
+            
             return [...rest, {
+                TimeST,
                 x: count.current, 
-                y1: IntensityOffsetXarcsec, 
-                y2: IntensityOffsetYarcsec
+                y1: Xfilter, 
+                y2: Yfilter
             }]
         })
-    }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec, TimeST])
-
+        console.log(count.current)
+    }, [Xfilter, Yfilter, TimeST])
+    
+    // console.log(lineData)
+    
     useEffect(() => enabled && lines(), [enabled, lines])
 
-    // console.log(lineData)
-
     if(selectedScaleX === '5 min') {
-        return lineData.slice(3300)
+        return {
+            lineData: lineData.slice(3300),
+            resetLines: handleResetLines
+        }
     } else if(selectedScaleX === '15 min') {
-        return lineData.slice(2700)
+        return {
+            lineData: lineData.slice(2700),
+            resetLines: handleResetLines
+        }
+        // return lineData.slice(2700)
     } else if(selectedScaleX === '30 min') {
-        return lineData.slice(1800)
+        return {
+            lineData: lineData.slice(1800),
+            resetLines: handleResetLines
+        }
+        // return lineData.slice(1800)
     } else {
-        return lineData
+        return {
+            lineData,
+            resetLines: handleResetLines
+        }
     }
 }
 

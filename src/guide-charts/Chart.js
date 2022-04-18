@@ -28,18 +28,25 @@ const Chart = ({
         .domain([d3.max(lineData, offsetXAccessor), d3.min(lineData, offsetYAccessor)])
         .range([dimensions.boundedHeight, 0])
 
-    const offsetXScale = selectedScaleY === 'auto' 
-        ? d3.scaleLinear().domain(d3.extent(lineData, offsetXAccessor))
-        : d3.scaleLinear().domain(d3.extent(scaleTypes('y', selectedScaleY)))
-        .range([dimensions.boundedHeight, 0])
+    const offsetXScale = selectedScaleY !== 'auto'
+        ? d3.scaleLinear()
+            .domain(d3.extent(scaleTypes('y', selectedScaleY)))
+            .range([dimensions.boundedHeight, 0])
+        : d3.scaleLinear()
+            .domain(d3.extent(lineData, offsetXAccessor))
+            .range([dimensions.boundedHeight, 0])
         
-    const offsetYScale = selectedScaleY === 'auto'
-        ? d3.scaleLinear().domain(d3.extent(lineData, offsetYAccessor))
-        : d3.scaleLinear().domain(d3.extent(scaleTypes('y', selectedScaleY)))
-        .range([dimensions.boundedHeight, 0])
+    const offsetYScale = selectedScaleY !== 'auto'
+        ? d3.scaleLinear()
+            .domain(d3.extent(scaleTypes('y', selectedScaleY)))
+            .range([dimensions.boundedHeight, 0])
+        : d3.scaleLinear()
+            .domain(d3.extent(lineData, offsetYAccessor))
+            .range([dimensions.boundedHeight, 0])
     
     return (
-        <svg className="w-84 h-52" viewBox="0 5 370 210">
+        // viewBox="0 5 370 210"
+        <svg className="w-screen h-60 sm:h-80">
             <g className='translate-x-10 translate-y-10'>
                 <line // first horizontal line
                     x2={dimensions.boundedWidth} 
@@ -60,12 +67,14 @@ const Chart = ({
                     xAccessor={d => dynamicScaleX(xAccessor(d))}
                     yAccessor={d => offsetXScale(offsetXAccessor(d))}
                     color='#D32F2F' // red
+                    strokeWidth='0.5'
                 />
                 <Line
                     data={lineData}
                     xAccessor={d => dynamicScaleX(xAccessor(d))}
                     yAccessor={d => offsetYScale(offsetYAccessor(d))}
                     color='#1976D2' // blue
+                    strokeWidth='0.5'
                 />
                 <line // last vertical line
                     x1={dimensions.boundedWidth}
@@ -76,18 +85,17 @@ const Chart = ({
                     strokeWidth='0.5'
                     style={{'strokeDasharray': '0, 0'}}
                 />
-                <Axis
+                <Axis // Horizontal
                     selectedScale={selectedScaleX}
                     dimensions={dimensions}
                     dimension='x'
                     scale={staticScaleX}
                 />
-                <Axis
+                <Axis // Vertical
                     selectedScale={selectedScaleY}
                     dimensions={dimensions}
                     dimension='y'
-                    scale={staticScaleY}
-                    dynamicScale={dynamicScaleY}
+                    scale={selectedScaleY === 'auto' ? dynamicScaleY : staticScaleY}
                 />
             </g>
         </svg>

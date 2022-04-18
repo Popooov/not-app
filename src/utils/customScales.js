@@ -4,6 +4,7 @@ export const scaleTypes = (scaleType, scaleName) => {
         '1 arcsec': [-1, -0.5, 0, 0.5, 1],
         '2 arcsec': [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2],
         '3 arcsec': [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3],
+        'auto': []
     }
     
     const xScales = {
