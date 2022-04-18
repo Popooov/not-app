@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import linesData from '../utils/linesData'
 // import useSelectedScale from "./useSelectedScale"
 
-const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, Yfilter }, enabled, selectedScaleX) => {
+const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, Yfilter, TimeST }, enabled, selectedScaleX) => {
     const [ lineData, setLineData ] = useState(linesData)
     const count = useRef(0)
 
@@ -12,6 +12,7 @@ const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, 
         count.current++
         setLineData((prevState) => {
             let [first, ...rest] = prevState
+            console.log(TimeST)
             if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
                 return [...rest, {
                     x: count.current, 
@@ -26,7 +27,7 @@ const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, 
                 y2: IntensityOffsetYarcsec
             }]
         })
-    }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec])
+    }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec, TimeST])
 
     useEffect(() => enabled && lines(), [enabled, lines])
 
