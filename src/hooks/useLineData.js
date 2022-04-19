@@ -29,19 +29,23 @@ const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, 
     // console.log(lineData)
     
     useEffect(() => enabled && lines(), [enabled, lines])
-
-    if(selectedScaleX === '5 min') {
+    if(selectedScaleX === '1 min') {
+        return {
+            lineData: lineData.slice(3540),
+            resetLines: handleResetLines
+        }
+    } else if(selectedScaleX === '5 mins') {
         return {
             lineData: lineData.slice(3300),
             resetLines: handleResetLines
         }
-    } else if(selectedScaleX === '15 min') {
+    } else if(selectedScaleX === '15 mins') {
         return {
             lineData: lineData.slice(2700),
             resetLines: handleResetLines
         }
         // return lineData.slice(2700)
-    } else if(selectedScaleX === '30 min') {
+    } else if(selectedScaleX === '30 mins') {
         return {
             lineData: lineData.slice(1800),
             resetLines: handleResetLines
