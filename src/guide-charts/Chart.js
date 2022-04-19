@@ -25,7 +25,12 @@ const Chart = ({
         .range([dimensions.boundedHeight, 0])
         
     const dynamicScaleY = d3.scaleLinear()
-        .domain([d3.max(lineData, offsetXAccessor), d3.min(lineData, offsetYAccessor)])
+        .domain(d3.extent(
+            [
+                d3.min(lineData, offsetXAccessor), d3.max(lineData, offsetXAccessor),
+                d3.min(lineData, offsetYAccessor), d3.max(lineData, offsetYAccessor),
+            ]
+        ))
         .range([dimensions.boundedHeight, 0])
 
     const offsetXScale = selectedScaleY !== 'auto'
@@ -46,7 +51,7 @@ const Chart = ({
     
     return (
         // viewBox="0 5 370 210"
-        <svg className="w-screen h-60 sm:h-80">
+        <svg className="w-[99vw] h-60 sm:h-80">
             <g className='translate-x-10 translate-y-10'>
                 <line // first horizontal line
                     x2={dimensions.boundedWidth} 
@@ -55,21 +60,21 @@ const Chart = ({
                     style={{'strokeDasharray': '0, 0'}}
                 />
                 <line // middle horizontal line
-                    y1={dimensions.boundedHeight / 2}
+                    y1={selectedScaleY === 'auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)}
                     x2={dimensions.boundedWidth} 
-                    y2={dimensions.boundedHeight / 2} 
+                    y2={selectedScaleY === 'auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)} 
                     // stroke='#66BB6A' // green
                     stroke='#dadada' // green
                     strokeWidth='0.5'
                 />
-                <Line
+                <Line // IntensityOffsetXarcsec
                     data={lineData}
                     xAccessor={d => dynamicScaleX(xAccessor(d))}
                     yAccessor={d => offsetXScale(offsetXAccessor(d))}
                     color='#D32F2F' // red
                     strokeWidth='0.5'
                 />
-                <Line
+                <Line // IntensityOffsetYarcsec
                     data={lineData}
                     xAccessor={d => dynamicScaleX(xAccessor(d))}
                     yAccessor={d => offsetYScale(offsetYAccessor(d))}

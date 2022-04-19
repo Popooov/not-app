@@ -15,25 +15,16 @@ const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, 
         count.current++
         setLineData((prevState) => {
             let [first, ...rest] = prevState
-            // console.log(TimeST)
-            // if (IntensityOffsetXarcsec === undefined && IntensityOffsetYarcsec === undefined) {
-            //     return [...rest, {
-            //         TimeST,
-            //         x: count.current, 
-            //         y1: 0, 
-            //         y2: 0
-            //     }]
-            // }
             
             return [...rest, {
                 TimeST,
                 x: count.current, 
-                y1: Xfilter, 
-                y2: Yfilter
+                y1: IntensityOffsetXarcsec, 
+                y2: IntensityOffsetYarcsec
             }]
         })
         console.log(count.current)
-    }, [Xfilter, Yfilter, TimeST])
+    }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec, TimeST])
     
     // console.log(lineData)
     
