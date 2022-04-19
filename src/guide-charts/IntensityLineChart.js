@@ -2,10 +2,10 @@ import { useState } from 'react'
 import Chart from './Chart'
 import { useChartDimensions } from '../hooks/useChartDimensions'
 import useLineData from '../hooks/useLineData'
-import ScaleListBox from '../components/ScaleListBox'
+import ScaleButtons from './ScaleButtons'
 import { scaleNames } from '../utils/customScales'
 
-const IntensityLineChart = ({ data, enabled }) => {
+const IntensityLineChart = ({ data, enabled, ...restProps }) => {
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[0])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
     const { lineData, resetLines } = useLineData(data, enabled, selectedScaleX)
@@ -13,7 +13,7 @@ const IntensityLineChart = ({ data, enabled }) => {
 
     return (
         <>
-            <div ref={ref} className='mb-3'>
+            <div ref={ref} className='mb-1'>
                 <Chart
                     selectedScaleX={selectedScaleX}
                     selectedScaleY={selectedScaleY}
@@ -22,14 +22,15 @@ const IntensityLineChart = ({ data, enabled }) => {
                     xAccessor={d => d.x}
                     offsetXAccessor={d => d.y1}
                     offsetYAccessor={d => d.y2}
+                    {...restProps}
                 />
                 
             </div>
-            <div className='mb-3 flex justify-evenly items-center'>
-                <ScaleListBox scale={scaleNames('x')} selected={selectedScaleX} setSelected={setSelectedScaleX} />
-                <button onClick={resetLines}>reset</button>
-                <ScaleListBox scale={scaleNames('y')} selected={selectedScaleY} setSelected={setSelectedScaleY} />
-            </div>
+            <ScaleButtons 
+                selected={{selectedScaleX, selectedScaleY}}
+                setSelected={{setSelectedScaleX, setSelectedScaleY}}
+                resetLines={resetLines}
+            />
         </>
     )
 }

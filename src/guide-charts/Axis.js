@@ -5,7 +5,7 @@ const axisComponentsByDimension = {
     y: VerticalAxis
 }
 
-const Axis = ({ dimensions, dimension, selectedScale, scale }) => {
+const Axis = ({ dimensions, dimension, selectedScale, scale, ...restProps }) => {
     const Component = axisComponentsByDimension[dimension]
     if(!Component) return null
 
@@ -15,11 +15,12 @@ const Axis = ({ dimensions, dimension, selectedScale, scale }) => {
             dimensions={dimensions}
             selectedScale={selectedScale}
             scale={scale}
+            {...restProps}
         />
     )
 } 
 
-function HorizontalAxis({ dimension, dimensions, scale, selectedScale }) {
+function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel }) {
     const ticks = scaleTypes(dimension, selectedScale)
 
     return (
@@ -78,8 +79,9 @@ function HorizontalAxis({ dimension, dimensions, scale, selectedScale }) {
     )
 }
 
-function VerticalAxis({ dimensions, scale, selectedScale }) {
-    const ticks = selectedScale === 'auto' ? scale.ticks(16) : scale.ticks()
+function VerticalAxis({ dimensions, scale, selectedScale, y1Label, y2Label }) {
+    const ticks = selectedScale === 'Auto' ? scale.ticks(16) : scale.ticks()
+
     return (
         <g>
             <line 

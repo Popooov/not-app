@@ -20,6 +20,9 @@ export const Dashboard = ({ statusData, enabled }) => {
             <IntensityLineChart
                 data={statusData}
                 enabled={enabled}
+                xLabel='Guide Errors'
+                y1Label='X'
+                y2Label='Y'
             />
             <DateTime
                 date={statusData.DateTimeUT}

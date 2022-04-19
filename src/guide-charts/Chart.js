@@ -10,7 +10,8 @@ const Chart = ({
     offsetYAccessor,
     selectedScaleX,
     selectedScaleY, 
-    dimensions }) => {
+    dimensions,
+    ...restProps }) => {
 
     const staticScaleX = d3.scaleLinear()
         .domain([-lineData.length, 0])
@@ -33,7 +34,7 @@ const Chart = ({
         ))
         .range([dimensions.boundedHeight, 0])
 
-    const offsetXScale = selectedScaleY !== 'auto'
+    const offsetXScale = selectedScaleY !== 'Auto'
         ? d3.scaleLinear()
             .domain(d3.extent(scaleTypes('y', selectedScaleY)))
             .range([dimensions.boundedHeight, 0])
@@ -41,7 +42,7 @@ const Chart = ({
             .domain(d3.extent(lineData, offsetXAccessor))
             .range([dimensions.boundedHeight, 0])
         
-    const offsetYScale = selectedScaleY !== 'auto'
+    const offsetYScale = selectedScaleY !== 'Auto'
         ? d3.scaleLinear()
             .domain(d3.extent(scaleTypes('y', selectedScaleY)))
             .range([dimensions.boundedHeight, 0])
@@ -51,8 +52,8 @@ const Chart = ({
     
     return (
         // viewBox="0 5 370 210"
-        <svg className="w-[99vw] h-60 sm:h-80">
-            <g className='translate-x-10 translate-y-10'>
+        <svg className="w-[98vw] h-60 sm:h-80">
+            <g className='translate-x-12 translate-y-10'>
                 <line // first horizontal line
                     x2={dimensions.boundedWidth} 
                     stroke='#dadada' // green
@@ -60,9 +61,9 @@ const Chart = ({
                     style={{'strokeDasharray': '0, 0'}}
                 />
                 <line // middle horizontal line
-                    y1={selectedScaleY === 'auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)}
+                    y1={selectedScaleY === 'Auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)}
                     x2={dimensions.boundedWidth} 
-                    y2={selectedScaleY === 'auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)} 
+                    y2={selectedScaleY === 'Auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)} 
                     // stroke='#66BB6A' // green
                     stroke='#dadada' // green
                     strokeWidth='0.5'
@@ -95,12 +96,15 @@ const Chart = ({
                     dimensions={dimensions}
                     dimension='x'
                     scale={staticScaleX}
+                    {...restProps}
                 />
+
                 <Axis // Vertical
                     selectedScale={selectedScaleY}
                     dimensions={dimensions}
                     dimension='y'
-                    scale={selectedScaleY === 'auto' ? dynamicScaleY : staticScaleY}
+                    scale={selectedScaleY === 'Auto' ? dynamicScaleY : staticScaleY}
+                    {...restProps}
                 />
             </g>
         </svg>
