@@ -72,7 +72,7 @@ function VerticalAxis({ dimensions, scale, selectedScale, y1Label, y2Label }) {
 
     return (
         <g>
-            <g 
+            {/* <g 
                 className='text-[7px] sm:text-xs'
                 dominantBaseline='middle'
                 textAnchor="end"
@@ -89,7 +89,7 @@ function VerticalAxis({ dimensions, scale, selectedScale, y1Label, y2Label }) {
                 >
                     {y2Label}
                 </text>
-            </g>
+            </g> */}
             <line 
                 y2={dimensions.boundedHeight}
                 y1='-0.5'

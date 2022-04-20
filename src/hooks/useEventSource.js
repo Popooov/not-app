@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 
 const sse = new EventSource('http://www.not.iac.es/observing/dyn/hiresdata.php')
 
