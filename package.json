@@ -16,7 +16,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://popooov.github.io",
+  "homepage": "https://popooov.github.io/not-app",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
