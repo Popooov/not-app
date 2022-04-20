@@ -52,8 +52,8 @@ const Chart = ({
     
     return (
         // viewBox="0 5 370 210"
-        <svg className="w-[98vw] h-60 sm:h-80">
-            <g className='translate-x-12 translate-y-10'>
+        <svg className="w-full h-60 sm:h-80">
+            <g transform={`translate(${dimensions.marginLeft + 7.75}, ${dimensions.marginTop})`}>
                 <line // first horizontal line
                     x2={dimensions.boundedWidth} 
                     stroke='#dadada' // green

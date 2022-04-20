@@ -2,7 +2,7 @@ import { CtrXdist, CtrYdist, Xfilter, Yfilter, Wrapper } from './../components/e
 
 export const Fies = ({ ctrX, ctrY, xFilt, yFilt }) => {
     return (
-        <Wrapper>
+        <Wrapper flexRow={true}>
             <CtrXdist CtrXdist={ctrX} />
             <CtrYdist CtrYdist={ctrY} />
             <Xfilter Xfilter={xFilt} />

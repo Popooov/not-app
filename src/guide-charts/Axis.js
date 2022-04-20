@@ -25,54 +25,42 @@ function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel })
 
     return (
         <g transform={`translate(0, ${dimensions.boundedHeight})`}>
+            <text
+                textAnchor="middle"
+                transform={`translate(${dimensions.boundedWidth / 2}, ${-dimensions.boundedHeight - 10})`}
+                className='text-sm sm:text-base'
+            >
+                {xLabel}
+            </text>
             <line 
                 x2={dimensions.boundedWidth}
+                x1='0.5'
                 stroke="black"
-                strokeWidth='0.5'
+                strokeWidth='1'
             />
             {ticks.map(tick => (
                 <g key={tick}>
-                    {/* {
-                        tick === 0 
-                        ? 
-                            <rect
-                                x='-1'
-                                y='-2.95'
-                                rx='3.5'
-                                ry='3.5'
-                                fill="#dadada"
-                                width='12'
-                                height='11'
-                                transform={`translate(${scale(tick) - 5}, 9.25)`}
-                            /> 
-                        :
-                            <rect
-                                x='-7.25'
-                                y='-2.95'
-                                rx='3.5'
-                                ry='3.5'
-                                fill="#dadada"
-                                width='25'
-                                height='11'
-                                transform={`translate(${scale(tick) - 5}, 9.25)`}
-                            />
-                    } */}
-                    <text
-                        className={`${ticks.length === 13 ? 'text-[7px]' : 'text-[9px]'}`}
-                        textAnchor="middle"
-                        key={tick}
-                        transform={`translate(${scale(tick)}, 15)`}
-                    >
-                        {tick}
-                    </text>
-                    <line 
-                        y2={-dimensions.boundedHeight - 8.5}
-                        transform={`translate(${scale(tick)}, 5)`} 
-                        stroke='#dadada' // green
+                    <line // vertical dashed lines
+                        y2={-dimensions.boundedHeight - 6}
+                        transform={`translate(${scale(tick)})`} 
+                        stroke='#dadada' // lightgray
                         strokeWidth='0.5'
                         pathLength='10'
                         style={{'strokeDasharray': '.25, .25'}}
                     />
+                    <line // vertical tick lines
+                        y2='4'
+                        transform={`translate(${scale(tick)})`}
+                        stroke='black'
+                    />
+                    <text // tick numbers
+                        className={`${ticks.length === 13 ? 'text-[7px] sm:text-xs' : 'text-[9px] sm:text-xs'}`}
+                        textAnchor="middle"
+                        key={tick}
+                        transform={`translate(${scale(tick)}, 20)`}
+                    >
+                        {tick}
+                    </text>
                 </g>
             ))}
         </g>
@@ -84,22 +72,47 @@ function VerticalAxis({ dimensions, scale, selectedScale, y1Label, y2Label }) {
 
     return (
         <g>
+            <g 
+                className='text-[7px] sm:text-xs'
+                dominantBaseline='middle'
+                textAnchor="end"
+            >
+                <text // X label
+                    stroke='#D32F2F'
+                    transform={`translate(-32, ${dimensions.boundedHeight / 4})`}
+                >
+                    {y1Label}
+                </text>
+                <text // Y label
+                    stroke='#1976D2'
+                    transform={`translate(-32, ${dimensions.boundedHeight / 1.33})`}
+                >
+                    {y2Label}
+                </text>
+            </g>
             <line 
                 y2={dimensions.boundedHeight}
-                // y1='-2'
+                y1='-0.5'
                 stroke="black"
-                strokeWidth='0.5'
+                strokeWidth='1'
             />
             {ticks.map(tick => (
-                <text
-                    className='text-[8px]'
-                    key={tick}
-                    transform={`translate(-7, ${scale(tick)})`}
-                    dominantBaseline='middle'
-                    textAnchor="end"
-                >
-                    {tick}
-                </text>
+                <g key={tick}>
+                    <line 
+                        x2='-4'
+                        transform={`translate(0, ${scale(tick)})`}
+                        stroke='black'
+                    />
+                    <text
+                        className='text-[8px] sm:text-xs'
+                        key={tick}
+                        transform={`translate(-9, ${scale(tick)})`}
+                        dominantBaseline='middle'
+                        textAnchor="end"
+                        >
+                        {tick}
+                    </text>
+                </g>
             ))}
         </g>
     )
