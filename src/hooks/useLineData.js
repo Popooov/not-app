@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback, useRef } from "react"
-import linesData from '../utils/linesData'
+import multipleLinesData from '../utils/multipleLinesData'
 
 const useLineData = ({ IntensityOffsetXarcsec, IntensityOffsetYarcsec, Xfilter, Yfilter, TimeST }, enabled, selectedScaleX) => {
-    const [ lineData, setLineData ] = useState(linesData)
+    const [ lineData, setLineData ] = useState(multipleLinesData)
     const count = useRef(-1)
 
     const handleResetLines = () => {
         count.current = -1
-        setLineData(linesData)
+        setLineData(multipleLinesData)
     }
 
     const lines = useCallback(() => {

@@ -52,7 +52,7 @@ const Chart = ({
     
     return (
         // viewBox="0 5 370 210"
-        <svg className="w-full h-60 sm:h-80">
+        <svg className="w-full h-60 sm:h-72">
             <g transform={`translate(${dimensions.marginLeft + 7.75}, ${dimensions.marginTop})`}>
                 <line // first horizontal line
                     x2={dimensions.boundedWidth} 
@@ -104,7 +104,6 @@ const Chart = ({
                     dimensions={dimensions}
                     dimension='y'
                     scale={selectedScaleY === 'Auto' ? dynamicScaleY : staticScaleY}
-                    {...restProps}
                 />
             </g>
         </svg>

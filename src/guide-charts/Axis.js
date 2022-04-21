@@ -67,29 +67,11 @@ function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel })
     )
 }
 
-function VerticalAxis({ dimensions, scale, selectedScale, y1Label, y2Label }) {
+function VerticalAxis({ dimensions, scale, selectedScale }) {
     const ticks = selectedScale === 'Auto' ? scale.ticks(16) : scale.ticks()
 
     return (
         <g>
-            {/* <g 
-                className='text-[7px] sm:text-xs'
-                dominantBaseline='middle'
-                textAnchor="end"
-            >
-                <text // X label
-                    stroke='#D32F2F'
-                    transform={`translate(-32, ${dimensions.boundedHeight / 4})`}
-                >
-                    {y1Label}
-                </text>
-                <text // Y label
-                    stroke='#1976D2'
-                    transform={`translate(-32, ${dimensions.boundedHeight / 1.33})`}
-                >
-                    {y2Label}
-                </text>
-            </g> */}
             <line 
                 y2={dimensions.boundedHeight}
                 y1='-0.5'

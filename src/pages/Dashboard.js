@@ -1,5 +1,7 @@
 // import { useEventSource } from '../hooks/useEventSource'
-import IntensityLineChart from '../guide-charts/IntensityLineChart'
+import GuideErrorsChart from '../guide-charts/GuideErrorsChart'
+import GuideIntensityChart from '../guide-charts/GuideIntensityChart'
+import FiberGuiderChart from '../guide-charts/FiberGuiderChart'
 import {
     Actual,
     AutoGuider,
@@ -17,12 +19,20 @@ export const Dashboard = ({ statusData, enabled }) => {
 
     return (
         <>
-            <IntensityLineChart
+            <GuideErrorsChart
                 data={statusData}
                 enabled={enabled}
                 xLabel='Guide Errors'
-                y1Label='X'
-                y2Label='Y'
+            />
+            <GuideIntensityChart
+                data={statusData}
+                enabled={enabled}
+                xLabel='Guide Intensity'
+            />
+            <FiberGuiderChart
+                data={statusData}
+                enabled={enabled}
+                xLabel='Fiber Guider'
             />
             <div className='flex flex-col sm:flex-row flex-wrap sm:justify-between sm:mx-5'>    
                 <DateTime
