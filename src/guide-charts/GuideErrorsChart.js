@@ -28,7 +28,7 @@ const GuideErrorsChart = ({ data, enabled, ...restProps }) => {
                 
             </div>
             <ChartControlsContainer>
-                <div className='flex mt-1 ml-12 mr-auto px-3 py-2 text-base rounded-lg bg-zinc-100'>
+                <div className='flex mt-1 ml-12 mr-auto px-3 py-2 text-base rounded-lg border-2'>
                     <span className='mr-5 w-14 text-red-500'>
                         <IntensityOffsetXarcsec name='X' data={data.IntensityOffsetXarcsec} />
                     </span>
