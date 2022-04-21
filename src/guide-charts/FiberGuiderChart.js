@@ -2,13 +2,12 @@ import { useState } from 'react'
 import Chart from './Chart'
 import { useChartDimensions } from '../hooks/useChartDimensions'
 import useLineData from '../hooks/useLineData'
-import ChartControlsContainer from '../containers/ChartControlsContainer'
+import { ChartControlsContainer } from '../containers/exports'
 import { scaleNames } from '../utils/customScales'
-import ScaleListBox  from '../components/ScaleListBox'
-import ResetButton  from '../components/Button'
+import { ScaleListBox, Button as ResetButton }  from '../components/exports'
 
 const FiberGuiderChart = ({ data, enabled, ...restProps }) => {
-    const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[0])
+    const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[1])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
     const { fiberLines, resetLines } = useLineData(data, enabled, selectedScaleX)
     const [ ref, dimensions ] = useChartDimensions()

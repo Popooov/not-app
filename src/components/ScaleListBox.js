@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
-export default function ScaleListBox({ scale, selected, setSelected }) {
+export function ScaleListBox({ scale, selected, setSelected }) {
 
   // console.log()
   return (

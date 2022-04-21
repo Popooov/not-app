@@ -9,8 +9,8 @@ export const scaleTypes = (scaleType, scaleName) => {
     }
     
     const xScales = {
+        '1 min': [-60, -30, 0],
         '5 mins': [-300, -250, -200, -150, -100, -50, 0],
-        // '1 min': [-60, -30, 0],
         '15 mins': [-900, -750, -600, -450, -300, -150, 0],
         '30 mins': [-1800, -1500, -1200, -900, -600, -300, 0],
         '60 mins': [-3600, -3300, -3000, -2700, -2400, -2100, -1800, -1500, -1200, -900, -600, -300, 0]
@@ -22,7 +22,7 @@ export const scaleTypes = (scaleType, scaleName) => {
 
 export const scaleNames = (scaleName) => {
     const yScalesNames = ['Auto', '0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
-    const xScalesNames = ['5 mins', '15 mins', '30 mins', '60 mins']
+    const xScalesNames = ['1 min', '5 mins', '15 mins', '30 mins', '60 mins']
     
     if(scaleName === 'y') return yScalesNames
     if(scaleName === 'x') return xScalesNames

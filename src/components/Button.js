@@ -1,4 +1,4 @@
-const Button = (props) => {
+export const Button = (props) => {
 
     return (
         <button 
@@ -8,5 +8,3 @@ const Button = (props) => {
         </button>
     )
 }
-
-export default Button

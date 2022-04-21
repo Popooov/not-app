@@ -68,7 +68,7 @@ function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel })
 }
 
 function VerticalAxis({ dimensions, scale, selectedScale }) {
-    const ticks = selectedScale === 'Auto' ? scale.ticks(16) : scale.ticks()
+    const ticks = selectedScale === 'Auto' ? scale.ticks(12) : scale.ticks()
 
     return (
         <g>

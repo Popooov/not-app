@@ -8,10 +8,12 @@ export const IntensityOffset = ({ intenOffsetX, intenOffsetY }) => {
     return (
         <Wrapper>
             <IntensityOffsetXarcsec
-                IntensityOffsetXarcsec={intenOffsetX}
+                name='IntensityOffsetXarcsec'
+                data={intenOffsetX}
             />
             <IntensityOffsetYarcsec
-                IntensityOffsetYarcsec={intenOffsetY}
+                name='IntensityOffsetYarcsec'
+                data={intenOffsetY}
             />
         </Wrapper>
     )

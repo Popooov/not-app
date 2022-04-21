@@ -1,5 +1,7 @@
-export const IntensityOffsetYarcsec = props => {
+export const IntensityOffsetYarcsec = ({ name, data }) => {
     return (
-        <p>IntensityOffsetYarcsec: {props.IntensityOffsetYarcsec}</p>
+        <p>
+            {name}: {Math.trunc(data * 100) / 100}
+        </p>
     )
 }

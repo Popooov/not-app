@@ -58,8 +58,11 @@ const useLineData = ({
         })
 
     }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec, AutoguiderContrast, Xfilter, Yfilter, TimeST])
+
     // console.log('Intensity', intensityLine, 'Erros', errorsLines, 'Fiber', fiberLines);
+
     useEffect(() => enabled && lines(), [enabled, lines])
+
     if(selectedScaleX === '1 min') {
         return {
             errorsLines: errorsLines.slice(3540),
