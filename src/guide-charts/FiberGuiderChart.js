@@ -10,7 +10,7 @@ import ResetButton  from '../components/Button'
 const FiberGuiderChart = ({ data, enabled, ...restProps }) => {
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[0])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
-    const { lineData, resetLines } = useLineData(data, enabled, selectedScaleX)
+    const { fiberLines, resetLines } = useLineData(data, enabled, selectedScaleX)
     const [ ref, dimensions ] = useChartDimensions()
 
     return (
@@ -20,10 +20,10 @@ const FiberGuiderChart = ({ data, enabled, ...restProps }) => {
                     selectedScaleX={selectedScaleX}
                     selectedScaleY={selectedScaleY}
                     dimensions={dimensions}
-                    lineData={lineData}
+                    lineData={fiberLines}
                     xAccessor={d => d.x}
-                    offsetXAccessor={d => d.y1}
-                    offsetYAccessor={d => d.y2}
+                    y1Accessor={d => d.y1}
+                    y2Accessor={d => d.y2}
                     {...restProps}
                 />
             </div>

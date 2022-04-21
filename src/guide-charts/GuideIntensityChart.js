@@ -9,7 +9,7 @@ import ResetButton  from '../components/Button'
 
 const GuideIntensityChart = ({ data, enabled, ...restProps }) => {
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[0])
-    const { lineData, resetLines } = useLineData(data, enabled, selectedScaleX)
+    const { intensityLine, resetLines } = useLineData(data, enabled, selectedScaleX)
     const [ ref, dimensions ] = useChartDimensions()
 
     return (
@@ -19,10 +19,9 @@ const GuideIntensityChart = ({ data, enabled, ...restProps }) => {
                     selectedScaleX={selectedScaleX}
                     selectedScaleY={'Guide Intensity'}
                     dimensions={dimensions}
-                    lineData={lineData}
+                    lineData={intensityLine}
                     xAccessor={d => d.x}
-                    offsetXAccessor={d => d.y1}
-                    offsetYAccessor={d => d.y2}
+                    y1Accessor={d => d.y}
                     {...restProps}
                 /> 
             </div>

@@ -6,7 +6,7 @@ export const combineChartDimensions = (dimensions) => {
     marginTop: 40,
     marginRight: 40,
     marginBottom: 40,
-    marginLeft: 50,
+    marginLeft: 45,
     ...dimensions,
   }
 
