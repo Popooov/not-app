@@ -1,4 +1,3 @@
-// import { useEventSource } from '../hooks/useEventSource'
 import GuideErrorsChart from '../guide-charts/GuideErrorsChart'
 import GuideIntensityChart from '../guide-charts/GuideIntensityChart'
 import FiberGuiderChart from '../guide-charts/FiberGuiderChart'
@@ -11,30 +10,31 @@ import {
     Fies,
     FocusPos,
     GuideProbe,
-    IntensityOffset,
     Others,
     Rotation } from '../containers/exports'
 
 export const Dashboard = ({ statusData, enabled }) => {
 
     return (
-        <>
-            <GuideErrorsChart
-                data={statusData}
-                enabled={enabled}
-                xLabel='Guide Errors'
-            />
-            <GuideIntensityChart
-                data={statusData}
-                enabled={enabled}
-                xLabel='Guide Intensity'
-            />
-            <FiberGuiderChart
-                data={statusData}
-                enabled={enabled}
-                xLabel='Fiber Guider'
-            />
-            <div className='flex flex-col sm:flex-row flex-wrap sm:justify-between sm:mx-5'>    
+        <div className='xl:flex xl:justify-evenly'>
+            <div className='xl:w-[60%]'>
+                <GuideErrorsChart
+                    data={statusData}
+                    enabled={enabled}
+                    xLabel='Guide Errors'
+                />
+                <GuideIntensityChart
+                    data={statusData}
+                    enabled={enabled}
+                    xLabel='Guide Intensity'
+                />
+                <FiberGuiderChart
+                    data={statusData}
+                    enabled={enabled}
+                    xLabel='Fiber Guider'
+                />
+            </div>
+            <div className='flex flex-col sm:flex-row flex-wrap sm:justify-between sm:mx-5 xl:w-[30%] xl:justify-evenly xl:items-end'>    
                 <DateTime
                     date={statusData.DateTimeUT}
                     time={statusData.TimeST}
@@ -68,10 +68,6 @@ export const Dashboard = ({ statusData, enabled }) => {
                     gProbeX={statusData.GuideProbeX}
                     gProbeY={statusData.GuideProbeY}
                 />
-                <IntensityOffset
-                    intenOffsetX={statusData.IntensityOffsetXarcsec}
-                    intenOffsetY={statusData.IntensityOffsetYarcsec}
-                />
                 <AutoGuider
                     modeNum={statusData.AutoguiderModeNumber}
                     starLost={statusData.AutoguiderGuideStarLost}
@@ -84,6 +80,6 @@ export const Dashboard = ({ statusData, enabled }) => {
                     yFilt={statusData.Yfilter}
                 />
             </div>
-        </>
+        </div>
     )
 }

@@ -52,14 +52,12 @@ const useLineData = ({
             return [...rest, {
                 TimeST,
                 x: count.current, 
-                y1: Xfilter, 
-                y2: Yfilter
+                y1: Xfilter * 0.24, 
+                y2: Yfilter * 0.24
             }]
         })
-
+        
     }, [IntensityOffsetXarcsec, IntensityOffsetYarcsec, AutoguiderContrast, Xfilter, Yfilter, TimeST])
-
-    // console.log('Intensity', intensityLine, 'Erros', errorsLines, 'Fiber', fiberLines);
 
     useEffect(() => enabled && lines(), [enabled, lines])
 
@@ -103,9 +101,3 @@ const useLineData = ({
 
 
 export default useLineData
-
-// {
-//     x: count++, 
-//     y1: Math.trunc(intensity.IntensityOffsetXarcsec * 10) / 10, 
-//     y2: Math.trunc(intensity.IntensityOffsetYarcsec * 10) / 10
-// }

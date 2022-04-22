@@ -1,1 +1,5 @@
-export const Yfilter = props => <p>Yfilter: {props.Yfilter}</p>
+export const Yfilter = ({ name, data }) => {
+    return (
+        <p>{name}: {(data * .24).toFixed(2)}</p>
+    )
+}

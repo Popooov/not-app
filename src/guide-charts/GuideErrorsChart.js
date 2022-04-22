@@ -28,17 +28,17 @@ const GuideErrorsChart = ({ data, enabled, ...restProps }) => {
                 
             </div>
             <ChartControlsContainer>
-                <div className='flex mt-1 ml-12 mr-auto px-3 py-2 text-base rounded-lg border-2'>
-                    <span className='mr-5 w-14 text-red-500'>
+                <div className='flex md:w-1/4 lg:w-1/5 xl:w-1/4 2xl:w-[13%] mt-1 md:ml-8 sm:ml-3 sm:mr-auto px-3 py-2 text-xs sm:text-sm md:text-base rounded-lg border-2'>
+                    <span className='mr-1 sm:mr-3 md:mr-5 text-red-500'>
                         <IntensityOffsetXarcsec name='X' data={data.IntensityOffsetXarcsec} />
                     </span>
-                    <span className='w-14 text-blue-400'>
+                    <span className='ml-1 text-blue-500'>
                         <IntensityOffsetYarcsec name='Y' data={data.IntensityOffsetYarcsec} />
                     </span>
                 </div>
-                <ScaleListBox scale={scaleNames('x')} selected={selectedScaleX} setSelected={setSelectedScaleX} />
-                <ScaleListBox scale={scaleNames('y')} selected={selectedScaleY} setSelected={setSelectedScaleY} />
-                <ResetButton reset={resetLines} />
+                    <ScaleListBox scale={scaleNames('x')} selected={selectedScaleX} setSelected={setSelectedScaleX} />
+                    <ScaleListBox scale={scaleNames('y')} selected={selectedScaleY} setSelected={setSelectedScaleY} />
+                    <ResetButton reset={resetLines} />
             </ChartControlsContainer>
         </>
     )

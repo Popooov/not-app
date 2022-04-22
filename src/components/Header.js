@@ -1,5 +1,5 @@
 export const Header = () => {
     return (
-        <h1 className='text-sm'>TCS Status</h1>
+        <h1 className='text-sm'>TCS Status v0.2</h1>
     )
 }

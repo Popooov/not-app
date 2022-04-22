@@ -1,11 +1,10 @@
 import {
     AutoguiderModeNumber,
     AutoguiderGuideStarLost,
-    AutoguiderContrast,
     Wrapper
 } from './../components/exports'
 
-export const AutoGuider = ({ modeNum, starLost, contrast }) => {
+export const AutoGuider = ({ modeNum, starLost }) => {
     return (
         <Wrapper>
             <AutoguiderModeNumber
@@ -13,9 +12,6 @@ export const AutoGuider = ({ modeNum, starLost, contrast }) => {
             />
             <AutoguiderGuideStarLost
                 AutoguiderGuideStarLost={starLost}
-            />
-            <AutoguiderContrast
-                AutoguiderContrast={contrast}
             />
         </Wrapper>
     )

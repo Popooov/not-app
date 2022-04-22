@@ -1,1 +1,5 @@
-export const Xfilter = props => <p>Xfilter: {props.Xfilter}</p>
+export const Xfilter = ({ name, data }) => {
+    return (
+        <p>{name}: {(data * .24).toFixed(2)}</p>
+    )
+}

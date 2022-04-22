@@ -1,5 +1,5 @@
-export const AutoguiderContrast = props => {
+export const AutoguiderContrast = ({ name, data }) => {
     return (
-        <p>AutoguiderContrast: {props.AutoguiderContrast}</p>
+        <p>{name}: {(data * 1).toFixed(2)}</p>
     )
 }
