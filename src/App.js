@@ -8,7 +8,7 @@ function App() {
   const { enabled, setEnabled, statusData } = useEventSource()
 
   return (
-    <div className='flex flex-col mx-auto md:mb-6 2xl:mx-20'>
+    <div className='flex flex-col mx-auto xl:w-auto md:mb-6'>
         <HeaderContainer toggle={{enabled, setEnabled}} />
         <Dashboard statusData={statusData} enabled={enabled} />
     </div>

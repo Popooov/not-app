@@ -6,16 +6,14 @@ export const HeaderContainer = ({ toggle }) => {
         <div className='
             flex
             justify-between 
-            items-center 
+            items-center
             p-3
-            mb-0 
-            sm:mx-5 
-            sm:my-2 
-            xl:mt-4
-            2xl:mx-20
-            2xl:mr-36
-            
-            '>
+            mb-2
+            sm:py-4
+            sm:px-7
+            sm:mb-6
+            bg-zinc-100
+        '>
             <Header />
             <Toggle enabled={toggle.enabled} setEnabled={toggle.setEnabled} />
         </div>

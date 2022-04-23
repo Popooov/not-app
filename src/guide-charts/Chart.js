@@ -35,7 +35,7 @@ const Chart = ({
         .range([dimensions.boundedHeight, 0])
         .nice()
 
-    const xScale = selectedScaleY !== 'Auto'
+    const y1Scale = selectedScaleY !== 'Auto'
         ? d3.scaleLinear()
             .domain(d3.extent(scaleTypes('y', selectedScaleY)))
             .range([dimensions.boundedHeight, 0])
@@ -43,7 +43,7 @@ const Chart = ({
             .domain(d3.extent(lineData, y1Accessor))
             .range([dimensions.boundedHeight, 0])
         
-    const yScale = selectedScaleY !== 'Auto'
+    const y2Scale = selectedScaleY !== 'Auto'
         ? d3.scaleLinear()
             .domain(d3.extent(scaleTypes('y', selectedScaleY)))
             .range([dimensions.boundedHeight, 0])
@@ -72,14 +72,14 @@ const Chart = ({
                 <Line // IntensityOffsetXarcsec
                     data={lineData}
                     xAccessor={d => dynamicScaleX(xAccessor(d))}
-                    yAccessor={d => xScale(y1Accessor(d))}
+                    yAccessor={d => y1Scale(y1Accessor(d))}
                     color='#D32F2F' // red
                     strokeWidth='0.5'
                 />
                 {y2Accessor && <Line // IntensityOffsetYarcsec
                     data={lineData}
                     xAccessor={d => dynamicScaleX(xAccessor(d))}
-                    yAccessor={d => yScale(y2Accessor(d))}
+                    yAccessor={d => y2Scale(y2Accessor(d))}
                     color='#1976D2' // blue
                     strokeWidth='0.5'
                 />}

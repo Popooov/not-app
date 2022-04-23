@@ -25,7 +25,7 @@ const GuideIntensityChart = ({ data, enabled, ...restProps }) => {
                 /> 
             </div>
             <ChartControlsContainer>
-                <div className='flex md:w-1/4 lg:w-1/5 xl:w-1/4 2xl:w-[13%] mt-1 md:ml-8 sm:ml-3 sm:mr-auto px-3 py-2 text-xs sm:text-sm md:text-base rounded-lg border-2'>
+                <div className='flex mt-1 px-3 py-2 text-xs rounded-lg border-2 sm:w-36 sm:ml-3 sm:mr-auto sm:text-sm md:w-44 md:text-base md:ml-5'>
                     <span className='text-red-500'>
                         <AutoguiderContrast name='AutoContrast' data={data.AutoguiderContrast} />
                     </span>
