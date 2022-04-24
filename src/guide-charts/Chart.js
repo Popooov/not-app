@@ -34,26 +34,9 @@ const Chart = ({
         ))
         .range([dimensions.boundedHeight, 0])
         .nice()
-
-    const y1Scale = selectedScaleY !== 'Auto'
-        ? d3.scaleLinear()
-            .domain(d3.extent(scaleTypes('y', selectedScaleY)))
-            .range([dimensions.boundedHeight, 0])
-        : d3.scaleLinear()
-            .domain(d3.extent(lineData, y1Accessor))
-            .range([dimensions.boundedHeight, 0])
-        
-    const y2Scale = selectedScaleY !== 'Auto'
-        ? d3.scaleLinear()
-            .domain(d3.extent(scaleTypes('y', selectedScaleY)))
-            .range([dimensions.boundedHeight, 0])
-        : d3.scaleLinear()
-            .domain(d3.extent(lineData, y2Accessor))
-            .range([dimensions.boundedHeight, 0])
     
     return (
-        // viewBox="0 5 370 210"
-        <svg className="w-full h-60 sm:h-72 md:h-80">
+        <svg className="w-full h-60 sm:h-72 md:h-80 2xl:h-96">
             <g transform={`translate(${dimensions.marginLeft + 7.75}, ${dimensions.marginTop})`}>
                 <line // first horizontal line
                     x2={dimensions.boundedWidth} 
@@ -61,6 +44,8 @@ const Chart = ({
                     strokeWidth='0.5'
                     style={{'strokeDasharray': '0, 0'}}
                 />
+                {y2Accessor
+                    && 
                 <line // middle horizontal line
                     y1={selectedScaleY === 'Auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)}
                     x2={dimensions.boundedWidth} 
@@ -68,22 +53,24 @@ const Chart = ({
                     // stroke='#66BB6A' // green
                     stroke='#dadada' // green
                     strokeWidth='0.5'
-                />
-                <Line // IntensityOffsetXarcsec
+                />}
+                <Line
                     data={lineData}
                     xAccessor={d => dynamicScaleX(xAccessor(d))}
-                    yAccessor={d => y1Scale(y1Accessor(d))}
+                    yAccessor={d => selectedScaleY === 'Auto' ?  dynamicScaleY(y1Accessor(d)) : staticScaleY(y1Accessor(d))}
                     color='#D32F2F' // red
                     strokeWidth='0.5'
                 />
-                {y2Accessor && <Line // IntensityOffsetYarcsec
+                {y2Accessor 
+                    &&
+                <Line
                     data={lineData}
                     xAccessor={d => dynamicScaleX(xAccessor(d))}
-                    yAccessor={d => y2Scale(y2Accessor(d))}
+                    yAccessor={d => selectedScaleY === 'Auto' ?  dynamicScaleY(y2Accessor(d)) : staticScaleY(y2Accessor(d))}
                     color='#1976D2' // blue
                     strokeWidth='0.5'
                 />}
-                <line // last vertical line2
+                <line // last vertical line
                     x1={dimensions.boundedWidth}
                     x2={dimensions.boundedWidth}
                     y2={dimensions.boundedHeight} 

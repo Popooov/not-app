@@ -17,7 +17,7 @@ export const Dashboard = ({ statusData, enabled }) => {
 
     return (
         <div className='xl:flex xl:justify-evenly'>
-            <div className='xl:w-[60%]'>
+            <div className='xl:w-[60%] xl:flex-grow sm:ml-5 xl:ml-7'>
                 <GuideErrorsChart
                     data={statusData}
                     enabled={enabled}
@@ -34,7 +34,7 @@ export const Dashboard = ({ statusData, enabled }) => {
                     xLabel='Fiber Guider'
                 />
             </div>
-            <div className='flex flex-col sm:flex-row flex-wrap sm:justify-between sm:mx-5 xl:w-[30%] xl:justify-evenly xl:items-end'>    
+            <div className='flex flex-col sm:flex-row flex-wrap sm:justify-between sm:mx-5 xl:mx-0 xl:w-[30%] xl:justify-center xl:items-end'>    
                 <DateTime
                     date={statusData.DateTimeUT}
                     time={statusData.TimeST}

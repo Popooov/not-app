@@ -5,7 +5,7 @@ const axisComponentsByDimension = {
     y: VerticalAxis
 }
 
-const Axis = ({ dimensions, dimension, selectedScale, scale, ...restProps }) => {
+const Axis = ({ dimensions, dimension, selectedScale, scale, xLabel, ...restProps }) => {
     const Component = axisComponentsByDimension[dimension]
     if(!Component) return null
 
@@ -15,23 +15,45 @@ const Axis = ({ dimensions, dimension, selectedScale, scale, ...restProps }) => 
             dimensions={dimensions}
             selectedScale={selectedScale}
             scale={scale}
+            xLabel={xLabel}
             {...restProps}
         />
     )
 } 
 
-function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel }) {
+function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel, x, y, dataLabelOne, dataLabelTwo }) {
     const ticks = scaleTypes(dimension, selectedScale)
+    // console.log(dimensions)
 
     return (
         <g transform={`translate(0, ${dimensions.boundedHeight})`}>
+            <rect y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
+            <rect width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
             <text
                 textAnchor="middle"
-                transform={`translate(${dimensions.boundedWidth / 2}, ${-dimensions.boundedHeight - 10})`}
+                transform={`translate(50, ${-dimensions.boundedHeight - 10})`}
                 className='text-sm sm:text-base'
             >
                 {xLabel}
             </text>
+            <text
+                fill="red"
+                fillOpacity='.75'
+                textAnchor="middle"
+                transform={`translate(${dataLabelTwo ? dimensions.boundedWidth - 105 : dimensions.boundedWidth - 49}, ${-dimensions.boundedHeight - 10})`}
+                className='text-xs sm:text-base'
+            >
+                {dataLabelOne}: {x}
+            </text>
+            {dataLabelTwo && <text
+                fill="blue"
+                fillOpacity='.75'
+                textAnchor="middle"
+                transform={`translate(${dimensions.boundedWidth - 25}, ${-dimensions.boundedHeight - 10})`}
+                className='text-xs sm:text-base'
+            >
+                {dataLabelTwo}: {y}
+            </text>}
             <line 
                 x2={dimensions.boundedWidth}
                 x1='0.5'
