@@ -192,7 +192,7 @@ export const Dashboard = ({ statusData, enabled }) => {
                 </TcsDataContainer>
                 <TcsDataContainer>
                     <TcsData name='AirMass' data={rounded(statusData.AirMass)} />
-                    <TcsData name='ObjectPointedToObjectName' data={!statusData.ObjectPointedToObjectName && 'Zenith'} />
+                    <TcsData name='ObjectPointedToObjectName' data={!statusData.ObjectPointedToObjectName ? 'Zenith' : statusData.ObjectPointedToObjectName} />
                     <TcsData name='TelescopeModeNumber' data={statusData.TelescopeModeNumber} />
                 </TcsDataContainer>
                 <TcsDataContainer>
