@@ -1,7 +1,7 @@
 import Axis from "./Axis"
 import Line from './Line'
 import * as d3 from 'd3'
-import { scaleTypes } from "../utils/customScales"
+import { scaleTypes } from "../utils/utils"
 
 const Chart = ({ 
     lineData, 
@@ -11,6 +11,7 @@ const Chart = ({
     selectedScaleX,
     selectedScaleY, 
     dimensions,
+    reference,
     ...restProps }) => {
 
     const staticScaleX = d3.scaleLinear()
@@ -36,65 +37,67 @@ const Chart = ({
         .nice()
     
     return (
-        <svg className="w-full h-60 sm:h-72 md:h-80 2xl:h-96">
-            <g transform={`translate(${dimensions.marginLeft + 7.75}, ${dimensions.marginTop})`}>
-                <line // first horizontal line
-                    x2={dimensions.boundedWidth} 
-                    stroke='#dadada' // green
-                    strokeWidth='0.5'
-                    style={{'strokeDasharray': '0, 0'}}
-                />
-                {y2Accessor
-                    && 
-                <line // middle horizontal line
-                    y1={selectedScaleY === 'Auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)}
-                    x2={dimensions.boundedWidth} 
-                    y2={selectedScaleY === 'Auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)} 
-                    // stroke='#66BB6A' // green
-                    stroke='#dadada' // green
-                    strokeWidth='0.5'
-                />}
-                <Line
-                    data={lineData}
-                    xAccessor={d => dynamicScaleX(xAccessor(d))}
-                    yAccessor={d => selectedScaleY === 'Auto' ?  dynamicScaleY(y1Accessor(d)) : staticScaleY(y1Accessor(d))}
-                    color='#D32F2F' // red
-                    strokeWidth='0.5'
-                />
-                {y2Accessor 
-                    &&
-                <Line
-                    data={lineData}
-                    xAccessor={d => dynamicScaleX(xAccessor(d))}
-                    yAccessor={d => selectedScaleY === 'Auto' ?  dynamicScaleY(y2Accessor(d)) : staticScaleY(y2Accessor(d))}
-                    color='#1976D2' // blue
-                    strokeWidth='0.5'
-                />}
-                <line // last vertical line
-                    x1={dimensions.boundedWidth}
-                    x2={dimensions.boundedWidth}
-                    y2={dimensions.boundedHeight} 
-                    // stroke='#66BB6A' // green
-                    stroke='#dadada' // green
-                    strokeWidth='0.5'
-                    style={{'strokeDasharray': '0, 0'}}
-                />
-                <Axis // Horizontal
-                    selectedScale={selectedScaleX}
-                    dimensions={dimensions}
-                    dimension='x'
-                    scale={staticScaleX}
-                    {...restProps}
-                />
+        <div ref={reference} className='mb-1 xl:flex-grow'>
+            <svg className="w-full h-60 sm:h-72 xl:h-[19rem]">
+                <g transform={`translate(${dimensions.marginLeft + 7.75}, ${dimensions.marginTop})`}>
+                    <line // first horizontal line
+                        x2={dimensions.boundedWidth} 
+                        stroke='#dadada' // green
+                        strokeWidth='0.5'
+                        style={{'strokeDasharray': '0, 0'}}
+                    />
+                    {y2Accessor
+                        && 
+                    <line // middle horizontal line
+                        y1={selectedScaleY === 'Auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)}
+                        x2={dimensions.boundedWidth} 
+                        y2={selectedScaleY === 'Auto' ? dynamicScaleY(0) : (dimensions.boundedHeight / 2)} 
+                        // stroke='#66BB6A' // green
+                        stroke='#dadada' // green
+                        strokeWidth='0.5'
+                    />}
+                    <Line
+                        data={lineData}
+                        xAccessor={d => dynamicScaleX(xAccessor(d))}
+                        yAccessor={d => selectedScaleY === 'Auto' ?  dynamicScaleY(y1Accessor(d)) : staticScaleY(y1Accessor(d))}
+                        color='#D32F2F' // red
+                        strokeWidth='0.5'
+                    />
+                    {y2Accessor 
+                        &&
+                    <Line
+                        data={lineData}
+                        xAccessor={d => dynamicScaleX(xAccessor(d))}
+                        yAccessor={d => selectedScaleY === 'Auto' ?  dynamicScaleY(y2Accessor(d)) : staticScaleY(y2Accessor(d))}
+                        color='#1976D2' // blue
+                        strokeWidth='0.5'
+                    />}
+                    <line // last vertical line
+                        x1={dimensions.boundedWidth}
+                        x2={dimensions.boundedWidth}
+                        y2={dimensions.boundedHeight} 
+                        // stroke='#66BB6A' // green
+                        stroke='#dadada' // green
+                        strokeWidth='0.5'
+                        style={{'strokeDasharray': '0, 0'}}
+                    />
+                    <Axis // Horizontal
+                        selectedScale={selectedScaleX}
+                        dimensions={dimensions}
+                        dimension='x'
+                        scale={staticScaleX}
+                        {...restProps}
+                    />
 
-                <Axis // Vertical
-                    selectedScale={selectedScaleY}
-                    dimensions={dimensions}
-                    dimension='y'
-                    scale={selectedScaleY === 'Auto' ? dynamicScaleY : staticScaleY}
-                />
-            </g>
-        </svg>
+                    <Axis // Vertical
+                        selectedScale={selectedScaleY}
+                        dimensions={dimensions}
+                        dimension='y'
+                        scale={selectedScaleY === 'Auto' ? dynamicScaleY : staticScaleY}
+                    />
+                </g>
+            </svg>
+        </div>
     )
 }
 

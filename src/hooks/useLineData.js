@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { multipleLinesData } from '../utils/linesData'
 import { singleLineData } from '../utils/linesData'
-
-const rounded = (number) => Math.round(number * 100) / 100 * 0.24
+import { rounded } from '../utils/utils'
 
 const useLineData = ({ 
     IntensityOffsetXarcsec, 
@@ -54,8 +53,8 @@ const useLineData = ({
             return [...rest, {
                 TimeST,
                 x: count.current, 
-                y1: rounded(Xfilter), 
-                y2: rounded(Yfilter)
+                y1: rounded(Xfilter) * 0.24, 
+                y2: rounded(Yfilter) * 0.24
             }]
         })
         

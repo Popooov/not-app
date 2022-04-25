@@ -1,1 +1,0 @@
-export const CCDfiltName = props => <p>CCDfiltName: {props.CCDfiltName}</p>

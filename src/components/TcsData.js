@@ -1,0 +1,1 @@
+export const TcsData = ({name, data}) => <p>{name}: {data}</p>

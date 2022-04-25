@@ -1,0 +1,1 @@
+export const ChartContainer = ({ children }) => <div className="xl:flex">{children}</div>

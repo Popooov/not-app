@@ -1,1 +1,0 @@
-export const FocusMainPos = props => <p>FocusMainPos: {props.FocusMainPos}</p>

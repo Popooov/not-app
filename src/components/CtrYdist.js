@@ -1,1 +1,0 @@
-export const CtrYdist = props => <p>CtrYdist: {props.CtrYdist}</p>

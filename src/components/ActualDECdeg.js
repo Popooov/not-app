@@ -1,1 +1,0 @@
-export const ActualDECdeg = props => <p>ActualDECdeg: {props.ActualDECdeg}</p>

@@ -1,4 +1,4 @@
-import { scaleTypes } from "../utils/customScales"
+import { scaleTypes } from "../utils/utils"
 
 const axisComponentsByDimension = {
     x: HorizontalAxis,

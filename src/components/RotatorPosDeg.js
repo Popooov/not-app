@@ -1,1 +1,0 @@
-export const RotatorPosDeg = props => <p>RotatorPosDeg: {props.RotatorPosDeg}</p>

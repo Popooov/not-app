@@ -1,1 +1,0 @@
-export const AirMass = props => <p>AirMass: {props.AirMass}</p>

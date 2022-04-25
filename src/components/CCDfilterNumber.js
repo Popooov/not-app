@@ -1,1 +1,0 @@
-export const CCDfilterNumber = props => <p>CCDfilterNumber: {props.CCDfilterNumber}</p>

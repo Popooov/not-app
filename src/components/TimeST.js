@@ -1,1 +1,0 @@
-export const TimeST = props => <p>TimeST: {props.TimeST}</p>

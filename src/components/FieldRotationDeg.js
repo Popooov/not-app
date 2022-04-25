@@ -1,1 +1,0 @@
-export const FieldRotationDeg = props => <p>FieldRotationDeg: {props.FieldRotationDeg}</p>
