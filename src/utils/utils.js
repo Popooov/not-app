@@ -71,13 +71,17 @@ export const telescopeModes = (data) => {
     }
 
 }
-export const autoguiderModes = (data) => {
-    if(data === 1) {
+export const autoguiderModes = (data1, data2, data3) => {
+    if(data1 === 1) {
         return 'Moving Box'
-    } else if (data === 2) {
+    } else if (data1 === 2) {
         return 'Center Box'
-    } else if (data === 3) {
-        return 'Guiding Lost'
+    } else if (data1 === 3) {
+        if(data2 === 1) {
+            return 'Guiding Lost'
+        } else {
+            return `Guiding: ${floorData(data3)}`
+        }
     } else {
         return 'Not Guiding'
     }

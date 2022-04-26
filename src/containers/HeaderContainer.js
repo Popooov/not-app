@@ -1,8 +1,9 @@
+import useModes from '../hooks/useModes'
 import { Header, Toggle } from '../components/exports'
 import { TcsData } from '../components/TcsData'
-import { telescopeModes, autoguiderModes } from '../utils/utils'
 
 export const HeaderContainer = ({ toggle, data }) => {
+    const { telescopeMode, autoguiderModeMode } = useModes(data)
     
     return (
         <div className='
@@ -23,8 +24,8 @@ export const HeaderContainer = ({ toggle, data }) => {
           bg-zinc-100
         '>
             <Header />
-            <TcsData name='Telescope' data={telescopeModes(data.TelescopeModeNumber)} styles='col-start-2 col-end-3 row-start-1 row-end-2 justify-self-center sm:justify-self-end text-xs sm:text-sm lg:text-base' />
-            <TcsData name='Autoguider' data={autoguiderModes(data.AutoguiderModeNumber)} styles='col-start-2 col-end-3 row-start-2 row-end-3 justify-self-center sm:justify-self-end text-xs sm:text-sm lg:text-base' />
+            <TcsData name='Telescope' data={telescopeMode} styles='col-start-2 col-end-3 row-start-1 row-end-2 justify-self-center sm:justify-self-start text-xs sm:text-sm lg:text-base' />
+            <TcsData name='Autoguider' data={autoguiderModeMode} styles='col-start-2 col-end-3 row-start-2 row-end-3 justify-self-center sm:justify-self-start text-xs sm:text-sm lg:text-base' />
             <Toggle enabled={toggle.enabled} setEnabled={toggle.setEnabled} />
         </div>
     )
