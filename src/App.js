@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className='flex flex-col mx-auto xl:w-auto md:mb-6'>
-        <HeaderContainer toggle={{enabled, setEnabled}} />
+        <HeaderContainer toggle={{enabled, setEnabled}} data={statusData} />
         <Dashboard statusData={statusData} enabled={enabled} />
     </div>
   )

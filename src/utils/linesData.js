@@ -1,22 +1,12 @@
-export const multipleLinesData = []
+export const linesData = []
 
 for (let i = -3599; i <= 0; i++) {
-    multipleLinesData.push(
+    linesData.push(
         {
             x: i,
             y1: 0,
-            y2: 0
-        }
-    )
-}
-
-export const singleLineData = []
-
-for (let i = -3599; i <= 0; i++) {
-    singleLineData.push(
-        {
-            x: i,
-            y: 0
+            y2: 0,
+            y3: 0,
         }
     )
 }

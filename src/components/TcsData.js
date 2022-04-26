@@ -1,1 +1,1 @@
-export const TcsData = ({name, data}) => <p>{name}: {data}</p>
+export const TcsData = ({name, data, styles = {}}) => <p className={styles}>{name}: {data}</p>

@@ -28,7 +28,7 @@ export const scaleNames = (scaleName) => {
     if(scaleName === 'x') return xScalesNames
 }
 
-export const rounded = (number) => Math.round(number * 100) / 100
+export const floorData = (number) => Math.floor(number * 100) / 100
 
 export const decdegToHms = (decdeg) => {
     let d = Math.floor (decdeg)
@@ -53,4 +53,32 @@ export const decTimeToHms = (ra) => {
     date.setSeconds(+ra * 60 * 60)
 
     return date.toTimeString().slice(0, 8)
+}
+
+export const useWhenEmpty = (data, name) => !data ? name : data
+
+export const telescopeModes = (data) => {
+    if(data === 1) {
+        return 'Idle'
+    } else if (data === 2) {
+        return 'Moving'
+    } else if (data === 3) {
+        return 'Slewing'
+    } else if (data === 4) {
+        return 'Tracking'
+    } else {
+        return 'Power Off'
+    }
+
+}
+export const autoguiderModes = (data) => {
+    if(data === 1) {
+        return 'Moving Box'
+    } else if (data === 2) {
+        return 'Center Box'
+    } else if (data === 3) {
+        return 'Guiding Lost'
+    } else {
+        return 'Not Guiding'
+    }
 }

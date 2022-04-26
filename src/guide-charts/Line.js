@@ -1,11 +1,14 @@
 import * as d3 from 'd3'
+import { useContext } from 'react'
+import ChartContext from '../context/ChartContext'
 
-const Line = ({ data, xAccessor, yAccessor, color }) => {
+const Line = ({ color, accessor }) => {
+  const { lineData, xAccessorScaled, y1AccessorScaled, y2AccessorScaled } = useContext(ChartContext)
+  
   const path = d3.line()
-    .x(xAccessor)
-    .y(yAccessor)
-    // .curve(d3.curveNatural)
-    (data)
+    .x(xAccessorScaled)
+    .y(accessor === 'y1' ? y1AccessorScaled : y2AccessorScaled)
+    (lineData)
 
   return (
     <path

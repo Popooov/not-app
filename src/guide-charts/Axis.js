@@ -1,11 +1,21 @@
 import { scaleTypes } from "../utils/utils"
+import { useContext } from "react"
+import ChartContext from "../context/ChartContext"
 
 const axisComponentsByDimension = {
     x: HorizontalAxis,
     y: VerticalAxis
 }
 
-const Axis = ({ dimensions, dimension, selectedScale, scale, xLabel, ...restProps }) => {
+const Axis = ({ dimension, xLabel, ...restProps }) => {
+    const { 
+        selectedScaleX,
+        selectedScaleY,
+        dimensions, 
+        staticScaleX,
+        staticScaleY,
+        dynamicScaleY
+    } = useContext(ChartContext)
     const Component = axisComponentsByDimension[dimension]
     if(!Component) return null
 
@@ -13,15 +23,16 @@ const Axis = ({ dimensions, dimension, selectedScale, scale, xLabel, ...restProp
         <Component
             dimension={dimension}
             dimensions={dimensions}
-            selectedScale={selectedScale}
-            scale={scale}
+            selectedScale={selectedScaleX}
+            scaleX={staticScaleX}
+            scaleY={selectedScaleY === 'Auto' ? dynamicScaleY : staticScaleY}
             xLabel={xLabel}
             {...restProps}
         />
     )
 } 
 
-function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel, x, y, dataLabelOne, dataLabelTwo }) {
+function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, xLabel, x, y, dataLabelOne, dataLabelTwo }) {
     const ticks = scaleTypes(dimension, selectedScale)
     // console.log(dimensions)
 
@@ -64,7 +75,7 @@ function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel, x
                 <g key={tick}>
                     <line // vertical dashed lines
                         y2={-dimensions.boundedHeight - 6}
-                        transform={`translate(${scale(tick)})`} 
+                        transform={`translate(${scaleX(tick)})`} 
                         stroke='#dadada' // lightgray
                         strokeWidth='0.5'
                         pathLength='10'
@@ -72,14 +83,14 @@ function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel, x
                     />
                     <line // vertical tick lines
                         y2='4'
-                        transform={`translate(${scale(tick)})`}
+                        transform={`translate(${scaleX(tick)})`}
                         stroke='black'
                     />
                     <text // tick numbers
                         className={`${ticks.length === 13 ? 'text-[7px] sm:text-xs' : 'text-[9px] sm:text-xs'}`}
                         textAnchor="middle"
                         key={tick}
-                        transform={`translate(${scale(tick)}, 20)`}
+                        transform={`translate(${scaleX(tick)}, 20)`}
                     >
                         {tick}
                     </text>
@@ -89,8 +100,8 @@ function HorizontalAxis({ dimension, dimensions, scale, selectedScale, xLabel, x
     )
 }
 
-function VerticalAxis({ dimensions, scale, selectedScale }) {
-    const ticks = selectedScale === 'Auto' ? scale.ticks(12) : scale.ticks()
+function VerticalAxis({ dimensions, scaleY, selectedScale }) {
+    const ticks = selectedScale === 'Auto' ? scaleY.ticks(12) : scaleY.ticks()
 
     return (
         <g>
@@ -104,13 +115,13 @@ function VerticalAxis({ dimensions, scale, selectedScale }) {
                 <g key={tick}>
                     <line 
                         x2='-4'
-                        transform={`translate(0, ${scale(tick)})`}
+                        transform={`translate(0, ${scaleY(tick)})`}
                         stroke='black'
                     />
                     <text
                         className='text-[8px] sm:text-xs'
                         key={tick}
-                        transform={`translate(-9, ${scale(tick)})`}
+                        transform={`translate(-9, ${scaleY(tick)})`}
                         dominantBaseline='middle'
                         textAnchor="end"
                         >
