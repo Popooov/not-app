@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import ChartContext from "../context/ChartContext"
+import ChartContext from "../contexts/ChartContext"
 
 export const Button = () => {
 

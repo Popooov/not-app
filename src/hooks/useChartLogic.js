@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import EventSourceContext from '../contexts/EventSourceContext'
 import { useChartDimensions } from "./useChartDimensions"
 import useLineData from "./useLineData"
 import { scaleTypes, scaleNames } from "../utils/utils"
 import * as d3 from 'd3'
 
-const useChartLogic = (statusData, enabled , propertyNameY1, propertyNameY2) => {
+const useChartLogic = ( propertyNameY1, propertyNameY2) => {
+    const { statusData, enabled } = useContext(EventSourceContext)
     const [ ref, dimensions ] = useChartDimensions()
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[1])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])

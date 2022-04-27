@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 import { useContext } from 'react'
-import ChartContext from '../context/ChartContext'
+import ChartContext from '../contexts/ChartContext'
 
 const Line = ({ color, accessor }) => {
   const { lineData, xAccessorScaled, y1AccessorScaled, y2AccessorScaled } = useContext(ChartContext)

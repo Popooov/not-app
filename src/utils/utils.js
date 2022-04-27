@@ -56,33 +56,3 @@ export const decTimeToHms = (ra) => {
 }
 
 export const useWhenEmpty = (data, name) => !data ? name : data
-
-export const telescopeModes = (data) => {
-    if(data === 1) {
-        return 'Idle'
-    } else if (data === 2) {
-        return 'Moving'
-    } else if (data === 3) {
-        return 'Slewing'
-    } else if (data === 4) {
-        return 'Tracking'
-    } else {
-        return 'Power Off'
-    }
-
-}
-export const autoguiderModes = (data1, data2, data3) => {
-    if(data1 === 1) {
-        return 'Moving Box'
-    } else if (data1 === 2) {
-        return 'Center Box'
-    } else if (data1 === 3) {
-        if(data2 === 1) {
-            return 'Guiding Lost'
-        } else {
-            return `Guiding: ${floorData(data3)}`
-        }
-    } else {
-        return 'Not Guiding'
-    }
-}

@@ -1,6 +1,5 @@
-import { Fragment } from 'react'
-import { useContext } from 'react'
-import ChartContext from '../context/ChartContext'
+import { Fragment, useContext } from 'react'
+import ChartContext from '../contexts/ChartContext'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 

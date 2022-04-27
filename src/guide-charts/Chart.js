@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import ChartContext from "../context/ChartContext"
+import ChartContext from "../contexts/ChartContext"
 
 const Chart = ({ children }) => {
     
@@ -10,10 +10,9 @@ const Chart = ({ children }) => {
             <svg className="w-full h-60 sm:h-72 xl:h-[19rem]">
                 <g transform={`translate(${dimensions.marginLeft + 7.75}, ${dimensions.marginTop})`}>
                     <line // first horizontal line
-                        x2={dimensions.boundedWidth} 
+                        x2={dimensions.boundedWidth}
                         stroke='#dadada' // green
-                        strokeWidth='0.5'
-                        style={{'strokeDasharray': '0, 0'}}
+                        strokeWidth='2'
                     />
                     {children}
                     <line // last vertical line
@@ -22,8 +21,7 @@ const Chart = ({ children }) => {
                         y2={dimensions.boundedHeight} 
                         // stroke='#66BB6A' // green
                         stroke='#dadada' // green
-                        strokeWidth='0.5'
-                        style={{'strokeDasharray': '0, 0'}}
+                        strokeWidth='1'
                     />
                 </g>
             </svg>

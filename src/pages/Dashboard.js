@@ -1,42 +1,35 @@
-import { scaleNames } from "../utils/utils"
-import { ChartContextProvider } from '../context/ChartContext'
+import { useContext } from 'react'
+import EventSourceContext from '../contexts/EventSourceContext'
+import { ChartContextProvider } from '../contexts/ChartContext'
 import useChartLogic from '../hooks/useChartLogic'
-import { TcsData } from '../components/TcsData'
+import { Axis, Line, Chart, DimensionLabel, DataLabel } from '../guide-charts/exports'
 import { TcsDataContainer, ChartContainer, ChartControlsContainer } from '../containers/exports'
-import { decdegToHms, decTimeToHms, floorData, useWhenEmpty } from '../utils/utils'
-import Chart from '../guide-charts/Chart'
-import Line from '../guide-charts/Line'
-import Axis from '../guide-charts/Axis'
-import { ScaleListBox, Button as ResetButton } from '../components/exports'
+import { scaleNames, decdegToHms, decTimeToHms, floorData, useWhenEmpty } from '../utils/utils'
+import { ScaleListBox, Button as ResetButton, TcsData } from '../components/exports'
+import useModes from "../hooks/useModes"
 
-export const Dashboard = ({ statusData, enabled }) => {
-    
+export const Dashboard = () => {
+    const { statusData } = useContext(EventSourceContext)
+    const { telescopeMode, autoguiderMode } = useModes(statusData)
     
     return (
         <div className='xl:flex xl:justify-evenly'>
             <div className='xl:w-[60%] xl:flex-grow sm:ml-5 xl:ml-7'>
-                <ChartContextProvider value={useChartLogic(statusData, enabled, 'IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
+                <ChartContextProvider value={useChartLogic('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
                     <ChartContainer>
                         <Chart>
-                            <Line
-                                accessor='y1'
-                                color='#D32F2F' // red
-                            />
-                            <Line
-                                accessor='y2'
-                                color='#1976D2' // blue
-                            />
-                            <Axis // Horizontal
-                                dimension='x'
-                                xLabel='Guide Errors'
-                                dataLabelOne='X'
-                                dataLabelTwo='Y'
-                                x={floorData(statusData.IntensityOffsetXarcsec)}
-                                y={floorData(statusData.IntensityOffsetYarcsec)}
-                            />
-                            <Axis // Vertical
-                                dimension='y'
-                            />
+                            <Line accessor='y1' color='#D32F2F' />
+                            <Line accessor='y2' color='#1976D2' />
+                            <Axis dimension='x'>
+                                <DimensionLabel name='Guide Errors' />
+                                <DataLabel coordinateX='115' color='red'>
+                                    <TcsData type='label' name='X' data={floorData(statusData.IntensityOffsetXarcsec)} />
+                                </DataLabel>
+                                <DataLabel coordinateX='30' color='blue'>
+                                    <TcsData type='label' name='Y' data={floorData(statusData.IntensityOffsetYarcsec)} />
+                                </DataLabel>
+                            </Axis>
+                            <Axis dimension='y' />
                         </Chart>
                         <ChartControlsContainer>
                             <ScaleListBox scale={scaleNames('x')} selected='scaleX' />
@@ -46,22 +39,17 @@ export const Dashboard = ({ statusData, enabled }) => {
                     </ChartContainer>
                 </ChartContextProvider>
                 
-                <ChartContextProvider value={useChartLogic(statusData, enabled, 'AutoguiderContrast')}>
+                <ChartContextProvider value={useChartLogic('AutoguiderContrast')}>
                     <ChartContainer>
                         <Chart>
-                            <Line
-                                accessor='y1'
-                                color='#D32F2F' // red
-                            />
-                            <Axis // Horizontal
-                                dimension='x'
-                                xLabel='Guide Intensity'
-                                dataLabelOne='Contrast'
-                                x={floorData(statusData.AutoguiderContrast)}
-                            />
-                            <Axis // Vertical
-                                dimension='y'
-                            />
+                            <Line accessor='y1' color='#D32F2F' />
+                            <Axis dimension='x'>
+                            <DimensionLabel name='Guide Intensity' />
+                            <DataLabel coordinateX='65' color='red'>
+                                <TcsData type='label' name='Intensity' data={floorData(statusData.AutoguiderContrast)} />
+                            </DataLabel>
+                        </Axis>
+                            <Axis dimension='y' />
                         </Chart>
                         <ChartControlsContainer>
                             <ScaleListBox scale={scaleNames('x')} selected='scaleX' />
@@ -70,28 +58,21 @@ export const Dashboard = ({ statusData, enabled }) => {
                     </ChartContainer>
                 </ChartContextProvider>
                 
-                <ChartContextProvider value={useChartLogic(statusData, enabled, 'Xfilter', 'Yfilter')}>
+                <ChartContextProvider value={useChartLogic('Xfilter', 'Yfilter')}>
                     <ChartContainer>
                         <Chart>
-                            <Line
-                                accessor='y1'
-                                color='#D32F2F' // red
-                            />
-                            <Line
-                                accessor='y2'
-                                color='#1976D2' // red
-                            />
-                            <Axis // Horizontal
-                                dimension='x'
-                                xLabel='Fiber Guider'
-                                dataLabelOne='X'
-                                dataLabelTwo='Y'
-                                x={floorData(statusData.Xfilter)  * 0.24}
-                                y={floorData(statusData.Yfilter)  * 0.24}
-                            />
-                            <Axis // Vertical
-                                dimension='y'
-                            />
+                            <Line accessor='y1' color='#D32F2F' />
+                            <Line accessor='y2' color='#1976D2' />
+                            <Axis dimension='x'>
+                                <DimensionLabel name='Fiber Guider' />
+                                <DataLabel coordinateX='115' color='red'>
+                                    <TcsData type='label' name='X' data={floorData(statusData.Xfilter)  * 0.24} />
+                                </DataLabel>
+                                <DataLabel coordinateX='30' color='blue'>
+                                    <TcsData type='label' name='Y' data={floorData(statusData.Yfilter)  * 0.24} />
+                                </DataLabel>
+                            </Axis>
+                            <Axis dimension='y' />
                         </Chart>
                         <ChartControlsContainer>
                             <ScaleListBox scale={scaleNames('x')} selected='scaleX' />
@@ -101,10 +82,15 @@ export const Dashboard = ({ statusData, enabled }) => {
                     </ChartContainer>
                 </ChartContextProvider>
             </div>
+            
             <div className='flex flex-col sm:flex-row flex-wrap sm:justify-between sm:mx-5 xl:mx-0 xl:w-[30%] xl:justify-center xl:items-center'>
                 <TcsDataContainer>
                     <TcsData name='DateTimeUT' data={statusData.DateTimeUT} />
                     <TcsData name='TimeST' data={statusData.TimeST} />
+                </TcsDataContainer>
+                <TcsDataContainer>
+                    <TcsData name='Telescope' data={telescopeMode} />
+                    <TcsData name='Autoguider' data={autoguiderMode} />
                 </TcsDataContainer>
                 <TcsDataContainer>
                     <TcsData name='CameraProbeInSplitPos' data={statusData.CameraProbeInSplitPos} />
@@ -117,7 +103,6 @@ export const Dashboard = ({ statusData, enabled }) => {
                 <TcsDataContainer>
                     <TcsData name='AirMass' data={floorData(statusData.AirMass)} />
                     <TcsData name='ObjectPointedToObjectName' data={useWhenEmpty(statusData.ObjectPointedToObjectName, 'Zenith')} />
-                    <TcsData name='TelescopeModeNumber' data={statusData.TelescopeModeNumber} />
                 </TcsDataContainer>
                 <TcsDataContainer>
                     <TcsData name='RotatorPosDeg' data={statusData.RotatorPosDeg} />
@@ -134,10 +119,6 @@ export const Dashboard = ({ statusData, enabled }) => {
                 <TcsDataContainer>
                     <TcsData name='GuideProbeX' data={statusData.GuideProbeX} />
                     <TcsData name='GuideProbeY' data={statusData.GuideProbeY} />
-                </TcsDataContainer>
-                <TcsDataContainer>
-                    <TcsData name='AutoguiderModeNumber' data={statusData.AutoguiderModeNumber} />
-                    <TcsData name='AutoguiderGuideStarLost' data={statusData.AutoguiderGuideStarLost} />
                 </TcsDataContainer>
                 <TcsDataContainer>
                     <TcsData name='CtrXdist' data={statusData.CtrXdist} />

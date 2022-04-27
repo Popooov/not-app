@@ -1,6 +1,5 @@
-// import { TCCStatusNow } from "./containers/tccContainer/TccStatusNow"
-// import { useFetch } from './hooks/useFetch'
-import { useEventSource } from './hooks/useEventSource'
+import { EventSourceContextProvider } from './contexts/EventSourceContext'
+import useEventSource from './hooks/useEventSource'
 import { HeaderContainer } from './containers/exports'
 import { Dashboard } from './pages/Dashboard'
 
@@ -9,8 +8,10 @@ function App() {
 
   return (
     <div className='flex flex-col mx-auto xl:w-auto md:mb-6'>
-        <HeaderContainer toggle={{enabled, setEnabled}} data={statusData} />
-        <Dashboard statusData={statusData} enabled={enabled} />
+      <EventSourceContextProvider value={{enabled, setEnabled, statusData}}>
+        <HeaderContainer />
+        <Dashboard />
+      </EventSourceContextProvider>
     </div>
   )
 }

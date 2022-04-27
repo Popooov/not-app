@@ -1,6 +1,6 @@
-import { scaleTypes } from "../utils/utils"
 import { useContext } from "react"
-import ChartContext from "../context/ChartContext"
+import ChartContext from "../contexts/ChartContext"
+import { scaleTypes } from "../utils/utils"
 
 const axisComponentsByDimension = {
     x: HorizontalAxis,
@@ -32,7 +32,7 @@ const Axis = ({ dimension, xLabel, ...restProps }) => {
     )
 } 
 
-function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, xLabel, x, y, dataLabelOne, dataLabelTwo }) {
+function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, children }) {
     const ticks = scaleTypes(dimension, selectedScale)
     // console.log(dimensions)
 
@@ -40,31 +40,9 @@ function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, xLabel, 
         <g transform={`translate(0, ${dimensions.boundedHeight})`}>
             <rect y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
             <rect width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
-            <text
-                textAnchor="middle"
-                transform={`translate(50, ${-dimensions.boundedHeight - 10})`}
-                className='text-sm sm:text-base'
-            >
-                {xLabel}
-            </text>
-            <text
-                fill="red"
-                fillOpacity='.75'
-                textAnchor="middle"
-                transform={`translate(${dataLabelTwo ? dimensions.boundedWidth - 105 : dimensions.boundedWidth - 49}, ${-dimensions.boundedHeight - 10})`}
-                className='text-xs sm:text-base'
-            >
-                {dataLabelOne}: {x}
-            </text>
-            {dataLabelTwo && <text
-                fill="blue"
-                fillOpacity='.75'
-                textAnchor="middle"
-                transform={`translate(${dimensions.boundedWidth - 25}, ${-dimensions.boundedHeight - 10})`}
-                className='text-xs sm:text-base'
-            >
-                {dataLabelTwo}: {y}
-            </text>}
+            
+                {children}
+
             <line 
                 x2={dimensions.boundedWidth}
                 x1='0.5'
@@ -77,9 +55,9 @@ function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, xLabel, 
                         y2={-dimensions.boundedHeight - 6}
                         transform={`translate(${scaleX(tick)})`} 
                         stroke='#dadada' // lightgray
-                        strokeWidth='0.5'
-                        pathLength='10'
-                        style={{'strokeDasharray': '.25, .25'}}
+                        strokeWidth='1'
+                        pathLength='20'
+                        style={{'strokeDasharray': '0.4, 0.6'}}
                     />
                     <line // vertical tick lines
                         y2='4'
@@ -125,7 +103,7 @@ function VerticalAxis({ dimensions, scaleY, selectedScale }) {
                         dominantBaseline='middle'
                         textAnchor="end"
                         >
-                        {tick}
+                        {(tick).toFixed(2)}
                     </text>
                 </g>
             ))}

@@ -8,7 +8,7 @@ const useModes = ({
     AutoguiderContrast 
 }) => {
     const [ telescopeMode, setTelescopeMode ] = useState('')
-    const [ autoguiderModeMode, setAutoguiderModeMode ] = useState('')
+    const [ autoguiderMode, setAutoguiderMode ] = useState('')
 
     useEffect(() => {
         if(TelescopeModeNumber === 1) {
@@ -24,23 +24,23 @@ const useModes = ({
         }
     
         if(AutoguiderModeNumber === 1) {
-            setAutoguiderModeMode('Moving Box')
+            setAutoguiderMode('Moving Box')
         } else if (AutoguiderModeNumber === 2) {
-            setAutoguiderModeMode('Center Box')
+            setAutoguiderMode('Center Box')
         } else if (AutoguiderModeNumber === 3) {
             if(AutoguiderGuideStarLost === 1) {
-                setAutoguiderModeMode('Guiding Lost')
+                setAutoguiderMode('Guiding Lost')
             } else {
-                return setAutoguiderModeMode(`Guiding: ${floorData(AutoguiderContrast)}`)
+                return setAutoguiderMode(`Guiding: ${floorData(AutoguiderContrast)}`)
             }
         } else {
-            setAutoguiderModeMode('Not Guiding')
+            setAutoguiderMode('Not Guiding')
         }
     }, [TelescopeModeNumber, AutoguiderModeNumber, AutoguiderGuideStarLost, AutoguiderContrast])
 
     return { 
         telescopeMode,
-        autoguiderModeMode
+        autoguiderMode
     }
 }
 
