@@ -3,7 +3,7 @@ import { Switch } from '@headlessui/react'
 export const Toggle = ({ enabled, setEnabled }) => {
 
     return (
-        <div className='col-start-3 col-end-4 justify-self-end row-span-2'>
+        <div className='col-start-4 col-end-5 justify-self-end row-span-2'>
             <Switch.Group>
                 <div className='flex items-center'>
                     {/* <Switch.Label className={`${enabled ? 'bg-green-400' : ' bg-red-400'} mr-2 p-1.5 text-white text-xs rounded-full`}></Switch.Label> */}

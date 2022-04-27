@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import ChartContext from "../contexts/ChartContext"
-import { scaleTypes } from "../utils/utils"
+import { scaleTypes, toFixedNum } from "../utils/utils"
 
 const axisComponentsByDimension = {
     x: HorizontalAxis,
@@ -103,7 +103,7 @@ function VerticalAxis({ dimensions, scaleY, selectedScale }) {
                         dominantBaseline='middle'
                         textAnchor="end"
                         >
-                        {(tick).toFixed(2)}
+                        {tick === parseInt(tick) ? tick : toFixedNum(tick)}
                     </text>
                 </g>
             ))}

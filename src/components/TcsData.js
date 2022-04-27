@@ -1,8 +1,8 @@
 export const TcsData = ({type, name, data, styles = {}}) => {
     return (
        type === 'label' ? 
-        <text>{name}: {data}</text>
+        (name ? <text>{name}: {data}</text> : <text>{data}</text>)
         : 
-        <p className={styles}>{name}: {data}</p>
+        (name ? <p className={styles}>{name}: {data}</p> : <p className={styles}>{data}</p>)
     )
 }

@@ -4,7 +4,7 @@ import { ChartContextProvider } from '../contexts/ChartContext'
 import useChartLogic from '../hooks/useChartLogic'
 import { Axis, Line, Chart, DimensionLabel, DataLabel } from '../guide-charts/exports'
 import { TcsDataContainer, ChartContainer, ChartControlsContainer } from '../containers/exports'
-import { scaleNames, decdegToHms, decTimeToHms, floorData, useWhenEmpty } from '../utils/utils'
+import { scaleNames, decdegToHms, decTimeToHms, toFixedNum, useWhenEmpty } from '../utils/utils'
 import { ScaleListBox, Button as ResetButton, TcsData } from '../components/exports'
 import useModes from "../hooks/useModes"
 
@@ -23,10 +23,10 @@ export const Dashboard = () => {
                             <Axis dimension='x'>
                                 <DimensionLabel name='Guide Errors' />
                                 <DataLabel coordinateX='115' color='red'>
-                                    <TcsData type='label' name='X' data={floorData(statusData.IntensityOffsetXarcsec)} />
+                                    <TcsData type='label' name='X' data={toFixedNum(statusData.IntensityOffsetXarcsec)} />
                                 </DataLabel>
                                 <DataLabel coordinateX='30' color='blue'>
-                                    <TcsData type='label' name='Y' data={floorData(statusData.IntensityOffsetYarcsec)} />
+                                    <TcsData type='label' name='Y' data={toFixedNum(statusData.IntensityOffsetYarcsec)} />
                                 </DataLabel>
                             </Axis>
                             <Axis dimension='y' />
@@ -46,7 +46,7 @@ export const Dashboard = () => {
                             <Axis dimension='x'>
                             <DimensionLabel name='Guide Intensity' />
                             <DataLabel coordinateX='65' color='red'>
-                                <TcsData type='label' name='Intensity' data={floorData(statusData.AutoguiderContrast)} />
+                                <TcsData type='label' name='Intensity' data={toFixedNum(statusData.AutoguiderContrast)} />
                             </DataLabel>
                         </Axis>
                             <Axis dimension='y' />
@@ -66,10 +66,10 @@ export const Dashboard = () => {
                             <Axis dimension='x'>
                                 <DimensionLabel name='Fiber Guider' />
                                 <DataLabel coordinateX='115' color='red'>
-                                    <TcsData type='label' name='X' data={floorData(statusData.Xfilter)  * 0.24} />
+                                    <TcsData type='label' name='X' data={toFixedNum(statusData.Xfilter)  * 0.24} />
                                 </DataLabel>
                                 <DataLabel coordinateX='30' color='blue'>
-                                    <TcsData type='label' name='Y' data={floorData(statusData.Yfilter)  * 0.24} />
+                                    <TcsData type='label' name='Y' data={toFixedNum(statusData.Yfilter)  * 0.24} />
                                 </DataLabel>
                             </Axis>
                             <Axis dimension='y' />
@@ -101,7 +101,7 @@ export const Dashboard = () => {
                     <TcsData name='ActualDECdeg' data={decdegToHms(statusData.ActualDECdeg)} />
                 </TcsDataContainer>
                 <TcsDataContainer>
-                    <TcsData name='AirMass' data={floorData(statusData.AirMass)} />
+                    <TcsData name='AirMass' data={toFixedNum(statusData.AirMass)} />
                     <TcsData name='ObjectPointedToObjectName' data={useWhenEmpty(statusData.ObjectPointedToObjectName, 'Zenith')} />
                 </TcsDataContainer>
                 <TcsDataContainer>

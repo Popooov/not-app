@@ -2,8 +2,7 @@ import { useContext } from "react"
 import ChartContext from "../contexts/ChartContext"
 
 const Chart = ({ children }) => {
-    
-    const { ref, dimensions} = useContext(ChartContext)
+    const { ref, dimensions } = useContext(ChartContext)
 
     return (
         <div ref={ref} className='mb-1 xl:flex-grow'>

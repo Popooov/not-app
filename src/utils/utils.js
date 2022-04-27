@@ -30,6 +30,8 @@ export const scaleNames = (scaleName) => {
 
 export const floorData = (number) => Math.floor(number * 100) / 100
 
+export const toFixedNum = (number, decimals = 2) => (+number).toFixed(decimals)
+
 export const decdegToHms = (decdeg) => {
     let d = Math.floor (decdeg)
     const minfloat = (decdeg - d) * 60
