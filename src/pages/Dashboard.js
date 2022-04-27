@@ -66,10 +66,10 @@ export const Dashboard = () => {
                             <Axis dimension='x'>
                                 <DimensionLabel name='Fiber Guider' />
                                 <DataLabel coordinateX='115' color='red'>
-                                    <TcsData type='label' name='X' data={toFixedNum(statusData.Xfilter)  * 0.24} />
+                                    <TcsData type='label' name='X' data={toFixedNum(statusData.Xfilter * 0.24)} />
                                 </DataLabel>
                                 <DataLabel coordinateX='30' color='blue'>
-                                    <TcsData type='label' name='Y' data={toFixedNum(statusData.Yfilter)  * 0.24} />
+                                    <TcsData type='label' name='Y' data={toFixedNum(statusData.Yfilter * 0.24)} />
                                 </DataLabel>
                             </Axis>
                             <Axis dimension='y' />
