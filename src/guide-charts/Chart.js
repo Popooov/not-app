@@ -6,7 +6,7 @@ const Chart = ({ children }) => {
 
     return (
         <div ref={ref} className='mb-1 xl:flex-grow'>
-            <svg className="w-full h-60 sm:h-72 xl:h-[19rem]">
+            <svg className="w-full h-60 sm:h-72 xl:h-[16rem] 2xl:h-[19rem]">
                 <g transform={`translate(${dimensions.marginLeft + 7.75}, ${dimensions.marginTop})`}>
                     <line // first horizontal line
                         x2={dimensions.boundedWidth}

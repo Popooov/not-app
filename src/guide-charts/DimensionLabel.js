@@ -8,7 +8,7 @@ const DimensionLabel = ({ name, coordinateX = 50, coordinateY = 10 }) => {
         <text
             textAnchor="middle"
             transform={`translate(${coordinateX}, ${-dimensions.boundedHeight - coordinateY})`}
-            className='text-sm sm:text-base'
+            className='text-sm sm:text-base lg:text-xl'
         >
             {name}
         </text>

@@ -1,6 +1,7 @@
 export const FixedContainer = ({ children }) => {
     return (
         <div className='
+            bg-opacity-95
             fixed
             grid
             grid-row-2
@@ -10,7 +11,7 @@ export const FixedContainer = ({ children }) => {
             gap-y-0.5
             w-screen
             bottom-0
-            bg-zinc-50
+            bg-zinc-300
             shadow-md
             shadow-black
             md:hidden

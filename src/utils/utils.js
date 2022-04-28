@@ -28,33 +28,37 @@ export const scaleNames = (scaleName) => {
     if(scaleName === 'x') return xScalesNames
 }
 
-export const floorData = (number) => Math.floor(number * 100) / 100
-
-export const toFixedNum = (number, decimals = 2) => (+number).toFixed(decimals)
 
 export const decdegToHms = (decdeg) => {
-    let d = Math.floor (decdeg)
+    let d = Math.floor(decdeg)
     const minfloat = (decdeg - d) * 60
     let m = Math.floor(minfloat)
     const secfloat = (minfloat - m) * 60
     let s = Math.floor(secfloat)
    if (s === 60) {
-     m++
-     s = 0
-   }
+       m++
+       s = 0
+    }
    if (m === 60) {
-     d++
-     m = 0
+       d++
+       m = 0
    }
-
-    return `${d}:${m}:${s}`
+   
+   return isNaN(d || m || s) ? `00:00:00` : `${d}:${m}:${s}`
 }
 
 export const decTimeToHms = (ra) => {
+    if(!ra) return '00:00:00'
     const date = new Date(0,0)
     date.setSeconds(+ra * 60 * 60)
-
+    
     return date.toTimeString().slice(0, 8)
 }
 
+export const floorData = (number) => Math.floor(number * 100) / 100
+
+export const toFixedNum = (number, decimals = 2) => (+number).toFixed(decimals)
+
 export const useWhenEmpty = (data, name) => !data ? name : data
+
+export const whenNaN = (number) => isNaN(number) ? 'Loading' : number

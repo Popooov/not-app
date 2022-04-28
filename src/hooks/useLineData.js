@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { linesData } from '../utils/linesData'
 
-const useLineData = (statusData, enabled, selectedScaleX , propertyNameY1 = '', propertyNameY2 = '') => {
+const useLineData = (statusData, enabled, selectedScaleX, multiplier, propertyNameY1 = '', propertyNameY2 = '') => {
     const [ lineData, setLineData ] = useState(linesData)
     const count = useRef(-1)
 
@@ -18,11 +18,11 @@ const useLineData = (statusData, enabled, selectedScaleX , propertyNameY1 = '', 
             return [...rest, {
                 TimeST: statusData.TimeST,
                 x: count.current, 
-                y1: statusData[propertyNameY1],
-                y2: propertyNameY2 ? statusData[propertyNameY2] : null
+                y1: statusData[propertyNameY1] * multiplier,
+                y2: propertyNameY2 ? statusData[propertyNameY2] * multiplier : null
             }]
          })
-    }, [statusData, propertyNameY1, propertyNameY2])
+    }, [statusData, propertyNameY1, propertyNameY2, multiplier])
 
     useEffect(() => enabled && lines(), [enabled, lines])
 

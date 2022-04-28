@@ -10,15 +10,15 @@ function App() {
   const { telescopeMode, autoguiderMode } = useModes(statusData)
 
   return (
-    <div className='flex flex-col mx-auto xl:w-auto md:mb-6'>
+    <div className='flex flex-col mx-auto xl:w-auto md:mb-6 xl:mb-0'>
       <EventSourceContextProvider value={{enabled, setEnabled, statusData}}>
         <HeaderContainer />
         <Dashboard />
         <FixedContainer>
-          <TcsData name='' data={statusData.DateTimeUT} styles='col-start-1 col-end-2 justify-self-start' />
-          <TcsData name='Telescope' data={telescopeMode} styles='col-start-2 col-end-3 justify-self-end' />
-          <TcsData name='TimeST' data={statusData.TimeST} styles='col-start-1 col-end-2 justify-self-start' />
-          <TcsData name='Autoguider' data={autoguiderMode} styles='col-start-2 col-end-3 justify-self-end' />
+          <TcsData name='' time={statusData.DateTimeUT} styles='col-start-1 col-end-2 justify-self-start' />
+          <TcsData name='Telescope' state={telescopeMode} styles='col-start-2 col-end-3 justify-self-end' />
+          <TcsData name='TimeST' time={statusData.TimeST} styles='col-start-1 col-end-2 justify-self-start' />
+          <TcsData name='Autoguider' state={autoguiderMode} styles='col-start-2 col-end-3 justify-self-end' />
         </FixedContainer>
       </EventSourceContextProvider>
     </div>
