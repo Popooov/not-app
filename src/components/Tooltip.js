@@ -24,8 +24,8 @@ export const Tooltip = ({ text, children }) => {
                     md:p-2
                     md:px-2
                     rounded-lg
-                    bg-zinc-600 
-                    bg-opacity-90
+                    bg-zinc-700 
+                    bg-opacity-70
                     text-white 
                     text-center 
                     text-xs
