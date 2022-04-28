@@ -55,7 +55,9 @@ export const decTimeToHms = (ra) => {
     return date.toTimeString().slice(0, 8)
 }
 
-export const floorData = (number) => Math.floor(number * 100) / 100
+export const floorData = (number, range = 100) => Math.floor(number * range) / range
+
+export const roundData = (number) => Math.round(number * 100) / 100
 
 export const toFixedNum = (number, decimals = 2) => (+number).toFixed(decimals)
 

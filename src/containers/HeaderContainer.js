@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import EventSourceContext from '../contexts/EventSourceContext'
 import useModes from '../hooks/useModes'
-import { Header, Toggle, TcsData } from '../components/exports'
+import { Header, Toggle, TcsData, Tooltip } from '../components/exports'
 
 export const HeaderContainer = () => {
     const { statusData, enabled, setEnabled } = useContext(EventSourceContext)
@@ -41,7 +41,9 @@ export const HeaderContainer = () => {
             <TcsData name='Telescope' state={telescopeMode} styles='hidden md:block md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 md:justify-self-start' />
             <TcsData name='TimeST' time={statusData.TimeST} styles='hidden md:block md:col-start-3 md:col-end-4 md:row-start-2 md:row-end-3 md:justify-self-start' />
             <TcsData name='Autoguider' state={autoguiderMode} styles='hidden md:block md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 md:justify-self-start' />
-            <Toggle enabled={enabled} setEnabled={setEnabled} />
+            <Tooltip text={enabled ? 'Turn off the Charts' : 'Turn on the Charts'}>
+                <Toggle enabled={enabled} setEnabled={setEnabled} />
+            </Tooltip>
         </div>
     )
 }

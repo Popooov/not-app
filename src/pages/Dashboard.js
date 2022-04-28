@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import EventSourceContext from '../contexts/EventSourceContext'
 import { ChartContextProvider } from '../contexts/ChartContext'
-import useChartLogic from '../hooks/useChartLogic'
+import useChartLogic from '../hooks/useChartScales'
 import { Axis, Line, Chart, DimensionLabel, DataLabel, AutoHorizontalLine } from '../guide-charts/exports'
 import { TcsDataContainer, ChartContainer, ChartControlsContainer } from '../containers/exports'
 import { scaleNames, decdegToHms, decTimeToHms, toFixedNum, useWhenEmpty } from '../utils/utils'
@@ -43,7 +43,7 @@ export const Dashboard = () => {
                         <Chart>
                             <Line accessor='y1' color='#D32F2F' />
                             <Axis dimension='x'>
-                            <DimensionLabel name='Guide Intensity' coordinateX='60' />
+                            <DimensionLabel name='Guide Intensity' coordinateX='70' />
                             <DataLabel coordinateX='60' color='red'>
                                 <TcsData type='label' name='Intensity' data={toFixedNum(statusData.AutoguiderContrast)} />
                             </DataLabel>

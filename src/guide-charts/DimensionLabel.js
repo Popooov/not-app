@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import ChartContext from "../contexts/ChartContext"
 
-const DimensionLabel = ({ name, coordinateX = 50, coordinateY = 10 }) => {
+const DimensionLabel = ({ name, coordinateX = 60, coordinateY = 10 }) => {
     const { dimensions } = useContext(ChartContext)
     
     return (

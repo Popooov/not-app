@@ -16,9 +16,9 @@ function App() {
         <Dashboard />
         <FixedContainer>
           <TcsData name='' time={statusData.DateTimeUT} styles='col-start-1 col-end-2 justify-self-start' />
-          <TcsData name='Telescope' state={telescopeMode} styles='col-start-2 col-end-3 justify-self-end' />
+          <TcsData name='Telescope' state={telescopeMode} styles='col-start-2 col-end-3 justify-self-start' />
           <TcsData name='TimeST' time={statusData.TimeST} styles='col-start-1 col-end-2 justify-self-start' />
-          <TcsData name='Autoguider' state={autoguiderMode} styles='col-start-2 col-end-3 justify-self-end' />
+          <TcsData name='Autoguider' state={autoguiderMode} styles='col-start-2 col-end-3 justify-self-start' />
         </FixedContainer>
       </EventSourceContextProvider>
     </div>
