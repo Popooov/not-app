@@ -4,7 +4,7 @@ export const Tooltip = ({ text, children }) => {
     const { hovering, mouseOver, mouseOut } = useHover()
 
     return (
-        <div className="col-start-4 col-end-5 justify-self-end row-span-2 relative" onMouseOver={mouseOver} onMouseOut={mouseOut}>
+        <div className="relative col-start-4 col-end-5 justify-self-end row-span-2" onMouseOver={mouseOver} onMouseOut={mouseOut}>
             {hovering && (
                 <div className="
                     absolute 
@@ -30,7 +30,8 @@ export const Tooltip = ({ text, children }) => {
                     text-center 
                     text-xs
                 ">
-                    {text}</div>
+                    {text}
+                </div>
             )}
                 {children}
         </div>

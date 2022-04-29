@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { floorData } from "../utils/utils"
+import { floorData, toFixedNum } from "../utils/utils"
 
 const useModes = ({ 
     TelescopeModeNumber, 
@@ -31,7 +31,7 @@ const useModes = ({
             if(AutoguiderGuideStarLost === 1) {
                 setAutoguiderMode('Guiding Lost')
             } else {
-                return setAutoguiderMode(`Guiding: ${floorData(AutoguiderContrast)}`)
+                return setAutoguiderMode(`Guiding ${toFixedNum(floorData(AutoguiderContrast))}`)
             }
         } else {
             setAutoguiderMode('Not Guiding')
