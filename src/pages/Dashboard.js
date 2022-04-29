@@ -13,7 +13,7 @@ export const Dashboard = () => {
     return (
         <div className='xl:flex xl:justify-evenly xl:auto-cols-fr xl:auto-rows-fr mt-16 sm:mt-20 lg:mt-24'>
             <div className='xl:flex-grow'>
-                <ChartContextProvider value={useChartLogic('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
+                {/* <ChartContextProvider value={useChartLogic('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
                     <ChartContainer>
                         <Chart>
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
@@ -36,7 +36,7 @@ export const Dashboard = () => {
                             <ResetButton />
                         </ChartControlsContainer>
                     </ChartContainer>
-                </ChartContextProvider>
+                </ChartContextProvider> */}
 
                 <ChartContextProvider value={useChartLogic('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
                     <ChartContainer>
