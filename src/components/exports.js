@@ -1,4 +1,4 @@
-export { Header } from './Header'
+export { Logo } from './Logo'
 export { Toggle } from './Toggle'
 export { Button } from './Button'
 export { ScaleListBox } from './ScaleListBox'

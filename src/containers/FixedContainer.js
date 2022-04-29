@@ -12,9 +12,10 @@ export const FixedContainer = ({ children }) => {
             gap-x-8
             w-screen
             bottom-0
-            bg-zinc-300
-            shadow-md
-            shadow-black
+            bg-zinc-50
+            drop-shadow-2xl
+            shadow-sm
+            shadow-zinc-900
             md:hidden
             text-xs
             sm:text-sm

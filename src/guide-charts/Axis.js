@@ -103,7 +103,7 @@ function VerticalAxis({ dimensions, scaleY, selectedScale }) {
                         dominantBaseline='middle'
                         textAnchor="end"
                         >
-                        {tick !== parseInt(tick) ? tick : floorData(tick)}
+                        {tick}
                     </text>
                 </g>
             ))}

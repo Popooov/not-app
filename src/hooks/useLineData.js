@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { linesData } from '../utils/linesData'
+import { floorData } from "../utils/utils"
 
 const useLineData = (statusData, enabled, selectedScaleX, multiplier, propertyNameY1 = '', propertyNameY2 = '') => {
     const [ lineData, setLineData ] = useState(linesData)
@@ -18,8 +19,8 @@ const useLineData = (statusData, enabled, selectedScaleX, multiplier, propertyNa
             return [...rest, {
                 TimeST: statusData.TimeST,
                 x: count.current, 
-                y1: statusData[propertyNameY1] * multiplier,
-                y2: propertyNameY2 ? statusData[propertyNameY2] * multiplier : null
+                y1: floorData(statusData[propertyNameY1] * multiplier),
+                y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
             }]
          })
     }, [statusData, propertyNameY1, propertyNameY2, multiplier])
