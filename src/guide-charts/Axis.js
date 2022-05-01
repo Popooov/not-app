@@ -79,7 +79,7 @@ function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, children
 }
 
 function VerticalAxis({ dimensions, scaleY, selectedScale }) {
-    const ticks = selectedScale === 'Auto' ? scaleY.ticks(12) : scaleY.ticks()
+    const ticks = selectedScale !== 'Auto' ? scaleY.ticks() : scaleY.ticks(4)
 
     return (
         <g>

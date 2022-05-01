@@ -68,11 +68,11 @@ export const Dashboard = () => {
                         <Chart>
                             <Line accessor='y1' color='#D32F2F' />
                             <Axis dimension='x'>
-                            <DimensionLabel name='Guide Intensity' coordinateX='70' />
-                            <DataLabel coordinateX='60' color='red'>
-                                <TcsData type='label' name='Intensity' data={toFixedNum(floorData(statusData.AutoguiderContrast))} />
-                            </DataLabel>
-                        </Axis>
+                                <DimensionLabel name='Guide Intensity' coordinateX='70' />
+                                <DataLabel coordinateX='60' color='red'>
+                                    <TcsData type='label' name='Intensity' data={toFixedNum(floorData(statusData.AutoguiderContrast))} />
+                                </DataLabel>
+                            </Axis>
                             <Axis dimension='y' />
                         </Chart>
                         <ChartControlsContainer>

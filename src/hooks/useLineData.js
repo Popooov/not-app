@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { linesData } from '../utils/linesData'
-import { floorData } from "../utils/utils"
+import { floorData, toFixedNum } from "../utils/utils"
 
 const useLineData = (statusData, enabled, selectedScaleX, multiplier, propertyNameY1 = '', propertyNameY2 = '') => {
     const [ lineData, setLineData ] = useState(linesData)
