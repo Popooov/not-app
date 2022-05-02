@@ -97,7 +97,7 @@ export const Dashboard = () => {
                                     <TcsData type='label' name='Y' data={toFixedNum(floorData(statusData.Yfilter * 0.24))} />
                                 </DataLabel>
                             </Axis>
-                            <Axis dimension='y' />
+                            <Axis dimension='y' scaleTicks='4' />
                         </Chart>
                         <ChartControlsContainer>
                             <ScaleListBox scale={scaleNames('x')} selected='scaleX' />
