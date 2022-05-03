@@ -9,7 +9,7 @@ const useEventSource = () => {
 
     useEffect(() => {
         eventSource.onmessage = (e) => setStatusData(JSON.parse(e.data))
-        return () => sse.close()
+        return () => eventSource.close()
     }, [eventSource])
 
     return { 

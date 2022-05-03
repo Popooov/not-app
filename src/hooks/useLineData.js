@@ -11,21 +11,21 @@ const useLineData = (statusData, enabled, selectedScaleX, multiplier, propertyNa
         setLineData(linesData)
     }
 
-    const lines = useCallback(() => {
-        count.current++
-        setLineData((prevState) => {
+    const lines =  useCallback(() => {
+        enabled && count.current++
+        enabled && setLineData((prevState) => {
             let [first, ...rest] = prevState
             
             return [...rest, {
                 TimeST: statusData.TimeST,
                 x: count.current, 
                 y1: floorData(statusData[propertyNameY1] * multiplier),
-                y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
+                y2: propertyNameY2 ?  floorData(statusData[propertyNameY2] * multiplier) : null
             }]
-         })
-    }, [statusData, propertyNameY1, propertyNameY2, multiplier])
+        })
+    }, [statusData, propertyNameY1, propertyNameY2, multiplier, enabled])
 
-    useEffect(() => enabled && lines(), [enabled, lines])
+    useEffect(() => lines(), [lines])
 
     if(selectedScaleX === '1 min') {
         return {
