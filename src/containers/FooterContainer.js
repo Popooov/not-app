@@ -1,4 +1,4 @@
-export const FixedContainer = ({ children }) => {
+export const FooterContainer = ({ children }) => {
     return (
         <div className='
             bg-opacity-95

@@ -1,7 +1,7 @@
 import { EventSourceContextProvider } from './contexts/EventSourceContext'
 import useEventSource from './hooks/useEventSource'
 import useModes from './hooks/useModes'
-import { HeaderContainer, FixedContainer } from './containers/exports'
+import { HeaderContainer, FooterContainer } from './containers/exports'
 import { TcsData, Logo, Tooltip, Toggle } from './components/exports'
 import { Dashboard } from './pages/Dashboard'
 
@@ -23,12 +23,12 @@ function App() {
           </Tooltip>
         </HeaderContainer>
         <Dashboard />
-        <FixedContainer>
+        <FooterContainer>
           <TcsData name='' data={statusData.DateTimeUT} styles='col-start-1 col-end-2 justify-self-start' />
           <TcsData name='Telescope' data={telescopeMode} styles='col-start-2 col-end-3 justify-self-start' />
           <TcsData name='TimeST' data={statusData.TimeST} styles='col-start-1 col-end-2 justify-self-start' />
           <TcsData name='Autoguider' data={autoguiderMode} styles='col-start-2 col-end-3 justify-self-start' />
-        </FixedContainer>
+        </FooterContainer>
       </EventSourceContextProvider>
     </div>
   )
