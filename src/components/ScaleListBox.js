@@ -9,17 +9,39 @@ export function ScaleListBox({ scale, selected }) {
     selectedScaleX, 
     setSelectedScaleX,
     selectedScaleY, 
-    setSelectedScaleY
+    setSelectedScaleY,
+    selectedScaleXY,
+    setSelectedScaleXY,
   } = useContext(ChartContext)
 
+  const handleSelected = (selected) => {
+    if(selected === 'scaleX') {
+      return selectedScaleX
+    } else if(selected === 'scaleY') {
+      return selectedScaleY
+    } else {
+      return selectedScaleXY
+    }
+  }
 
+  const handleSetSelected = (selected) => {
+    if(selected === 'scaleX') {
+      return setSelectedScaleX
+    } else if(selected === 'scaleY') {
+      return setSelectedScaleY
+    } else {
+      return setSelectedScaleXY
+    }
+  }
 
-  // console.log()
+  // console.log(selected)
   return (
     <div className="w-[6.5rem] sm:mr-5 xl:mb-4">
       <Listbox
-        value={selected === 'scaleX' ? selectedScaleX : selectedScaleY}
-        onChange={selected === 'scaleX' ? setSelectedScaleX : setSelectedScaleY}>
+        // value={selected === 'scaleX' ? selectedScaleX : selectedScaleY}
+        // onChange={selected === 'scaleX' ? setSelectedScaleX : setSelectedScaleY}>
+        value={handleSelected(selected)}
+        onChange={handleSetSelected(selected)}>
         <div className="relative mt-1">
           <Listbox.Button className="relative w-[95%] sm:w-full py-2 pl-3 pr-10 text-left text-xs rounded-lg bg-zinc-100 border-2 border-zinc-400 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
             <span className="block truncate">{selected === 'scaleX' ? selectedScaleX : selectedScaleY}</span>

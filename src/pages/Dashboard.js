@@ -82,7 +82,7 @@ export const Dashboard = () => {
                     </ChartContainer>
                 </ChartContextProvider>
 
-                <ChartContextProvider value={useChartScales('', '', null, 'ScatterPlot')}>
+                <ChartContextProvider value={useChartScales('GeneralParameter068', 'GeneralParameter069', null, 'ScatterPlot')}>
                     <ChartContainer>
                         <Chart>
                             <Circles/>

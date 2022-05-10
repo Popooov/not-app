@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { linesData } from '../utils/linesData'
-import { floorData, toFixedNum } from "../utils/utils"
+import { floorData } from "../utils/utils"
 
 const useChartsData = (statusData, enabled, selectedScaleX, multiplier, propertyNameY1 = '', propertyNameY2 = '') => {
     const [ lineData, setLineData ] = useState(linesData)
@@ -13,7 +13,7 @@ const useChartsData = (statusData, enabled, selectedScaleX, multiplier, property
         setCircleData([])
     }
 
-    const chartsData =  useCallback(() => {
+    const chartsData = useCallback(() => {
         enabled && count.current++
         enabled && setLineData((prevState) => {
             let [first, ...rest] = prevState
@@ -22,7 +22,7 @@ const useChartsData = (statusData, enabled, selectedScaleX, multiplier, property
                 TimeST: statusData.TimeST,
                 x: count.current, 
                 y1: floorData(statusData[propertyNameY1] * multiplier),
-                y2: propertyNameY2 ?  floorData(statusData[propertyNameY2] * multiplier) : null
+                y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
             }]
         })
 
