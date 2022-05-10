@@ -1,20 +1,23 @@
 import { useState, useContext } from "react"
 import EventSourceContext from '../contexts/EventSourceContext'
 import { useChartDimensions } from "./useChartDimensions"
-import useLineData from "./useLineData"
+import useChartsData from "./useChartsData"
 import { scaleTypes, scaleNames } from "../utils/utils"
 import * as d3 from 'd3'
 
-const useChartLogic = (propertyNameY1, propertyNameY2, multiplier = 1) => {
+const useChartScales = (propertyNameY1, propertyNameY2, multiplier = 1, chartType) => {
     const { statusData, enabled } = useContext(EventSourceContext)
     const [ ref, dimensions ] = useChartDimensions()
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[1])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
-    const { lineData, resetLines } = useLineData(statusData, enabled, selectedScaleX, multiplier, propertyNameY1, propertyNameY2)
+    const [ selectedScaleXY, setSelectedScaleXY ] = useState(scaleNames('xy')[3])
+    const { circleData, lineData, reset } = useChartsData(statusData, enabled, selectedScaleX, multiplier, propertyNameY1, propertyNameY2, chartType)
 
     const xAccessor = d => d.x
+    const yAccessor = d => d.y
     const y1Accessor = d => d.y1
     const y2Accessor = d => d.y2
+    const colorAccessor = d => d.color
     
     const staticScaleX = d3.scaleLinear()
         .domain([-lineData.length, 0])
@@ -38,6 +41,21 @@ const useChartLogic = (propertyNameY1, propertyNameY2, multiplier = 1) => {
         .range([dimensions.boundedHeight, 0])
         .nice()
         
+    const scatterScaleX = d3.scaleLinear()
+        .domain(d3.extent(scaleTypes('xy', selectedScaleXY)))
+        .range([0, dimensions.boundedWidth])
+    
+    const scatterScaleY = d3.scaleLinear()
+        .domain(d3.extent(scaleTypes('xy', selectedScaleXY)))
+        .range([dimensions.boundedHeight, 0])
+
+    const colorScale = d3.scaleSequential()
+        .domain(d3.extent(circleData, colorAccessor))
+        .interpolator(d3.interpolateViridis)
+    
+    const colorAccessorScaled = d => colorScale(colorAccessor(d))
+    const scatterAccessorScaledX = d => scatterScaleX(xAccessor(d))
+    const scatterAccessorScaledY = d => scatterScaleY(yAccessor(d))
     const xAccessorScaled = d => dynamicScaleX(xAccessor(d))
     const y1AccessorScaled = d => selectedScaleY === 'Auto' ?  dynamicScaleY(y1Accessor(d)) : staticScaleY(y1Accessor(d))
     const y2AccessorScaled = d => selectedScaleY === 'Auto' ?  dynamicScaleY(y2Accessor(d)) : staticScaleY(y2Accessor(d))
@@ -45,21 +63,30 @@ const useChartLogic = (propertyNameY1, propertyNameY2, multiplier = 1) => {
 
     return {
         dimensions,
-        resetLines,
+        reset,
         selectedScaleX, 
         setSelectedScaleX,
         selectedScaleY, 
         setSelectedScaleY,
+        selectedScaleXY,
+        setSelectedScaleXY,
+        colorAccessorScaled,
+        scatterAccessorScaledX,
+        scatterAccessorScaledY,
         xAccessorScaled,
         y1AccessorScaled,
         y2AccessorScaled,
         staticScaleX,
         staticScaleY,
+        scatterScaleX,
+        scatterScaleY,
         dynamicScaleY,
         statusData,
         lineData,
+        circleData,
+        chartType,
         ref
     }
 }
 
-export default useChartLogic
+export default useChartScales

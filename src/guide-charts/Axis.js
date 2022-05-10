@@ -8,13 +8,16 @@ const axisComponentsByDimension = {
 }
 
 const Axis = ({ dimension, xLabel, ...restProps }) => {
-    const { 
+    const {
         selectedScaleX,
         selectedScaleY,
         dimensions, 
         staticScaleX,
         staticScaleY,
-        dynamicScaleY
+        scatterScaleX,
+        scatterScaleY,
+        dynamicScaleY,
+        chartType
     } = useContext(ChartContext)
     const Component = axisComponentsByDimension[dimension]
     if(!Component) return null
@@ -26,21 +29,24 @@ const Axis = ({ dimension, xLabel, ...restProps }) => {
             selectedScale={selectedScaleX}
             scaleX={staticScaleX}
             scaleY={selectedScaleY === 'Auto' ? dynamicScaleY : staticScaleY}
+            scatterScaleX={scatterScaleX}
+            scatterScaleY={scatterScaleY}
             xLabel={xLabel}
+            chartType={chartType}
             {...restProps}
         />
     )
 } 
 
-function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, children }) {
-    const ticks = scaleTypes(dimension, selectedScale)
-    // console.log(dimensions)
+function HorizontalAxis({ dimension, dimensions, scaleX, scatterScaleX, selectedScale, chartType, children }) {
+    const ticks = chartType === 'ScatterPlot' ? scatterScaleX.ticks() : scaleTypes(dimension, selectedScale)
 
     return (
         <g transform={`translate(0, ${dimensions.boundedHeight})`}>
             <rect y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
             <rect width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
-            
+            <rect x={dimensions.boundedWidth} y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.marginLeft} height={dimensions.boundedHeight + dimensions.marginTop + dimensions.marginBottom} fill="white" />
+            <rect x={-dimensions.marginRight - 50} y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.marginRight + 50} height={dimensions.boundedHeight + dimensions.marginTop + dimensions.marginBottom} fill="white"/>
                 {children}
 
             <line 
@@ -51,6 +57,8 @@ function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, children
             />
             {ticks.map(tick => (
                 <g key={tick}>
+                    {
+                    chartType === 'ScatterPlot' ? null :
                     <line // vertical dashed lines
                         y2={-dimensions.boundedHeight - 6}
                         transform={`translate(${scaleX(tick)})`} 
@@ -58,17 +66,17 @@ function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, children
                         strokeWidth='1'
                         pathLength='20'
                         style={{'strokeDasharray': '0.4, 0.6'}}
-                    />
+                    />}
                     <line // vertical tick lines
                         y2='4'
-                        transform={`translate(${scaleX(tick)})`}
+                        transform={`translate(${chartType === 'ScatterPlot' ? scatterScaleX(tick) : scaleX(tick)})`}
                         stroke='black'
                     />
                     <text // tick numbers
                         className={`${ticks.length === 13 ? 'text-[7px] sm:text-xs' : 'text-[9px] sm:text-xs'}`}
                         textAnchor="middle"
                         key={tick}
-                        transform={`translate(${scaleX(tick)}, 20)`}
+                        transform={`translate(${chartType === 'ScatterPlot' ? scatterScaleX(tick) : scaleX(tick)}, 20)`}
                     >
                         {tick}
                     </text>
@@ -78,8 +86,8 @@ function HorizontalAxis({ dimension, dimensions, scaleX, selectedScale, children
     )
 }
 
-function VerticalAxis({ dimensions, scaleY, selectedScale, scaleTicks }) {
-    const ticks = scaleTicks ? scaleY.ticks(scaleTicks) : scaleY.ticks()
+function VerticalAxis({ dimensions, scaleY, scatterScaleY, selectedScale, chartType, scaleTicks }) {
+    const ticks = chartType === 'ScatterPlot' ? scatterScaleY.ticks() : scaleTicks ? scaleY.ticks(scaleTicks) : scaleY.ticks()
 
     return (
         <g>
@@ -93,13 +101,13 @@ function VerticalAxis({ dimensions, scaleY, selectedScale, scaleTicks }) {
                 <g key={tick}>
                     <line 
                         x2='-4'
-                        transform={`translate(0, ${scaleY(tick)})`}
+                        transform={`translate(0, ${chartType === 'ScatterPlot' ? scatterScaleY(tick) : scaleY(tick)})`}
                         stroke='black'
                     />
                     <text
                         className='text-[8px] sm:text-xs'
                         key={tick}
-                        transform={`translate(-9, ${scaleY(tick)})`}
+                        transform={`translate(-9, ${chartType === 'ScatterPlot' ? scatterScaleY(tick) : scaleY(tick)})`}
                         dominantBaseline='middle'
                         textAnchor="end"
                         >
