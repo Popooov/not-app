@@ -6,6 +6,7 @@ const useChartsData = (statusData, enabled, selectedScaleX, multiplier, property
     const [ lineData, setLineData ] = useState(linesData)
     const [ circleData, setCircleData ] = useState([])
     const count = useRef(-1)
+    const [ freeze, setFreeze ] = useState(true)
 
     const handleReset = () => {
         count.current = -1
@@ -25,17 +26,26 @@ const useChartsData = (statusData, enabled, selectedScaleX, multiplier, property
                 y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
             }]
         })
-
-        enabled && setCircleData((prevState) => {
-
-            return [...prevState, {
-                TimeST: statusData.TimeST,
-                x: propertyNameY1 ? statusData[propertyNameY1] : -(Math.random() * 0.5) + Math.random() * 0.5,
-                y: propertyNameY2 ? statusData[propertyNameY2] : -(Math.random() * 0.5) + Math.random() * 0.5,
-                color: count.current / 1000
-            }]
-        })
-    }, [statusData, propertyNameY1, propertyNameY2, multiplier, enabled])
+        
+        if (statusData.AutoguiderModeNumber === 3) {
+            if (freeze) {
+                setFreeze(false)
+                setCircleData([])
+            } else if (!freeze) {
+                setCircleData((prevState) => {
+            
+                    return [...prevState, {
+                        TimeST: statusData.TimeST,
+                        x: statusData[propertyNameY1],
+                        y: statusData[propertyNameY2],
+                        color: count.current
+                    }]
+                })
+            }
+        } else {
+            setFreeze(true)
+        }
+    }, [statusData, propertyNameY1, propertyNameY2, multiplier, freeze, enabled])
 
     useEffect(() => chartsData(), [chartsData])
 
