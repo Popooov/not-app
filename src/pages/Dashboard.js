@@ -9,10 +9,11 @@ import { ScaleListBox, Button as ResetButton, TcsData } from '../components/expo
 
 export const Dashboard = () => {
     const { statusData } = useContext(EventSourceContext)
-    // 'xl:flex xl:justify-evenly mt-16 sm:mt-20 lg:mt-24'
+    
+    // xl:flex xl:justify-evenly mt-16 sm:mt-20 lg:mt-24
     return (
-        <div className='xl:flex xl:justify-evenly xl:auto-cols-fr xl:auto-rows-fr mt-16 sm:mt-20 lg:mt-24'>
-            <div className='xl:flex-grow'>
+        <div className='xl:grid xl:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] xl:grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] mt-16 sm:mt-20 lg:mt-24 xl:mx-auto max-w-[1900px]'>
+            <div className='xl:row-start-1 xl:row-end-3 xl:col-span-4'>
                 <ChartContextProvider value={useChartScales('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
                     <ChartContainer>
                         <Chart>
@@ -37,7 +38,8 @@ export const Dashboard = () => {
                         </ChartControlsContainer>
                     </ChartContainer>
                 </ChartContextProvider>
-                
+            </div>
+            <div className='xl:row-start-3 xl:row-end-5 xl:col-span-4'>
                 <ChartContextProvider value={useChartScales('AutoguiderContrast')}>
                     <ChartContainer>
                         <Chart>
@@ -56,7 +58,8 @@ export const Dashboard = () => {
                         </ChartControlsContainer>
                     </ChartContainer>
                 </ChartContextProvider>
-                
+            </div>
+            <div className='xl:row-start-5 xl:row-end-7 xl:col-span-4'>
                 <ChartContextProvider value={useChartScales('Xfilter', 'Yfilter', 0.24)}>
                     <ChartContainer>
                         <Chart>
@@ -81,8 +84,9 @@ export const Dashboard = () => {
                         </ChartControlsContainer>
                     </ChartContainer>
                 </ChartContextProvider>
-
-                <ChartContextProvider value={useChartScales('GeneralParameter068', 'GeneralParameter069', null, 'ScatterPlot')}>
+            </div>
+            <div className='xl:row-start-1 xl:row-end-5 xl:col-span-3 xl:max-w-2xl'>
+                <ChartContextProvider value={useChartScales('', '', null, 'ScatterPlot')}>
                     <ChartContainer>
                         <Chart>
                             <Circles/>
@@ -98,44 +102,59 @@ export const Dashboard = () => {
                             <Axis dimension='y' />
                         </Chart>
                         <ChartControlsContainer>
+                            <svg className='mr-auto ml-6 h-20 w-64'>
+                                <defs>
+                                    <linearGradient id='linearGradient'>
+                                        <stop offset="0" stopColor="#440154"></stop>
+                                        <stop offset="0.25" stopColor="#3b528b"></stop>
+                                        <stop offset="0.5" stopColor="#21918c"></stop>
+                                        <stop offset="0.75" stopColor="#5ec962"></stop>
+                                        <stop offset="1" stopColor="#fde725"></stop>
+                                    </linearGradient>
+                                </defs>
+                                <rect rx='7.5' width='250' height='40' fill='url(#linearGradient)'></rect>
+                                <text x='105' y='55' stroke='black' style={{'fontSize': 10}}>TIME (s)</text>
+                            </svg>
                             <ScaleListBox scale={scaleNames('xy')} selected='scaleXY' />
                             <ResetButton />
                         </ChartControlsContainer>
                     </ChartContainer>
                 </ChartContextProvider>
             </div>
-            
-            <div className='flex flex-wrap flex-col sm:flex-row xl:flex-col sm:justify-between mb-16 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:w-[30%] xl:justify-start xl:m-4 xl:items-center'>
-            <TcsDataContainer>
-                    <TcsData name='RA' data={decTimeToHms(statusData.ActualRAhours)} />
-                    <TcsData name='DEC' data={decdegToHms(statusData.ActualDECdeg)} />
-                </TcsDataContainer>
-                <TcsDataContainer>
-                    <TcsData name='AirMass' data={toFixedNum(statusData.AirMass)} />
-                    <TcsData name='PointedTo' data={useWhenEmpty(statusData.ObjectPointedToObjectName, 'Zenith')} />
-                </TcsDataContainer>
-                <TcsDataContainer>
-                    <TcsData name='RotatorPosDeg' data={statusData.RotatorPosDeg} />
-                    <TcsData name='FieldRotationDeg' data={statusData.FieldRotationDeg} />
-                </TcsDataContainer>
-                <TcsDataContainer>
-                    <TcsData name='Focus' data={`${statusData.FocusMainPos}-${statusData.FocusDeltaPos}`} />
-                    {/* <TcsData name='FocusDeltaPos' data={} /> */}
-                </TcsDataContainer>
-                <TcsDataContainer>
-                    <TcsData name='CCDfiltName' data={statusData.CCDfiltName} />
-                    <TcsData name='CCDfilterNumber' data={statusData.CCDfilterNumber} />
-                    <TcsData name='CameraProbeInSplitPos' data={statusData.CameraProbeInSplitPos} />
-                    <TcsData name='CameraProbeInCCDpos' data={statusData.CameraProbeInCCDpos} />
-                </TcsDataContainer>
-                <TcsDataContainer>
-                    <TcsData name='GuideProbeX' data={statusData.GuideProbeX} />
-                    <TcsData name='GuideProbeY' data={statusData.GuideProbeY} />
-                </TcsDataContainer>
-                <TcsDataContainer>
-                    <TcsData name='CtrXdist' data={statusData.CtrXdist} />
-                    <TcsData name='CtrYdist' data={statusData.CtrYdist} />
-                </TcsDataContainer>
+
+            <div className='xl:row-start-7 xl:row-end-8 xl:col-start-1 xl:col-end-8 mb-16 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:justify-self-center'>
+                <div className='xl:grid xl:grid-flow-col xl:grid-rows-1 xl:place-items-center'>
+                    <TcsDataContainer>
+                        <TcsData name='RA' data={decTimeToHms(statusData.ActualRAhours)} />
+                        <TcsData name='DEC' data={decdegToHms(statusData.ActualDECdeg)} />
+                    </TcsDataContainer>
+                    <TcsDataContainer>
+                        <TcsData name='AirMass' data={toFixedNum(statusData.AirMass)} />
+                        <TcsData name='PointedTo' data={useWhenEmpty(statusData.ObjectPointedToObjectName, 'Zenith')} />
+                    </TcsDataContainer>
+                    <TcsDataContainer>
+                        <TcsData name='RotatorPosDeg' data={statusData.RotatorPosDeg} />
+                        <TcsData name='FieldRotationDeg' data={statusData.FieldRotationDeg} />
+                    </TcsDataContainer>
+                    <TcsDataContainer>
+                        <TcsData name='Focus' data={`${statusData.FocusMainPos}-${statusData.FocusDeltaPos}`} />
+                        {/* <TcsData name='FocusDeltaPos' data={} /> */}
+                    </TcsDataContainer>
+                    <TcsDataContainer>
+                        <TcsData name='GuideProbeX' data={statusData.GuideProbeX} />
+                        <TcsData name='GuideProbeY' data={statusData.GuideProbeY} />
+                    </TcsDataContainer>
+                    <TcsDataContainer>
+                        <TcsData name='CtrXdist' data={statusData.CtrXdist} />
+                        <TcsData name='CtrYdist' data={statusData.CtrYdist} />
+                    </TcsDataContainer>
+                    <TcsDataContainer>
+                        <TcsData name='CCDfiltName' data={statusData.CCDfiltName} />
+                        <TcsData name='CCDfilterNumber' data={statusData.CCDfilterNumber} />
+                        <TcsData name='CameraProbeInSplitPos' data={statusData.CameraProbeInSplitPos} />
+                        <TcsData name='CameraProbeInCCDpos' data={statusData.CameraProbeInCCDpos} />
+                    </TcsDataContainer>
+                </div>
             </div>
         </div>
     )

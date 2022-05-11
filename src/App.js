@@ -9,8 +9,9 @@ function App() {
   const { enabled, setEnabled, statusData } = useEventSource()
   const { telescopeMode, autoguiderMode } = useModes(statusData)
 
+  //[50px_1fr_50px]
   return (
-    <div className='flex flex-col mx-auto xl:w-auto md:mb-6 xl:mb-0'>
+    <div className='grid grid-cols-1 grid-rows-1 mx-auto xl:w-auto md:mb-6 xl:mb-0'>
       <EventSourceContextProvider value={{enabled, setEnabled, statusData}}>
         <HeaderContainer>
           <Logo />
