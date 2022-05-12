@@ -6,22 +6,22 @@ import { TcsData, Logo, Tooltip, Toggle } from './components/exports'
 import { Dashboard } from './pages/Dashboard'
 
 function App() {
-  const { enabled, setEnabled, statusData } = useEventSource()
+  const { statusData } = useEventSource()
   const { telescopeMode, autoguiderMode } = useModes(statusData)
 
   //[50px_1fr_50px]
   return (
     <div className='grid grid-cols-1 grid-rows-1 mx-auto xl:w-auto md:mb-6 xl:mb-0'>
-      <EventSourceContextProvider value={{enabled, setEnabled, statusData}}>
+      <EventSourceContextProvider value={{statusData}}>
         <HeaderContainer>
           <Logo />
-          <TcsData name='' data={statusData.DateTimeUT} styles='hidden md:block md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-2 md:justify-self-start' />
-          <TcsData name='Telescope' data={telescopeMode} styles='hidden md:block md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 md:justify-self-start' />
-          <TcsData name='TimeST' data={statusData.TimeST} styles='hidden md:block md:col-start-3 md:col-end-4 md:row-start-2 md:row-end-3 md:justify-self-start' />
-          <TcsData name='Autoguider' data={autoguiderMode} styles='hidden md:block md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 md:justify-self-start' />
-          <Tooltip text={enabled ? 'Turn off the Charts' : 'Turn on the Charts'}>
+          <TcsData name='' data={statusData.DateTimeUT} styles='hidden xl:text-base md:block md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-2 md:justify-self-start' />
+          <TcsData name='Telescope' data={telescopeMode} styles='hidden xl:text-base md:block md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 md:justify-self-start' />
+          <TcsData name='TimeST' data={statusData.TimeST} styles='hidden xl:text-base md:block md:col-start-3 md:col-end-4 md:row-start-2 md:row-end-3 md:justify-self-start' />
+          <TcsData name='Autoguider' data={autoguiderMode} styles='hidden xl:text-base md:block md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 md:justify-self-start' />
+          {/* <Tooltip text={enabled ? 'Turn off the Charts' : 'Turn on the Charts'}>
               <Toggle enabled={enabled} setEnabled={setEnabled} />
-          </Tooltip>
+          </Tooltip> */}
         </HeaderContainer>
         <Dashboard />
         <FooterContainer>

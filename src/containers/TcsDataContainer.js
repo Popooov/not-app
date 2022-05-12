@@ -34,7 +34,8 @@ export const TcsDataContainer = ({ children }) => {
                 font-light
                 md:pl-6
                 lg:font-light
-                xl:px-11
+                xl:pl-6
+                xl:pr-12
                 2xl:text-xl
             `
         }>

@@ -12,6 +12,7 @@ export function ScaleListBox({ scale, selected }) {
     setSelectedScaleY,
     selectedScaleXY,
     setSelectedScaleXY,
+    chartType
   } = useContext(ChartContext)
 
   const handleSelected = (selected) => {

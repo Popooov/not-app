@@ -87,6 +87,7 @@ function HorizontalAxis({ dimension, dimensions, scaleX, scatterScaleX, selected
 }
 
 function VerticalAxis({ dimensions, scaleY, scatterScaleY, selectedScale, chartType, scaleTicks }) {
+    
     const ticks = chartType === 'ScatterPlot' ? scatterScaleY.ticks() : scaleTicks ? scaleY.ticks(scaleTicks) : scaleY.ticks()
 
     return (

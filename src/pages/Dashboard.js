@@ -11,11 +11,13 @@ export const Dashboard = () => {
     const { statusData } = useContext(EventSourceContext)
     
     // xl:flex xl:justify-evenly mt-16 sm:mt-20 lg:mt-24
+    //grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr]
+    //grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr]
+    //xl:grid xl:auto-cols-fr xl:auto-rows-fr
     return (
-        <div className='xl:grid xl:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] xl:grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] mt-16 sm:mt-20 lg:mt-24 xl:mx-10 max-w-[1900px]'>
-            <div className='xl:row-start-1 xl:row-end-3 xl:col-span-4'>
+        <div className='lg:grid lg:grid-cols-2 lg:auto-rows-[.5fr] xl:auto-cols-fr xl:auto-rows-fr mt-16 sm:mt-20 lg:mt-24 xl:ml-8 xl:mr-8 max-w-[1900px]'>
                 <ChartContextProvider value={useChartScales('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
-                    <ChartContainer>
+                    <ChartContainer lgRowStart='1' lgRowEnd='2' lgColStart='1' xlRowStart='1' xlRowEnd='3' xlColSpan='4'>
                         <Chart>
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
                             <Line accessor='y1' color='#D32F2F' />
@@ -38,10 +40,9 @@ export const Dashboard = () => {
                         </ChartControlsContainer>
                     </ChartContainer>
                 </ChartContextProvider>
-            </div>
-            <div className='xl:row-start-3 xl:row-end-5 xl:col-span-4'>
+                
                 <ChartContextProvider value={useChartScales('AutoguiderContrast')}>
-                    <ChartContainer>
+                    <ChartContainer lgRowStart='1' lgRowEnd='2' lgColStart='2' xlRowStart='3' xlRowEnd='5'  xlColSpan='4'>
                         <Chart>
                             <Line accessor='y1' color='#D32F2F' />
                             <Axis dimension='x'>
@@ -58,10 +59,9 @@ export const Dashboard = () => {
                         </ChartControlsContainer>
                     </ChartContainer>
                 </ChartContextProvider>
-            </div>
-            <div className='xl:row-start-5 xl:row-end-7 xl:col-span-4'>
+                
                 <ChartContextProvider value={useChartScales('Xfilter', 'Yfilter', 0.24)}>
-                    <ChartContainer>
+                    <ChartContainer lgRowStart='2' lgRowEnd='3' lgColStart='1' xlRowStart='5' xlRowEnd='7'  xlColSpan='4' center='center' stretch='stretch'>
                         <Chart>
                             <Line accessor='y1' color='#D32F2F' />
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
@@ -84,10 +84,9 @@ export const Dashboard = () => {
                         </ChartControlsContainer>
                     </ChartContainer>
                 </ChartContextProvider>
-            </div>
-            <div className='xl:row-start-1 xl:row-end-5 xl:col-span-3 xl:w-auto xl:h-auto xl:max-w-[41.11rem]'>
+                
                 <ChartContextProvider value={useChartScales('GeneralParameter068', 'GeneralParameter069', null, 'ScatterPlot')}>
-                    <ChartContainer>
+                    <ChartContainer lgRowStart='2' lgRowEnd='3' lgColStart='2' lgColSpan='3' xlRowStart='1' xlRowEnd='6' xlColStart='4'  xlColSpan='3'>
                         <Chart>
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
                             <AutoVerticalLine stroke='#dadada' strokeWidth='1' />
@@ -104,29 +103,15 @@ export const Dashboard = () => {
                             <Axis dimension='y' />
                         </Chart>
                         <ChartControlsContainer>
-                            <svg className='mr-auto ml-6 h-20 w-64'>
-                                <defs>
-                                    <linearGradient id='linearGradient'>
-                                        <stop offset="0" stopColor="#440154"></stop>
-                                        <stop offset="0.25" stopColor="#3b528b"></stop>
-                                        <stop offset="0.5" stopColor="#21918c"></stop>
-                                        <stop offset="0.75" stopColor="#5ec962"></stop>
-                                        <stop offset="1" stopColor="#fde725"></stop>
-                                    </linearGradient>
-                                </defs>
-                                <rect rx='7.5' width='250' height='40' fill='url(#linearGradient)'></rect>
-                                <text x='105' y='55' stroke='black' style={{'fontSize': 10}}>TIME (s)</text>
-                            </svg>
                             <ScaleListBox scale={scaleNames('xy')} selected='scaleXY' />
                             <ResetButton />
                         </ChartControlsContainer>
                     </ChartContainer>
                 </ChartContextProvider>
-            </div>
 
-            <div className='xl:row-start-7 xl:row-end-8 xl:col-start-1 xl:col-end-8 mb-16 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:justify-self-center'>
-                <div className='xl:grid xl:grid-flow-col xl:grid-rows-1 xl:place-items-center'>
-                    <TcsDataContainer>
+            <div className='lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-3 xl:row-start-1 xl:row-end-6 xl:col-start-8 xl:col-end-10 mb-16 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:justify-self-center'>
+                <div className='lg:grid lg:grid-cols-3 xl:grid-cols-1 xl:grid-flow-row'>
+                <TcsDataContainer>
                         <TcsData name='RA' data={decTimeToHms(statusData.ActualRAhours)} />
                         <TcsData name='DEC' data={decdegToHms(statusData.ActualDECdeg)} />
                     </TcsDataContainer>

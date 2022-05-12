@@ -6,12 +6,12 @@ import { scaleTypes, scaleNames } from "../utils/utils"
 import * as d3 from 'd3'
 
 const useChartScales = (propertyNameY1, propertyNameY2, multiplier = 1, chartType) => {
-    const { statusData, enabled } = useContext(EventSourceContext)
+    const { statusData } = useContext(EventSourceContext)
     const [ ref, dimensions ] = useChartDimensions()
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[1])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
     const [ selectedScaleXY, setSelectedScaleXY ] = useState(scaleNames('xy')[3])
-    const { circleData, lineData, reset } = useChartsData(statusData, enabled, selectedScaleX, multiplier, propertyNameY1, propertyNameY2, chartType)
+    const { circleData, lineData, reset } = useChartsData(statusData, selectedScaleX, multiplier, propertyNameY1, propertyNameY2, chartType)
 
     const xAccessor = d => d.x
     const yAccessor = d => d.y
