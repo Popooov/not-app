@@ -3,9 +3,9 @@ import ChartContext from "../contexts/ChartContext"
 
 const Chart = ({ children }) => {
     const { ref, dimensions, chartType } = useContext(ChartContext)
-
+    // 2xl:min-w-max 2xl:min-h-max xl:w-full xl:h-full
     return (
-        <div ref={ref} className={`mb-1 h-60 sm:h-72 ${chartType ? 'h-full sm:h-full' : null} xl:w-full xl:h-full`}>
+        <div ref={ref} className={`${chartType ? 'h-full sm:h-full md:h-full' : 'mb-1 h-60 sm:h-72 xl:w-full xl:h-full 2xl:w-full 2xl:h-full'}`}>
             <svg className='w-full h-full'>
                 <defs>
                     <linearGradient id='linearGradient'>
