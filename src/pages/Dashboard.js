@@ -110,7 +110,7 @@ export const Dashboard = () => {
                 </ChartContextProvider>
 
             <div className='lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-3 xl:row-start-1 xl:col-start-6 xl:col-end-10 mb-20 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:justify-self-center'>
-                <div className='lg:grid lg:grid-cols-3 xl:grid-cols-1 xl:grid-flow-row'>
+                <div className='lg:grid lg:grid-cols-3 xl:grid-cols-1 xl:grid-flow-row xl:mt-7 xl:ml-6'>
                     <TcsDataContainer>
                         <TcsData name='RA' data={decTimeToHms(statusData.ActualRAhours)} />
                         <TcsData name='DEC' data={decdegToHms(statusData.ActualDECdeg)} />
