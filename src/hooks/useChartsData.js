@@ -17,7 +17,7 @@ const useChartsData = (statusData, selectedScaleX, multiplier, propertyNameY1 = 
     }
 
     const chartsData = useCallback(() => {
-        if (statusData.TelescopeModeNumber === 1) {
+        if (statusData.TelescopeModeNumber) {
             count.current++
             if (freezeLines) {
                 setFreezeLines(false)

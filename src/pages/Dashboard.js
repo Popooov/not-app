@@ -15,9 +15,9 @@ export const Dashboard = () => {
     //grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr]
     //xl:grid xl:auto-cols-fr xl:auto-rows-fr
     return (
-        <div className='lg:grid lg:grid-cols-2 lg:auto-rows-[.5fr] xl:auto-cols-[.25fr] xl:auto-rows-[.15fr] mt-16 sm:mt-20 lg:mt-24 xl:mx-8 2xl:mx-16 xl:max-w-fit'>
+        <div className='lg:grid lg:grid-cols-2 lg:auto-rows-[.5fr] xl:grid-flow-col xl:auto-cols-[minmax(1fr,_42vw)] xl:auto-rows-[minmax(1fr,_20rem)] mt-16 sm:mt-20 lg:mt-24 xl:mx-8 2xl:mx-16 xl:max-w-fit'>
                 <ChartContextProvider value={useChartScales('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
-                    <ChartContainer lgRowStart='1' lgRowEnd='2' lgColStart='1' xlRowStart='1' xlRowEnd='2' xlColStart='1' xlColEnd='5'>
+                    <ChartContainer lgRowStart='1' lgRowEnd='2' lgColStart='1' xlRowStart='1' xlColStart='1' xlColEnd='3'>
                         <Chart>
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
                             <Line accessor='y1' color='#D32F2F' />
@@ -42,7 +42,7 @@ export const Dashboard = () => {
                 </ChartContextProvider>
                 
                 <ChartContextProvider value={useChartScales('AutoguiderContrast')}>
-                    <ChartContainer lgRowStart='1' lgRowEnd='2' lgColStart='2' xlRowStart='3' xlRowEnd='4'>
+                    <ChartContainer lgRowStart='1' lgRowEnd='2' lgColStart='2' xlRowStart='2' xlColStart='1' xlColEnd='3'>
                         <Chart>
                             <Line accessor='y1' color='#D32F2F' />
                             <Axis dimension='x'>
@@ -61,7 +61,7 @@ export const Dashboard = () => {
                 </ChartContextProvider>
                 
                 <ChartContextProvider value={useChartScales('Xfilter', 'Yfilter', 0.24)}>
-                    <ChartContainer lgRowStart='2' lgRowEnd='3' lgColStart='1' xlRowStart='4' xlRowEnd='6' center='center' stretch='stretch'>
+                    <ChartContainer lgRowStart='2' lgRowEnd='3' lgColStart='1' xlRowStart='3' xlColStart='1' xlColEnd='3' center='center' stretch='stretch'>
                         <Chart>
                             <Line accessor='y1' color='#D32F2F' />
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
@@ -86,7 +86,7 @@ export const Dashboard = () => {
                 </ChartContextProvider>
                 
                 <ChartContextProvider value={useChartScales('GeneralParameter068', 'GeneralParameter069', null, 'ScatterPlot')}>
-                    <ChartContainer lgRowStart='2' lgRowEnd='3' lgColStart='2' lgColSpan='3' xlRowStart='1' xlRowEnd='4' xlColStart='5'>
+                    <ChartContainer lgRowStart='2' lgRowEnd='3' lgColStart='2' lgColSpan='3' xlRowStart='1' xlRowEnd='4' xlColStart='3' xlColEnd='5'>
                         <Chart>
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
                             <AutoVerticalLine stroke='#dadada' strokeWidth='1' />
@@ -109,7 +109,7 @@ export const Dashboard = () => {
                     </ChartContainer>
                 </ChartContextProvider>
 
-            <div className='lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-3 xl:row-start-1 xl:col-start-6 xl:col-end-10 mb-20 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:justify-self-center'>
+            <div className='lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-3 xl:row-start-1 xl:row-end-4 xl:col-start-7 xl:col-end-10 mb-20 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:justify-self-center'>
                 <div className='lg:grid lg:grid-cols-3 xl:grid-cols-1 xl:grid-flow-row xl:mt-7 xl:ml-6'>
                     <TcsDataContainer>
                         <TcsData name='RA' data={decTimeToHms(statusData.ActualRAhours)} />
