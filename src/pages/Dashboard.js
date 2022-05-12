@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import EventSourceContext from '../contexts/EventSourceContext'
 import { ChartContextProvider } from '../contexts/ChartContext'
 import useChartScales from '../hooks/useChartScales'
-import { Axis, Line, Chart, Circles, DimensionLabel, DataLabel, AutoHorizontalLine } from '../guide-charts/exports'
+import { Axis, Line, Chart, Circles, DimensionLabel, DataLabel, AutoHorizontalLine, AutoVerticalLine } from '../guide-charts/exports'
 import { TcsDataContainer, ChartContainer, ChartControlsContainer } from '../containers/exports'
 import { scaleNames, decdegToHms, decTimeToHms, toFixedNum, floorData, useWhenEmpty } from '../utils/utils'
 import { ScaleListBox, Button as ResetButton, TcsData } from '../components/exports'
@@ -12,7 +12,7 @@ export const Dashboard = () => {
     
     // xl:flex xl:justify-evenly mt-16 sm:mt-20 lg:mt-24
     return (
-        <div className='xl:grid xl:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] xl:grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] mt-16 sm:mt-20 lg:mt-24 xl:mx-auto max-w-[1900px]'>
+        <div className='xl:grid xl:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] xl:grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] mt-16 sm:mt-20 lg:mt-24 xl:mx-10 max-w-[1900px]'>
             <div className='xl:row-start-1 xl:row-end-3 xl:col-span-4'>
                 <ChartContextProvider value={useChartScales('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
                     <ChartContainer>
@@ -85,10 +85,12 @@ export const Dashboard = () => {
                     </ChartContainer>
                 </ChartContextProvider>
             </div>
-            <div className='xl:row-start-1 xl:row-end-5 xl:col-span-3 xl:max-w-2xl'>
+            <div className='xl:row-start-1 xl:row-end-5 xl:col-span-3 xl:w-auto xl:h-auto xl:max-w-[41.11rem]'>
                 <ChartContextProvider value={useChartScales('GeneralParameter068', 'GeneralParameter069', null, 'ScatterPlot')}>
                     <ChartContainer>
                         <Chart>
+                            <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
+                            <AutoVerticalLine stroke='#dadada' strokeWidth='1' />
                             <Circles/>
                             <Axis dimension='x'>
                                 <DimensionLabel name='Guide Star' />

@@ -6,6 +6,7 @@ const useChartsData = (statusData, enabled, selectedScaleX, multiplier, property
     const [ lineData, setLineData ] = useState(linesData)
     const [ circleData, setCircleData ] = useState([])
     const count = useRef(-1)
+    const color = useRef(0)
     const [ freeze, setFreeze ] = useState(true)
 
     const handleReset = () => {
@@ -15,30 +16,46 @@ const useChartsData = (statusData, enabled, selectedScaleX, multiplier, property
     }
 
     const chartsData = useCallback(() => {
-        enabled && count.current++
-        enabled && setLineData((prevState) => {
-            let [first, ...rest] = prevState
+        // enabled && count.current++
+        // enabled && setLineData((prevState) => {
+        //     let [first, ...rest] = prevState
             
-            return [...rest, {
-                TimeST: statusData.TimeST,
-                x: count.current, 
-                y1: floorData(statusData[propertyNameY1] * multiplier),
-                y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
-            }]
-        })
+        //     return [...rest, {
+        //         TimeST: statusData.TimeST,
+        //         x: count.current, 
+        //         y1: floorData(statusData[propertyNameY1] * multiplier),
+        //         y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
+        //     }]
+        // })
         
         if (statusData.AutoguiderModeNumber === 3) {
+            count.current++
+            color.current++
             if (freeze) {
                 setFreeze(false)
+                setLineData(linesData)
                 setCircleData([])
+                count.current = -1
+                color.current = 0
             } else if (!freeze) {
+                setLineData((prevState) => {
+                    let [first, ...rest] = prevState
+                    
+                    return [...rest, {
+                        TimeST: statusData.TimeST,
+                        x: count.current, 
+                        y1: floorData(statusData[propertyNameY1] * multiplier),
+                        y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
+                    }]
+                })
+
                 setCircleData((prevState) => {
             
                     return [...prevState, {
                         TimeST: statusData.TimeST,
                         x: statusData[propertyNameY1],
                         y: statusData[propertyNameY2],
-                        color: count.current
+                        color: color.current
                     }]
                 })
             }
