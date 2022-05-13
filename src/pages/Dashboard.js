@@ -15,7 +15,7 @@ export const Dashboard = () => {
     //grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr]
     //xl:grid xl:auto-cols-fr xl:auto-rows-fr
     return (
-        <div className='lg:grid lg:grid-cols-2 lg:auto-rows-[.5fr] xl:grid-flow-col xl:auto-cols-[minmax(1fr,_42vw)] xl:auto-rows-[minmax(1fr,_20rem)] mt-16 sm:mt-20 lg:mt-24 xl:mx-8 2xl:mx-16 xl:max-w-fit'>
+        <div className='lg:grid lg:grid-cols-2 lg:auto-rows-[.5fr] xl:grid-flow-col xl:auto-cols-[minmax(1fr,_50rem)] xl:auto-rows-[minmax(1fr,_20rem)] mt-16 sm:mt-20 lg:mt-24 xl:mx-8 2xl:mx-auto 2xl:max-w-[128rem]'>
                 <ChartContextProvider value={useChartScales('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
                     <ChartContainer lgRowStart='1' lgRowEnd='2' lgColStart='1' xlRowStart='1' xlColStart='1' xlColEnd='3'>
                         <Chart>
