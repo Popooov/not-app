@@ -2,10 +2,13 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { linesData } from '../utils/linesData'
 import { floorData } from "../utils/utils"
 
-const useChartsData = (statusData, enabled, selectedScaleX, multiplier, propertyNameY1 = '', propertyNameY2 = '') => {
+const useChartsData = (statusData, selectedScaleX, multiplier, propertyNameY1 = '', propertyNameY2 = '') => {
     const [ lineData, setLineData ] = useState(linesData)
     const [ circleData, setCircleData ] = useState([])
     const count = useRef(-1)
+    const colorCount = useRef(0)
+    const [ freezeLines, setFreezeLines ] = useState(true)
+    const [ freezeScatter, setFreezeScatter ] = useState(true)
 
     const handleReset = () => {
         count.current = -1
@@ -14,28 +17,51 @@ const useChartsData = (statusData, enabled, selectedScaleX, multiplier, property
     }
 
     const chartsData = useCallback(() => {
-        enabled && count.current++
-        enabled && setLineData((prevState) => {
-            let [first, ...rest] = prevState
+        if (statusData.TelescopeModeNumber) {
+            count.current++
+            if (freezeLines) {
+                setFreezeLines(false)
+                setLineData(linesData)
+                count.current = -1
+            } else if (!freezeLines) {
+                setLineData((prevState) => {
+                    let [first, ...rest] = prevState
+                    
+                    return [...rest, {
+                        TimeST: statusData.TimeST,
+                        x: count.current, 
+                        y1: floorData(statusData[propertyNameY1] * multiplier),
+                        y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
+                    }]
+                })
+            }
+        } else {
+            setFreezeLines(true)
+        }
+        
+        if (statusData.AutoguiderModeNumber === 3) {
+            colorCount.current++
+            if (freezeScatter) {
+                setFreezeScatter(false)
+                setCircleData([])
+                colorCount.current = 0
+            } else if (!freezeScatter) {
+
+                setCircleData((prevState) => {
             
-            return [...rest, {
-                TimeST: statusData.TimeST,
-                x: count.current, 
-                y1: floorData(statusData[propertyNameY1] * multiplier),
-                y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
-            }]
-        })
+                    return [...prevState, {
+                        TimeST: statusData.TimeST,
+                        x: statusData[propertyNameY1],
+                        y: statusData[propertyNameY2],
+                        color: colorCount.current
+                    }]
+                })
+            }
+        } else {
+            setFreezeScatter(true)
+        }
 
-        enabled && setCircleData((prevState) => {
-
-            return [...prevState, {
-                TimeST: statusData.TimeST,
-                x: propertyNameY1 ? statusData[propertyNameY1] : -(Math.random() * 0.5) + Math.random() * 0.5,
-                y: propertyNameY2 ? statusData[propertyNameY2] : -(Math.random() * 0.5) + Math.random() * 0.5,
-                color: count.current / 1000
-            }]
-        })
-    }, [statusData, propertyNameY1, propertyNameY2, multiplier, enabled])
+    }, [statusData, propertyNameY1, propertyNameY2, multiplier, freezeLines, freezeScatter])
 
     useEffect(() => chartsData(), [chartsData])
 

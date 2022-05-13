@@ -5,20 +5,17 @@ const Circles = () => {
   const { circleData, scatterAccessorScaledX, scatterAccessorScaledY, colorAccessorScaled} = useContext(ChartContext)
 
   return (
-      <>
-        {
-         circleData.map((d, i) => {
-                return(
-                  <circle
-                      key={i}
-                      cx={scatterAccessorScaledX(d)}
-                      cy={scatterAccessorScaledY(d)}
-                      r={i === circleData.length-1 ? 6 : 4}
-                      fill={colorAccessorScaled(d)}
-                  />
-            )})
-        }
-      </>
+      <g>
+        {circleData.map((d, i) => (
+              <circle
+                key={i}
+                cx={scatterAccessorScaledX(d)}
+                cy={scatterAccessorScaledY(d)}
+                r={i === circleData.length - 1 ? 4 : 6}
+                fill={i === circleData.length - 1 ? '#D32F2F' : colorAccessorScaled(d)}
+              />
+          ))}
+      </g>
   )
 }
 

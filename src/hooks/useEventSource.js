@@ -4,7 +4,6 @@ const sse = new EventSource('http://www.not.iac.es/observing/dyn/hiresdata.php')
 
 const useEventSource = () => {
     const [ statusData, setStatusData ] = useState([])
-    const [ enabled, setEnabled ] = useState(false)
     const [ eventSource ] = useState(sse)
 
     useEffect(() => {
@@ -13,8 +12,6 @@ const useEventSource = () => {
     }, [eventSource])
 
     return { 
-        enabled,
-        setEnabled,
         statusData
     }
 }
