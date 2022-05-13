@@ -8,16 +8,17 @@ import { scaleNames, decdegToHms, decTimeToHms, toFixedNum, floorData, useWhenEm
 import { ScaleListBox, Button as ResetButton, TcsData } from '../components/exports'
 
 export const Dashboard = () => {
-    const { statusData } = useContext(EventSourceContext)
-    
-    // xl:flex xl:justify-evenly mt-16 sm:mt-20 lg:mt-24
-    //grid-rows-[1fr_1fr_1fr_1fr_1fr_1fr_1fr]
-    //grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr]
-    //xl:grid xl:auto-cols-fr xl:auto-rows-fr
+    const { statusData } = useContext(EventSourceContext) 
+
     return (
-        <div className='lg:grid lg:grid-cols-2 lg:auto-rows-[.5fr] xl:grid-flow-col xl:auto-cols-[minmax(1fr,_50rem)] xl:auto-rows-[minmax(1fr,_20rem)] mt-16 sm:mt-20 lg:mt-24 xl:mx-8 2xl:mx-auto 2xl:max-w-[128rem]'>
+        <div className='lg:grid lg:grid-cols-auto lg:auto-rows-auto mt-16 sm:mt-20 lg:mt-24 lg:mx-8 xl:mx-12 2xl:ml-8 3xl:max-w-[150rem] 3xl:mx-auto'>
                 <ChartContextProvider value={useChartScales('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
-                    <ChartContainer lgRowStart='1' lgRowEnd='2' lgColStart='1' xlRowStart='1' xlColStart='1' xlColEnd='3'>
+                    <ChartContainer 
+                        styles='lg:row-start-1 lg:row-end-2 
+                                lg:col-start-1 lg:col-end-2
+                                xl:row-start-1 xl:row-end-3 
+                                xl:col-start-1 xl:col-end-4'
+                    >
                         <Chart>
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
                             <Line accessor='y1' color='#D32F2F' />
@@ -42,7 +43,12 @@ export const Dashboard = () => {
                 </ChartContextProvider>
                 
                 <ChartContextProvider value={useChartScales('AutoguiderContrast')}>
-                    <ChartContainer lgRowStart='1' lgRowEnd='2' lgColStart='2' xlRowStart='2' xlColStart='1' xlColEnd='3'>
+                    <ChartContainer 
+                        styles='lg:row-start-1 lg:row-end-2 
+                                lg:col-start-2 lg:col-end-3
+                                xl:row-start-3 xl:row-end-5 
+                                xl:col-start-1 xl:col-end-4'
+                    >
                         <Chart>
                             <Line accessor='y1' color='#D32F2F' />
                             <Axis dimension='x'>
@@ -61,7 +67,14 @@ export const Dashboard = () => {
                 </ChartContextProvider>
                 
                 <ChartContextProvider value={useChartScales('Xfilter', 'Yfilter', 0.24)}>
-                    <ChartContainer lgRowStart='2' lgRowEnd='3' lgColStart='1' xlRowStart='3' xlColStart='1' xlColEnd='3' center='center' stretch='stretch'>
+                    <ChartContainer 
+                        styles='lg:row-start-2 lg:row-end-3 
+                                lg:col-start-1 lg:col-end-2
+                                lg:justify-self-stretch
+                                lg:place-self-center
+                                xl:row-start-5 xl:row-end-7 
+                                xl:col-start-1 xl:col-end-4'
+                    >
                         <Chart>
                             <Line accessor='y1' color='#D32F2F' />
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
@@ -86,7 +99,12 @@ export const Dashboard = () => {
                 </ChartContextProvider>
                 
                 <ChartContextProvider value={useChartScales('GeneralParameter068', 'GeneralParameter069', null, 'ScatterPlot')}>
-                    <ChartContainer lgRowStart='2' lgRowEnd='3' lgColStart='2' lgColSpan='3' xlRowStart='1' xlRowEnd='4' xlColStart='3' xlColEnd='5'>
+                    <ChartContainer   
+                        styles='lg:row-start-2 lg:row-end-3
+                                lg:col-start-2 lg:col-end-3
+                                xl:row-start-1 xl:row-end-6 
+                                xl:col-start-4 xl:col-end-7'
+                    >
                         <Chart>
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
                             <AutoVerticalLine stroke='#dadada' strokeWidth='1' />
@@ -109,8 +127,10 @@ export const Dashboard = () => {
                     </ChartContainer>
                 </ChartContextProvider>
 
-            <div className='lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-3 xl:row-start-1 xl:row-end-4 xl:col-start-7 xl:col-end-10 mb-20 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:justify-self-center'>
-                <div className='lg:grid lg:grid-cols-3 xl:grid-cols-1 xl:grid-flow-row xl:mt-7 xl:ml-6'>
+            <div className='lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-3
+                            xl:row-start-1 xl:row-end-7 xl:col-start-7 xl:col-end-10
+                            mb-20 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:mt-10'>
+                <div className='lg:grid lg:grid-cols-3 xl:grid-cols-1 xl:grid-flow-row'>
                     <TcsDataContainer>
                         <TcsData name='RA' data={decTimeToHms(statusData.ActualRAhours)} />
                         <TcsData name='DEC' data={decdegToHms(statusData.ActualDECdeg)} />

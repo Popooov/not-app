@@ -12,7 +12,7 @@ const Circles = () => {
                 cx={scatterAccessorScaledX(d)}
                 cy={scatterAccessorScaledY(d)}
                 r={i === circleData.length - 1 ? 4 : 6}
-                fill={i === circleData.length - 1 ? 'red' : colorAccessorScaled(d)}
+                fill={i === circleData.length - 1 ? '#D32F2F' : colorAccessorScaled(d)}
               />
           ))}
       </g>
