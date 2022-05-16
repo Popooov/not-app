@@ -3,7 +3,7 @@ import ChartContext from "../contexts/ChartContext"
 
 const Chart = ({ children }) => {
     const { ref, dimensions, chartType } = useContext(ChartContext)
-    // 2xl:min-w-max 2xl:min-h-max xl:w-full xl:h-full
+    
     return (
         <div ref={ref} className={`${chartType ? 'h-full sm:h-full md:h-full' : 'mb-1 h-60 sm:h-72 xl:w-full xl:h-full 2xl:w-full 2xl:h-full'}`}>
             <svg className='w-full h-full'>
@@ -15,6 +15,12 @@ const Chart = ({ children }) => {
                         <stop offset="0.75" stopColor="#5ec962"></stop>
                         <stop offset="1" stopColor="#fde725"></stop>
                     </linearGradient>
+                    <clipPath id="lines-clip-path"> 
+                        <rect 
+                            width={dimensions.boundedWidth}
+                            height={dimensions.boundedHeight}
+                        />
+                    </clipPath>
                 </defs>
                 <g transform={`translate(${dimensions.marginLeft + 7.75}, ${dimensions.marginTop})`}>
                     <line // first horizontal line
@@ -42,7 +48,6 @@ const Chart = ({ children }) => {
                                 height='10' 
                                 fill='url(#linearGradient)'
                             />
-                            {/* <text transform={`translate(100, ${dimensions.boundedHeight + 45})`} stroke='black' style={{'fontSize': 10}}>Time (s)</text> */}
                         </g>
                     }
                 </g>

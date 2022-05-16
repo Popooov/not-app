@@ -43,10 +43,10 @@ function HorizontalAxis({ dimension, dimensions, scaleX, scatterScaleX, selected
 
     return (
         <g transform={`translate(0, ${dimensions.boundedHeight})`}>
-            <rect y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
+            {/* <rect y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
             <rect width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
             <rect x={dimensions.boundedWidth} y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.marginLeft} height={dimensions.boundedHeight + dimensions.marginTop + dimensions.marginBottom} fill="white" />
-            <rect x={-dimensions.marginRight - 50} y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.marginRight + 50} height={dimensions.boundedHeight + dimensions.marginTop + dimensions.marginBottom} fill="white"/>
+            <rect x={-dimensions.marginRight - 50} y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.marginRight + 50} height={dimensions.boundedHeight + dimensions.marginTop + dimensions.marginBottom} fill="white"/> */}
                 {children}
 
             <line 

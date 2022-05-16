@@ -11,12 +11,16 @@ const Line = ({ color, accessor }) => {
     (lineData)
 
   return (
-    <path
-      d={path}
-      stroke={color}
-      strokeWidth='0.5'
-      fill='none'
-    />
+    <g>
+      <path
+        id='lines'
+        d={path}
+        stroke={color}
+        strokeWidth='1'
+        fill='none'
+        clipPath='url(#lines-clip-path)'
+      />
+    </g>
   )
 }
 
