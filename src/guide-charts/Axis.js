@@ -42,16 +42,8 @@ function HorizontalAxis({ dimension, dimensions, scaleX, scatterScaleX, selected
     const ticks = chartType === 'ScatterPlot' ? scatterScaleX.ticks() : scaleTypes(dimension, selectedScale)
 
     return (
-<<<<<<< HEAD
         <g transform={`translate(0, ${dimensions.boundedHeight})`}>            
-=======
-        <g transform={`translate(0, ${dimensions.boundedHeight})`}>
-            {/* <rect y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
-            <rect width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
-            <rect x={dimensions.boundedWidth} y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.marginLeft} height={dimensions.boundedHeight + dimensions.marginTop + dimensions.marginBottom} fill="white" />
-            <rect x={-dimensions.marginRight - 50} y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.marginRight + 50} height={dimensions.boundedHeight + dimensions.marginTop + dimensions.marginBottom} fill="white"/> */}
->>>>>>> 610448c67dc580f32e5eeab4463345711c77f028
-                {children}
+            {children}
             <line 
                 x2={dimensions.boundedWidth}
                 x1='0.5'

@@ -31,7 +31,6 @@ const Chart = ({ children }) => {
                     {children}
                     {
                         chartType 
-<<<<<<< HEAD
                         ?
                         <rect
                             x={dimensions.boundedWidth}
@@ -49,18 +48,6 @@ const Chart = ({ children }) => {
                             stroke='#dadada' // green
                             strokeWidth='1'
                         />
-=======
-                        && 
-                        <g>
-                            <rect 
-                                rx='5' 
-                                y='5' 
-                                transform={`translate(0, ${dimensions.boundedHeight + 25})`} width={dimensions.boundedWidth} 
-                                height='10' 
-                                fill='url(#linearGradient)'
-                            />
-                        </g>
->>>>>>> 610448c67dc580f32e5eeab4463345711c77f028
                     }
                 </g>
             </svg>
