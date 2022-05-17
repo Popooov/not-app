@@ -11,10 +11,10 @@ export const Dashboard = () => {
     const { statusData } = useContext(EventSourceContext) 
 
     return (
-        <div className='lg:grid lg:grid-cols-auto lg:auto-rows-auto mt-16 sm:mt-20 lg:mt-24 lg:mx-8 xl:mx-12 2xl:ml-8 3xl:max-w-[150rem] 3xl:mx-auto'>
+        <div className='lg:grid lg:grid-cols-auto lg:auto-rows-auto lg:gap-x-4 lg:gap-y-14 xl:gap-0 mt-16 sm:mt-20 lg:mt-24 lg:ml-4 xl:mx-12 2xl:ml-8 3xl:max-w-[150rem] 3xl:mx-auto'>
                 <ChartContextProvider value={useChartScales('IntensityOffsetXarcsec', 'IntensityOffsetYarcsec')}>
                     <ChartContainer 
-                        styles='lg:row-start-1 lg:row-end-2 
+                        styles='lg:row-start-2 lg:row-end-3
                                 lg:col-start-1 lg:col-end-2
                                 xl:row-start-1 xl:row-end-3 
                                 xl:col-start-1 xl:col-end-4'
@@ -44,7 +44,7 @@ export const Dashboard = () => {
                 
                 <ChartContextProvider value={useChartScales('AutoguiderContrast')}>
                     <ChartContainer 
-                        styles='lg:row-start-1 lg:row-end-2 
+                        styles='lg:row-start-2 lg:row-end-3 
                                 lg:col-start-2 lg:col-end-3
                                 xl:row-start-3 xl:row-end-5 
                                 xl:col-start-1 xl:col-end-4'
@@ -68,10 +68,9 @@ export const Dashboard = () => {
                 
                 <ChartContextProvider value={useChartScales('Xfilter', 'Yfilter', 0.24)}>
                     <ChartContainer 
-                        styles='lg:row-start-2 lg:row-end-3 
+                        styles='lg:mt-8 xl:mt-0
+                                lg:row-start-3 lg:row-end-4
                                 lg:col-start-1 lg:col-end-2
-                                lg:justify-self-stretch
-                                lg:place-self-center
                                 xl:row-start-5 xl:row-end-7 
                                 xl:col-start-1 xl:col-end-4'
                     >
@@ -88,7 +87,7 @@ export const Dashboard = () => {
                                     <TcsData type='label' name='Y' data={toFixedNum(floorData(statusData.Yfilter * 0.24))} />
                                 </DataLabel>
                             </Axis>
-                            <Axis dimension='y' scaleTicks='4' />
+                            <Axis dimension='y' scaleTicks='5' />
                         </Chart>
                         <ChartControlsContainer>
                             <ScaleListBox scale={scaleNames('x')} selected='scaleX' />
@@ -100,10 +99,12 @@ export const Dashboard = () => {
                 
                 <ChartContextProvider value={useChartScales('GeneralParameter068', 'GeneralParameter069', null, 'ScatterPlot')}>
                     <ChartContainer   
-                        styles='lg:row-start-2 lg:row-end-3
+                        styles='lg:mt-8 xl:mt-0
+                                lg:row-start-3 lg:row-end-4
                                 lg:col-start-2 lg:col-end-3
                                 xl:row-start-1 xl:row-end-6 
                                 xl:col-start-4 xl:col-end-7'
+
                     >
                         <Chart>
                             <AutoHorizontalLine stroke='#dadada' strokeWidth='1' />
@@ -127,10 +128,10 @@ export const Dashboard = () => {
                     </ChartContainer>
                 </ChartContextProvider>
 
-            <div className='lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-3
+            <div className='lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-3
                             xl:row-start-1 xl:row-end-7 xl:col-start-7 xl:col-end-10
-                            mb-20 sm:mb-20 md:mb-0 sm:mx-5 lg:m-3 xl:mx-0 xl:mt-10'>
-                <div className='lg:grid lg:grid-cols-3 xl:grid-cols-1 xl:grid-flow-row'>
+                            mb-20 sm:mb-20 md:mb-0 sm:mx-5 xl:mx-0 xl:mt-10'>
+                <div className='xs:flex xs:flex-row xs:flex-wrap  lg:grid lg:grid-cols-4 xl:grid-cols-1 lg:gap-y-5 lg:gap-x-2 lg:place-content-center'>
                     <TcsDataContainer>
                         <TcsData name='RA' data={decTimeToHms(statusData.ActualRAhours)} />
                         <TcsData name='DEC' data={decdegToHms(statusData.ActualDECdeg)} />
@@ -140,7 +141,7 @@ export const Dashboard = () => {
                         <TcsData name='PointedTo' data={useWhenEmpty(statusData.ObjectPointedToObjectName, 'Zenith')} />
                     </TcsDataContainer>
                     <TcsDataContainer>
-                        <TcsData name='RotatorPosDeg' data={statusData.RotatorPosDeg} />
+                        <TcsData name='RotatorPosDeg' data={toFixedNum(statusData.RotatorPosDeg)} />
                         <TcsData name='FieldRotationDeg' data={statusData.FieldRotationDeg} />
                     </TcsDataContainer>
                     <TcsDataContainer>

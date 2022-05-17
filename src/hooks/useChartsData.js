@@ -25,9 +25,9 @@ const useChartsData = (statusData, selectedScaleX, multiplier, propertyNameY1 = 
                 count.current = -1
             } else if (!freezeLines) {
                 setLineData((prevState) => {
-                    let [first, ...rest] = prevState
+                    // let [first, ...rest] = prevState
                     
-                    return [...rest, {
+                    return [...prevState.slice(1), {
                         TimeST: statusData.TimeST,
                         x: count.current, 
                         y1: floorData(statusData[propertyNameY1] * multiplier),

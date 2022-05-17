@@ -1,3 +1,5 @@
+import * as d3 from 'd3'
+
 export const scaleTypes = (scaleType, scaleName) => {
     const yScales = {
         'Auto': [],
@@ -23,6 +25,10 @@ export const scaleTypes = (scaleType, scaleName) => {
         '2 arcsec': [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2],
         '3 arcsec': [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3],
     }
+
+    const anythingScaling = {
+        
+    }
     
     if(scaleType === 'y') return yScales[scaleName]
     if(scaleType === 'x') return xScales[scaleName]
@@ -46,21 +52,21 @@ export const decdegToHms = (decdeg) => {
     let m = Math.floor(minfloat)
     const secfloat = (minfloat - m) * 60
     let s = Math.floor(secfloat)
-   if (s === 60) {
-       m++
-       s = 0
+    if (s === 60) {
+        m++
+        s = 0
     }
-   if (m === 60) {
-       d++
-       m = 0
-   }
-   
-   return isNaN(d || m || s) ? `00:00:00` : `${d}:${m}:${s}`
+    if (m === 60) {
+        d++
+        m = 0
+    }
+
+    return isNaN(d || m || s) ? `00:00:00` : `${d}:${m}:${s}`
 }
 
 export const decTimeToHms = (ra) => {
     if(!ra) return '00:00:00'
-    const date = new Date(0,0)
+    const date = new Date(0, 0)
     date.setSeconds(+ra * 60 * 60)
     
     return date.toTimeString().slice(0, 8)

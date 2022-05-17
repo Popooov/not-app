@@ -1,5 +1,5 @@
 export { Logo } from './Logo'
-export { Toggle } from './Toggle'
+export { SettingsButton } from './SettingsButton'
 export { Button } from './Button'
 export { ScaleListBox } from './ScaleListBox'
 export { TcsData } from './TcsData'

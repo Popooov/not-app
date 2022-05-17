@@ -2,7 +2,7 @@ import { EventSourceContextProvider } from './contexts/EventSourceContext'
 import useEventSource from './hooks/useEventSource'
 import useModes from './hooks/useModes'
 import { HeaderContainer, FooterContainer } from './containers/exports'
-import { TcsData, Logo, Tooltip, Toggle } from './components/exports'
+import { TcsData, Logo, Tooltip, SettingsButton } from './components/exports'
 import { Dashboard } from './pages/Dashboard'
 
 function App() {
@@ -19,8 +19,8 @@ function App() {
           <TcsData name='Telescope' data={telescopeMode} styles='hidden xl:text-base md:block md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 md:justify-self-start' />
           <TcsData name='TimeST' data={statusData.TimeST} styles='hidden xl:text-base md:block md:col-start-3 md:col-end-4 md:row-start-2 md:row-end-3 md:justify-self-start' />
           <TcsData name='Autoguider' data={autoguiderMode} styles='hidden xl:text-base md:block md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 md:justify-self-start' />
-          {/* <Tooltip text={enabled ? 'Turn off the Charts' : 'Turn on the Charts'}>
-              <Toggle enabled={enabled} setEnabled={setEnabled} />
+              <SettingsButton />
+          {/* <Tooltip text='Settings' >
           </Tooltip> */}
         </HeaderContainer>
         <Dashboard />

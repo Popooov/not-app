@@ -42,13 +42,8 @@ function HorizontalAxis({ dimension, dimensions, scaleX, scatterScaleX, selected
     const ticks = chartType === 'ScatterPlot' ? scatterScaleX.ticks() : scaleTypes(dimension, selectedScale)
 
     return (
-        <g transform={`translate(0, ${dimensions.boundedHeight})`}>
-            <rect y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
-            <rect width={dimensions.boundedWidth} height={dimensions.marginBottom} fill="white" />
-            <rect x={dimensions.boundedWidth} y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.marginLeft} height={dimensions.boundedHeight + dimensions.marginTop + dimensions.marginBottom} fill="white" />
-            <rect x={-dimensions.marginRight - 50} y={-dimensions.boundedHeight - dimensions.marginTop} width={dimensions.marginRight + 50} height={dimensions.boundedHeight + dimensions.marginTop + dimensions.marginBottom} fill="white"/>
+        <g transform={`translate(0, ${dimensions.boundedHeight})`}>            
                 {children}
-
             <line 
                 x2={dimensions.boundedWidth}
                 x1='0.5'
@@ -73,7 +68,7 @@ function HorizontalAxis({ dimension, dimensions, scaleX, scatterScaleX, selected
                         stroke='black'
                     />
                     <text // tick numbers
-                        className={`${ticks.length === 13 ? 'text-[7px] sm:text-xs' : 'text-[9px] sm:text-xs'}`}
+                        className={`${ticks.length === 13 ? 'text-[7px] sm:text-xs lg:text-[10px]' : 'text-[9px] sm:text-xs'}`}
                         textAnchor="middle"
                         key={tick}
                         transform={`translate(${chartType === 'ScatterPlot' ? scatterScaleX(tick) : scaleX(tick)}, 20)`}
