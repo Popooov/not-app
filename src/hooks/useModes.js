@@ -5,10 +5,13 @@ const useModes = ({
     TelescopeModeNumber, 
     AutoguiderModeNumber, 
     AutoguiderGuideStarLost, 
-    AutoguiderContrast 
+    AutoguiderContrast,
+    CameraProbeInSplitPos,
+    CameraProbeInCCDPos
 }) => {
     const [ telescopeMode, setTelescopeMode ] = useState('')
     const [ autoguiderMode, setAutoguiderMode ] = useState('')
+    const [ cameraProbe, setCameraProbe ] = useState('')
 
     useEffect(() => {
         if(TelescopeModeNumber === 1) {
@@ -36,11 +39,23 @@ const useModes = ({
         } else {
             setAutoguiderMode('Not Guiding')
         }
-    }, [TelescopeModeNumber, AutoguiderModeNumber, AutoguiderGuideStarLost, AutoguiderContrast])
+
+        if (CameraProbeInSplitPos === 1 && CameraProbeInCCDPos === 0) {
+             setCameraProbe('FIES')
+        } else if (CameraProbeInSplitPos === 0 && CameraProbeInCCDPos === 1) {
+            setCameraProbe('STANCAM')
+        } else if (CameraProbeInSplitPos === 0 && CameraProbeInCCDPos === 0) {
+            setCameraProbe('Cass')
+        } else {
+            setCameraProbe('Undefined')
+        }
+
+    }, [TelescopeModeNumber, AutoguiderModeNumber, AutoguiderGuideStarLost, AutoguiderContrast, CameraProbeInCCDPos, CameraProbeInSplitPos])
 
     return { 
         telescopeMode,
-        autoguiderMode
+        autoguiderMode,
+        cameraProbe
     }
 }
 

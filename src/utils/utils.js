@@ -1,5 +1,3 @@
-import * as d3 from 'd3'
-
 export const scaleTypes = (scaleType, scaleName) => {
     const yScales = {
         'Auto': [],
@@ -20,14 +18,11 @@ export const scaleTypes = (scaleType, scaleName) => {
 
     const xyScales = {
         '0.1 arcsec': [-0.1, -0.05, 0, 0.05, 0.1],
+        '0.3 arcsec': [-0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3],
         '0.5 arcsec': [-0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5],
         '1 arcsec': [-1, -0.5, 0, 0.5, 1],
         '2 arcsec': [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2],
         '3 arcsec': [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3],
-    }
-
-    const anythingScaling = {
-        
     }
     
     if(scaleType === 'y') return yScales[scaleName]
@@ -38,13 +33,28 @@ export const scaleTypes = (scaleType, scaleName) => {
 export const scaleNames = (scaleName) => {
     const yScalesNames = ['Auto', '0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
     const xScalesNames = ['1 min', '5 mins', '15 mins', '30 mins', '60 mins']
-    const xyScalesNames = ['0.1 arcsec', '0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
+    const xyScalesNames = ['0.1 arcsec', '0.3 arcsec','0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
+    const selectedFromJSON = ['Fiber Guider', 'Guide Errors', 'Guide Intensity', 'AltitudePosErrArcsec', 'AzimuthPosErrArcsec', 'GeneralParameter186', 'GeneralParameter187']
     
     if(scaleName === 'y') return yScalesNames
     if(scaleName === 'x') return xScalesNames
     if(scaleName === 'xy') return xyScalesNames
+    if(scaleName === 'fromJSON') return selectedFromJSON
 }
 
+export const anyDataScale = (data) => {
+    const dataScales = {
+        'Fiber Guider': ['Xfilter', 'Yfilter'],
+        'Guide Errors': ['IntensityOffsetXarcsec', 'IntensityOffsetYarcsec'],
+        'Guide Intensity': ['AutoguiderContrast'],
+        'AltitudePosErrArcsec': ['AltitudePosErrArsec'],
+        'AzimuthPosErrArcsec': ['AzimuthPosErrArcsec'],
+        'GeneralParameter186': ['GeneralParameter186'],
+        'GeneralParameter187': ['GeneralParameter187']
+    }
+
+    return dataScales[data]
+}
 
 export const decdegToHms = (decdeg) => {
     let d = Math.floor(decdeg)
@@ -61,7 +71,11 @@ export const decdegToHms = (decdeg) => {
         m = 0
     }
 
-    return isNaN(d || m || s) ? `00:00:00` : `${d}:${m}:${s}`
+    const dmc = d < 10 || m < 10 || s < 10 
+    ? `${d.toString().padStart(2,"0")}:${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`
+    : `${d}:${m}:${s}`
+
+    return isNaN(d || m || s) ? `00:00:00` : dmc
 }
 
 export const decTimeToHms = (ra) => {

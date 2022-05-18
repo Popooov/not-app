@@ -5,12 +5,12 @@ export const FooterContainer = ({ children }) => {
                 bg-opacity-95
                 fixed
                 grid
-                grid-row-2
+                grid-row-3
                 grid-col-2
-                px-6
+                px-3
                 py-3
                 gap-y-0.5
-                gap-x-8
+                gap-x-6
                 w-screen
                 bottom-0
                 bg-zinc-50

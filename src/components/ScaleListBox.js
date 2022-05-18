@@ -1,4 +1,4 @@
-import { Fragment, useContext } from 'react'
+import { Fragment, useContext, useEffect, useCallback } from 'react'
 import ChartContext from '../contexts/ChartContext'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
@@ -12,29 +12,34 @@ export function ScaleListBox({ scale, selected }) {
     setSelectedScaleY,
     selectedScaleXY,
     setSelectedScaleXY,
-    chartType
+    dataScale,
+    setDataScale
   } = useContext(ChartContext)
 
-  const handleSelected = (selected) => {
+  const handleSelected = selected => {
     if(selected === 'scaleX') {
       return selectedScaleX
     } else if(selected === 'scaleY') {
       return selectedScaleY
-    } else  {
+    } else if(selected === 'scaleXY') {
       return selectedScaleXY
+    } else if(selected === 'fromJSON') {
+      return dataScale
     }
   }
 
-  const handleSetSelected = (selected) => {
+  const handleSetSelected = selected => {
     if(selected === 'scaleX') {
       return setSelectedScaleX
     } else if(selected === 'scaleY') {
       return setSelectedScaleY
-    } else {
+    } else if(selected === 'scaleXY') {
       return setSelectedScaleXY
+    } else if(selected === 'fromJSON') {
+      return setDataScale
     }
   }
-
+  
   return (
     <div className="w-[6.5rem] sm:mr-5 xl:mb-4">
       <Listbox

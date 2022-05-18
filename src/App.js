@@ -15,20 +15,20 @@ function App() {
       <EventSourceContextProvider value={{statusData}}>
         <HeaderContainer>
           <Logo />
-          <TcsData name='' data={statusData.DateTimeUT} styles='hidden xl:text-base md:block md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-2 md:justify-self-start' />
+          <TcsData name='TimeUT' data={statusData.DateTimeUT} styles='hidden xl:text-base md:block md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-2 md:justify-self-start' />
           <TcsData name='Telescope' data={telescopeMode} styles='hidden xl:text-base md:block md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 md:justify-self-start' />
           <TcsData name='TimeST' data={statusData.TimeST} styles='hidden xl:text-base md:block md:col-start-3 md:col-end-4 md:row-start-2 md:row-end-3 md:justify-self-start' />
           <TcsData name='Autoguider' data={autoguiderMode} styles='hidden xl:text-base md:block md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 md:justify-self-start' />
-              <SettingsButton />
+              {/* <SettingsButton /> */}
           {/* <Tooltip text='Settings' >
           </Tooltip> */}
         </HeaderContainer>
         <Dashboard />
         <FooterContainer>
-          <TcsData name='' data={statusData.DateTimeUT} styles='col-start-1 col-end-2 justify-self-start' />
-          <TcsData name='Telescope' data={telescopeMode} styles='col-start-2 col-end-3 justify-self-start' />
-          <TcsData name='TimeST' data={statusData.TimeST} styles='col-start-1 col-end-2 justify-self-start' />
-          <TcsData name='Autoguider' data={autoguiderMode} styles='col-start-2 col-end-3 justify-self-start' />
+          <TcsData name='TimeST' data={statusData.TimeST} styles='row-start-1 col-start-1 col-end-2 justify-self-start' />
+          <TcsData name='Telescope' data={telescopeMode} styles='row-start-2 col-start-1 col-end-2 justify-self-start' />
+          <TcsData name='TimeUT' data={statusData.DateTimeUT} styles='row-start-1 col-start-2 col-end-3 justify-self-start' />
+          <TcsData name='Autoguider' data={autoguiderMode} styles='row-start-2 col-start-2 col-end-3 row-start-1 justify-self-start' />
         </FooterContainer>
       </EventSourceContextProvider>
     </div>

@@ -9,7 +9,7 @@ const useChartsData = (statusData, selectedScaleX, multiplier, propertyNameY1 = 
     const colorCount = useRef(0)
     const [ freezeLines, setFreezeLines ] = useState(true)
     const [ freezeScatter, setFreezeScatter ] = useState(true)
-
+    
     const handleReset = () => {
         count.current = -1
         setLineData(linesData)
@@ -25,8 +25,6 @@ const useChartsData = (statusData, selectedScaleX, multiplier, propertyNameY1 = 
                 count.current = -1
             } else if (!freezeLines) {
                 setLineData((prevState) => {
-                    // let [first, ...rest] = prevState
-                    
                     return [...prevState.slice(1), {
                         TimeST: statusData.TimeST,
                         x: count.current, 
@@ -46,7 +44,6 @@ const useChartsData = (statusData, selectedScaleX, multiplier, propertyNameY1 = 
                 setCircleData([])
                 colorCount.current = 0
             } else if (!freezeScatter) {
-
                 setCircleData((prevState) => {
             
                     return [...prevState, {

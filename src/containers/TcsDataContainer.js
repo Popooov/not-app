@@ -1,15 +1,16 @@
 export const TcsDataContainer = ({ children }) => {
 
+    // sm:last-of-type:shrink-1
+    // sm:last-of-type:grow-0
+    // sm:last-of-type:basis-2/5
+    // xs:last-of-type:basis-2/5
+
     return (
         <div className={
             `   
                 xs:flex-auto
-                xs:basis-28
-                xs:last-of-type:basis-2/5
+                xs:basis-32
                 sm:basis-40
-                sm:last-of-type:shrink-1
-                sm:last-of-type:grow-0
-                sm:last-of-type:basis-2/5
                 lg:grid
                 lg:content-center
                 pl-4 
@@ -18,7 +19,8 @@ export const TcsDataContainer = ({ children }) => {
                 mx-3
                 rounded-md 
                 bg-zinc-100
-                text-base
+                xs:text-sm
+                sm:text-base
                 font-light
                 md:pl-6
                 lg:self-stretch

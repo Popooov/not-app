@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import ChartContext from "../contexts/ChartContext"
-import { scaleTypes, floorData } from "../utils/utils"
+import { scaleTypes } from "../utils/utils"
 
 const axisComponentsByDimension = {
     x: HorizontalAxis,
@@ -39,7 +39,7 @@ const Axis = ({ dimension, xLabel, ...restProps }) => {
 } 
 
 function HorizontalAxis({ dimension, dimensions, scaleX, scatterScaleX, selectedScale, chartType, children }) {
-    const ticks = chartType === 'ScatterPlot' ? scatterScaleX.ticks() : scaleTypes(dimension, selectedScale)
+    const ticks = chartType ? scatterScaleX.ticks() : scaleTypes(dimension, selectedScale)
 
     return (
         <g transform={`translate(0, ${dimensions.boundedHeight})`}>            
@@ -64,14 +64,14 @@ function HorizontalAxis({ dimension, dimensions, scaleX, scatterScaleX, selected
                     />}
                     <line // vertical tick lines
                         y2='4'
-                        transform={`translate(${chartType === 'ScatterPlot' ? scatterScaleX(tick) : scaleX(tick)})`}
+                        transform={`translate(${chartType ? scatterScaleX(tick) : scaleX(tick)})`}
                         stroke='black'
                     />
                     <text // tick numbers
-                        className={`${ticks.length === 13 ? 'text-[7px] sm:text-xs lg:text-[10px]' : 'text-[9px] sm:text-xs'}`}
+                        className={`${ticks.length === 13 && !chartType ? 'text-[7px] sm:text-xs lg:text-[10px]' : 'text-[9px] sm:text-xs'}`}
                         textAnchor="middle"
                         key={tick}
-                        transform={`translate(${chartType === 'ScatterPlot' ? scatterScaleX(tick) : scaleX(tick)}, 20)`}
+                        transform={`translate(${chartType ? scatterScaleX(tick) : scaleX(tick)}, 20)`}
                     >
                         {tick}
                     </text>
@@ -81,9 +81,9 @@ function HorizontalAxis({ dimension, dimensions, scaleX, scatterScaleX, selected
     )
 }
 
-function VerticalAxis({ dimensions, scaleY, scatterScaleY, selectedScale, chartType, scaleTicks }) {
+function VerticalAxis({ dimensions, scaleY, scatterScaleY, chartType, scaleTicks }) {
     
-    const ticks = chartType === 'ScatterPlot' ? scatterScaleY.ticks() : scaleTicks ? scaleY.ticks(scaleTicks) : scaleY.ticks()
+    const ticks = chartType ? scatterScaleY.ticks() : scaleTicks ? scaleY.ticks(scaleTicks) : scaleY.ticks()
 
     return (
         <g>
@@ -97,13 +97,13 @@ function VerticalAxis({ dimensions, scaleY, scatterScaleY, selectedScale, chartT
                 <g key={tick}>
                     <line 
                         x2='-4'
-                        transform={`translate(0, ${chartType === 'ScatterPlot' ? scatterScaleY(tick) : scaleY(tick)})`}
+                        transform={`translate(0, ${chartType ? scatterScaleY(tick) : scaleY(tick)})`}
                         stroke='black'
                     />
                     <text
                         className='text-[8px] sm:text-xs'
                         key={tick}
-                        transform={`translate(-9, ${chartType === 'ScatterPlot' ? scatterScaleY(tick) : scaleY(tick)})`}
+                        transform={`translate(-9, ${chartType ? scatterScaleY(tick) : scaleY(tick)})`}
                         dominantBaseline='middle'
                         textAnchor="end"
                         >

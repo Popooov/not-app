@@ -11,7 +11,8 @@ const useChartScales = (propertyNameY1, propertyNameY2, multiplier = 1, chartTyp
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[1])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
     const [ selectedScaleXY, setSelectedScaleXY ] = useState(scaleNames('xy')[3])
-    const { circleData, lineData, reset } = useChartsData(statusData, selectedScaleX, multiplier, propertyNameY1, propertyNameY2, chartType)
+    const [ dataScale, setDataScale ] = useState(scaleNames('fromJSON')[0])
+    const { circleData, lineData, reset } = useChartsData(statusData, selectedScaleX, multiplier, propertyNameY1, propertyNameY2, dataScale)
 
     const xAccessor = d => d.x
     const yAccessor = d => d.y
@@ -70,6 +71,8 @@ const useChartScales = (propertyNameY1, propertyNameY2, multiplier = 1, chartTyp
         setSelectedScaleY,
         selectedScaleXY,
         setSelectedScaleXY,
+        dataScale, 
+        setDataScale,
         colorAccessorScaled,
         scatterAccessorScaledX,
         scatterAccessorScaledY,

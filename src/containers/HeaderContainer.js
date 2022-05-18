@@ -9,8 +9,8 @@ export const HeaderContainer = ({children}) => {
                 z-20
                 grid
                 grid-rows-1
-                md:grid-cols-[5fr_2.5fr_2fr]
-                lg:grid-cols-[7fr_2.5fr_2fr]
+                md:grid-cols-[5fr_2.5fr_3fr]
+                lg:grid-cols-[7fr_2.5fr_3fr]
                 gap-0.5
                 content-evenly
                 items-center

@@ -1,17 +1,20 @@
 import { useContext } from "react"
 import ChartContext from "../contexts/ChartContext"
 
-const DimensionLabel = ({ name, coordinateX = 60, coordinateY = 10 }) => {
+const DimensionLabel = ({ name }) => {
     const { dimensions } = useContext(ChartContext)
     
     return (
-        <text
-            textAnchor="middle"
-            transform={`translate(${coordinateX}, ${-dimensions.boundedHeight - coordinateY})`}
-            className='text-sm sm:text-base lg:text-xl'
-        >
-            {name}
-        </text>
+        <>
+            <text
+                textAnchor="middle"
+                transform={`translate(${dimensions.boundedWidth / 2}, ${-dimensions.boundedHeight - 10})`}
+                className='text-sm sm:text-base lg:text-lg xl:text-base 2xl:text-lg'
+            >
+                {name}
+            </text>
+        </>
+
     )
 }
 
