@@ -1,17 +1,21 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import EventSourceContext from '../contexts/EventSourceContext'
 import { ChartContextProvider } from '../contexts/ChartContext'
 import useChartScales from '../hooks/useChartScales'
+import useChartNames from '../hooks/useChartNames'
 import useModes from '../hooks/useModes'
 import { Axis, Line, Chart, Circles, DimensionLabel, DataLabel, AutoHorizontalLine, AutoVerticalLine } from '../guide-charts/exports'
 import { TcsDataContainer, ChartContainer, ChartControlsContainer } from '../containers/exports'
-import { scaleNames, decdegToHms, decTimeToHms, toFixedNum, floorData, useWhenEmpty } from '../utils/utils'
+import { scaleNames, decdegToHms, decTimeToHms, toFixedNum, useWhenEmpty } from '../utils/utils'
 import { ScaleListBox, Button as ResetButton, TcsData } from '../components/exports'
 
 export const Dashboard = () => {
     const { statusData } = useContext(EventSourceContext)
     const { cameraProbe } = useModes(statusData)
+    const { chartName } = useChartNames()
 
+    // console.log(chartName)
+    
     return (
         <div className='lg:grid lg:grid-cols-auto lg:auto-rows-auto lg:gap-x-4 lg:gap-y-14 xl:gap-0 mt-16 sm:mt-20 lg:mt-24 lg:ml-4 xl:mx-12 2xl:ml-8 3xl:max-w-[150rem] 3xl:mx-auto'>
                 <ChartContextProvider value={useChartScales('GeneralParameter184', 'GeneralParameter185')}>
@@ -68,7 +72,7 @@ export const Dashboard = () => {
                     </ChartContainer>
                 </ChartContextProvider>
                 
-                <ChartContextProvider value={useChartScales('Xfilter', 'Yfilter', 0.24)}>
+                <ChartContextProvider value={useChartScales()}>
                     <ChartContainer 
                         styles='lg:mt-8 xl:mt-0
                                 lg:row-start-3 lg:row-end-4
@@ -94,6 +98,7 @@ export const Dashboard = () => {
                         <ChartControlsContainer>
                             <ScaleListBox scale={scaleNames('x')} selected='scaleX' />
                             <ScaleListBox scale={scaleNames('y')} selected='scaleY' />
+                            <ScaleListBox scale={scaleNames('chartNames')} selected='chartNames' />
                             <ResetButton />
                         </ChartControlsContainer>
                     </ChartContainer>

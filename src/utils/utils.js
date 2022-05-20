@@ -24,36 +24,29 @@ export const scaleTypes = (scaleType, scaleName) => {
         '2 arcsec': [-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2],
         '3 arcsec': [-3, -2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3],
     }
+
+    const dataScales = {
+        'Fiber Guider': ['Xfilter', 'Yfilter', 0.24],
+        'Alt/Az Errors': ['AltitudePosErrArsec', 'AzimuthPosErrArcsec'],
+        'Guide-star FWHM': ['GeneralParameter186', 'GeneralParameter187']
+    }
     
     if(scaleType === 'y') return yScales[scaleName]
     if(scaleType === 'x') return xScales[scaleName]
     if(scaleType === 'xy') return xyScales[scaleName]
+    if(scaleType === 'dataScales') return dataScales[scaleName]
 }
 
 export const scaleNames = (scaleName) => {
     const yScalesNames = ['Auto', '0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
     const xScalesNames = ['1 min', '5 mins', '15 mins', '30 mins', '60 mins']
     const xyScalesNames = ['0.1 arcsec', '0.3 arcsec','0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
-    const selectedFromJSON = ['Fiber Guider', 'Guide Errors', 'Guide Intensity', 'AltitudePosErrArcsec', 'AzimuthPosErrArcsec', 'GeneralParameter186', 'GeneralParameter187']
+    const chartNames = ['Fiber Guider', 'Alt/Az Errors', 'Guide-star FWHM']
     
     if(scaleName === 'y') return yScalesNames
     if(scaleName === 'x') return xScalesNames
     if(scaleName === 'xy') return xyScalesNames
-    if(scaleName === 'fromJSON') return selectedFromJSON
-}
-
-export const anyDataScale = (data) => {
-    const dataScales = {
-        'Fiber Guider': ['Xfilter', 'Yfilter'],
-        'Guide Errors': ['IntensityOffsetXarcsec', 'IntensityOffsetYarcsec'],
-        'Guide Intensity': ['AutoguiderContrast'],
-        'AltitudePosErrArcsec': ['AltitudePosErrArsec'],
-        'AzimuthPosErrArcsec': ['AzimuthPosErrArcsec'],
-        'GeneralParameter186': ['GeneralParameter186'],
-        'GeneralParameter187': ['GeneralParameter187']
-    }
-
-    return dataScales[data]
+    if(scaleName === 'chartNames') return chartNames
 }
 
 export const decdegToHms = (decdeg) => {
