@@ -10,7 +10,7 @@ const useChartScales = (propertyNameY1, propertyNameY2, multiplier = 1, chartTyp
     const [ ref, dimensions ] = useChartDimensions()
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[1])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
-    const [ selectedScaleXY, setSelectedScaleXY ] = useState(scaleNames('xy')[3])
+    const [ selectedScaleXY, setSelectedScaleXY ] = useState(scaleNames('xy')[4])
     const { circleData, lineData, reset } = useChartsData(statusData, selectedScaleX, multiplier, propertyNameY1, propertyNameY2)
 
     const xAccessor = d => d.x
