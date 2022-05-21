@@ -72,7 +72,7 @@ export const Dashboard = () => {
                     </ChartContainer>
                 </ChartContextProvider>
                 
-                <ChartContextProvider value={useChartScales()}>
+                <ChartContextProvider value={useChartScales('Xfilter', 'Yfilter', 0.24)}>
                     <ChartContainer 
                         styles='lg:mt-8 xl:mt-0
                                 lg:row-start-3 lg:row-end-4
