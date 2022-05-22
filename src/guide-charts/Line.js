@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import ChartContext from '../contexts/ChartContext'
 
 const Line = ({ color, accessor }) => {
-  const { lineData, xAccessorScaled, y1AccessorScaled, y2AccessorScaled } = useContext(ChartContext)
+  const { lineData, xAccessorScaled, y1AccessorScaled, y2AccessorScaled, dimensions } = useContext(ChartContext)
   
   const path = d3.line()
     .x(xAccessorScaled)
@@ -16,7 +16,7 @@ const Line = ({ color, accessor }) => {
         id='lines'
         d={path}
         stroke={color}
-        strokeWidth='1'
+        strokeWidth={dimensions.width < 475 ? '.7' : '.85'}
         fill='none'
         clipPath='url(#lines-clip-path)'
       />
