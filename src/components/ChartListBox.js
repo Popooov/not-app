@@ -15,7 +15,6 @@ export function ChartListBox({ chartNames }) {
     setChartName(name)
     reset()
   }
-  console.log(chartName);
 
   return (
     <div className="w-[6.5rem] sm:mr-5 lg:mr-3 xl:mb-4">

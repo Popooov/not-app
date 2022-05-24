@@ -16,8 +16,9 @@ const Line = ({ color, accessor }) => {
         id='lines'
         d={path}
         stroke={color}
-        strokeWidth='1.5'
+        strokeWidth='1'
         clipPath='url(#lines-clip-path)'
+        fill='none'
       />
     </g>
   )

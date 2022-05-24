@@ -12,8 +12,6 @@ import { ScaleListBox, ChartListBox, Button as ResetButton, TcsData } from '../c
 export const Dashboard = () => {
     const { statusData } = useContext(EventSourceContext)
     const { cameraProbe } = useModes(statusData)
-
-    // console.log(chartName)
     
     return (
         <div className='lg:grid lg:grid-cols-auto lg:auto-rows-auto lg:gap-x-4 lg:gap-y-14 xl:gap-x-0 xl:gap-y-0 mt-20 sm:mt-20 sm:mx-5 lg:mt-20 xl:ml-6 xl:mr-10'>
@@ -77,7 +75,7 @@ export const Dashboard = () => {
                             <Axis dimension='x'>
                                 <DimensionLabel />
                             </Axis>
-                            <Axis dimension='y' scaleTicks='5' />
+                            <Axis dimension='y' scaleTicks='6' />
                         </Chart>
                         <ChartControlsContainer>
                             <ScaleListBox scale={scaleNames('x')} selected='scaleX' />
