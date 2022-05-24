@@ -7,9 +7,8 @@ const useEventSource = () => {
     const [ eventSource ] = useState(sse)
 
     useEffect(() => {
-        eventSource.onmessage = (e) => setStatusData(JSON.parse(e.data))
-
         eventSource.onerror = (e) => console.error(`Error message: ${e}`)
+        eventSource.onmessage = (e) => setStatusData(JSON.parse(e.data))
 
         return () => eventSource.close()
     }, [eventSource])

@@ -26,9 +26,9 @@ export const scaleTypes = (scaleType, scaleName) => {
     }
 
     const dataScales = {
-        'Fiber Guider': ['Xfilter', 'Yfilter', 0.24],
-        'Alt/Az Errors': ['AltitudePosErrArcsec', 'AzimuthPosErrArcsec'],
-        'Guide-star FWHM': ['GeneralParameter186', 'GeneralParameter187']
+        'Fiber Guider': ['Xfilter', 'Yfilter', 'Fiber Guider', 0.24],
+        'Alt/Az Errors': ['AltitudePosErrArcsec', 'AzimuthPosErrArcsec', 'Alt/Az Errors'],
+        'Guide-star FWHM': ['GeneralParameter186', 'GeneralParameter187', 'Guide-star FWHM (GenPar186/187)'],
     }
     
     if(scaleType === 'y') return yScales[scaleName]

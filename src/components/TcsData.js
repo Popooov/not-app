@@ -8,7 +8,7 @@ export const TcsData = ({type, name, data, styles = {}}) => {
             return <text>{whenNaN(data)}</text>
         }
     } else {
-        if(name) {
+        if (type === 'StatusBox') {
             if(typeof data === 'number') {
                 return <p className={styles}>{name}: {whenNaN(data)}</p> 
             } else {
@@ -16,9 +16,9 @@ export const TcsData = ({type, name, data, styles = {}}) => {
             }
         } else {
             if(typeof data === 'number') {
-                return <p className={styles}>{whenNaN(data)}</p> 
+                return <div className={`${styles} flex flex-row justify-between`}><p>{name}:</p><p>{whenNaN(data)}</p></div> 
             } else {
-                return <p className={styles}>{data}</p>
+                return <div className={`${styles} flex flex-row justify-between`}><p>{name}:</p><p>{data}</p></div>
             }
         }
     }

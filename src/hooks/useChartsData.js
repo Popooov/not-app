@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { linesData } from '../utils/linesData'
-import { floorData } from "../utils/utils"
+import { floorData, scaleTypes } from "../utils/utils"
 
-const useChartsData = (statusData, selectedScaleX, multiplier, propertyNameY1 = '', propertyNameY2 = '') => {
+const useChartsData = (statusData, selectedScaleX, multiplier = 1, propertyNameY1 = '', propertyNameY2 = '') => {
     const [ lineData, setLineData ] = useState(linesData)
     const [ circleData, setCircleData ] = useState([])
     const count = useRef(-1)

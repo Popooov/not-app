@@ -5,13 +5,18 @@ import useChartsData from "./useChartsData"
 import { scaleTypes, scaleNames } from "../utils/utils"
 import * as d3 from 'd3'
 
-const useChartScales = (propertyNameY1, propertyNameY2, multiplier = 1, chartType) => {
+const useChartScales = (propertyNameY1, propertyNameY2, chartType, multiplier = 1) => {
     const { statusData } = useContext(EventSourceContext)
     const [ ref, dimensions ] = useChartDimensions()
     const [ selectedScaleX, setSelectedScaleX ] = useState(scaleNames('x')[1])
     const [ selectedScaleY, setSelectedScaleY ] = useState(scaleNames('y')[0])
     const [ selectedScaleXY, setSelectedScaleXY ] = useState(scaleNames('xy')[4])
-    const { circleData, lineData, reset } = useChartsData(statusData, selectedScaleX, multiplier, propertyNameY1, propertyNameY2)
+    const [ chartName, setChartName ] = useState(scaleNames('chartNames')[0])
+    const customChartParamY1 = scaleTypes('dataScales', chartName)[0]
+    const customChartParamY2 = scaleTypes('dataScales', chartName)[1]
+    const chartLabel = scaleTypes('dataScales', chartName)[2]
+    const customChartMultiplier = scaleTypes('dataScales', chartName)[3]
+    const { circleData, lineData, reset } = useChartsData(statusData, selectedScaleX, multiplier || customChartMultiplier, propertyNameY1 || customChartParamY1, propertyNameY2 || customChartParamY2)
 
     const xAccessor = d => d.x
     const yAccessor = d => d.y
@@ -70,6 +75,9 @@ const useChartScales = (propertyNameY1, propertyNameY2, multiplier = 1, chartTyp
         setSelectedScaleY,
         selectedScaleXY,
         setSelectedScaleXY,
+        chartName,
+        setChartName,
+        chartLabel,
         colorAccessorScaled,
         scatterAccessorScaledX,
         scatterAccessorScaledY,
