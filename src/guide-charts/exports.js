@@ -1,7 +1,7 @@
 export { default as Axis } from './Axis'
 export { default as Chart } from './Chart'
 export { default as DataLabel } from './DataLabel'
-export { default as DimensionLabel } from './DimensionLabel'
+export { default as ChartLabel } from './ChartLabel'
 export { default as Line } from './Line'
 export { default as Circles } from './Circles'
 export { default as AutoHorizontalLine } from './AutoHorizontalLine'

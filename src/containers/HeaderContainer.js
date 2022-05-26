@@ -9,9 +9,7 @@ export const HeaderContainer = ({children}) => {
                 z-20
                 grid
                 grid-rows-1
-                md:grid-cols-[1fr_1fr_1fr]
-                lg:grid-cols-[2.3fr_1fr_1fr]
-                xl:grid-cols-[2.05fr_1.3fr_0.95fr]
+                md:grid-cols-[repeat(12, minmax(10px, _1fr))]
                 gap-0.5
                 content-evenly
                 items-center
@@ -26,8 +24,8 @@ export const HeaderContainer = ({children}) => {
                 md:gap-x-4
                 xl:mb-4
                 xl:text-sm
-                2xl:py-3
-                3xl:max-w-[130rem]
+                4xl:py-3
+                4xl:max-w-[1794px]
                 bg-zinc-50
                 drop-shadow-md
                 md:drop-shadow
@@ -39,3 +37,9 @@ export const HeaderContainer = ({children}) => {
         </div>
     )
 }
+
+
+// md:grid-cols-[1fr_1fr_1fr]
+// lg:grid-cols-[2.3fr_1fr_1fr]
+// xl:grid-cols-[3fr_1fr_1fr]
+// 2xl:grid-cols-[4fr_1fr_1.1fr]

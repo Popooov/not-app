@@ -13,13 +13,13 @@ export const Tooltip = ({ text, children }) => {
                     right-full
                     md:top-full
                     md:-right-1/4
-                    2xl:-top-[58%]
+                    4xl:-top-[58%]
                     w-32
                     mr-3
                     md:mt-2
                     md:mr-[10px]
-                    2xl:mt-1.5
-                    2xl:mr-16
+                    4xl:mt-1.5
+                    4xl:mr-16
                     p-1.5
                     md:p-2
                     md:px-2

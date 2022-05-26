@@ -5,7 +5,7 @@ const Chart = ({ children }) => {
     const { ref, dimensions, chartType } = useContext(ChartContext)
     
     return (
-        <div ref={ref} className={`${chartType ? 'h-full sm:h-full md:h-full' : 'h-60 sm:h-72 xl:w-full xl:h-full 2xl:w-full 2xl:h-full'}`}>
+        <div ref={ref} className={`${chartType ? 'h-full sm:h-full md:h-full' : 'h-60 sm:h-72 xl:w-full xl:h-full 4xl:w-full 4xl:h-full'}`}>
             <svg className='w-full h-full'>
                 <defs>
                     <linearGradient id='linearGradient' gradientTransform='rotate(90)'>

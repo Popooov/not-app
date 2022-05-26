@@ -14,7 +14,7 @@ export const FooterContainer = ({ children }) => {
                 w-screen
                 bottom-0
                 bg-zinc-50
-                drop-shadow-2xl
+                drop-shadow-4xl
                 shadow-sm
                 shadow-zinc-900
                 md:hidden

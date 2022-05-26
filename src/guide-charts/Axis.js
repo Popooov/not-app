@@ -101,7 +101,7 @@ function VerticalAxis({ dimensions, scaleY, scatterScaleY, chartType, scaleTicks
                         stroke='black'
                     />
                     <text
-                        className='text-[8px] sm:text-xs'
+                        className='text-[9px] sm:text-xs'
                         key={tick}
                         transform={`translate(-9, ${chartType ? scatterScaleY(tick) : scaleY(tick)})`}
                         dominantBaseline='middle'

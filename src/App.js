@@ -2,7 +2,7 @@ import { EventSourceContextProvider } from './contexts/EventSourceContext'
 import useEventSource from './hooks/useEventSource'
 import useModes from './hooks/useModes'
 import { HeaderContainer, FooterContainer } from './containers/exports'
-import { TcsData, Logo, Tooltip, SettingsButton } from './components/exports'
+import { TcsData, Logo } from './components/exports'
 import { Dashboard } from './pages/Dashboard'
 
 function App() {
@@ -11,17 +11,14 @@ function App() {
 
   //[50px_1fr_50px]
   return (
-    <div className='grid grid-cols-1 grid-rows-1 mx-auto xl:w-auto md:mb-6 xl:mb-0 max-w-[130rem]'>
+    <div className='grid grid-cols-1 grid-rows-1 mx-auto xl:w-auto md:mb-6 xl:mb-0 max-w-[1794px]'>
       <EventSourceContextProvider value={{statusData}}>
         <HeaderContainer>
           <Logo />
-          <TcsData type='StatusBox' name='TimeUT' data={statusData.DateTimeUT} styles='hidden xl:text-base md:block md:col-start-3 md:col-end-4 md:row-start-1 md:row-end-2 md:justify-self-start' />
-          <TcsData type='StatusBox' name='Telescope' data={telescopeMode} styles='hidden xl:text-base md:block md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 md:justify-self-start' />
-          <TcsData type='StatusBox' name='TimeST' data={statusData.TimeST} styles='hidden xl:text-base md:block md:col-start-3 md:col-end-4 md:row-start-2 md:row-end-3 md:justify-self-start' />
-          <TcsData type='StatusBox' name='Autoguider' data={autoguiderMode} styles='hidden xl:text-base md:block md:col-start-2 md:col-end-3 md:row-start-2 md:row-end-3 md:justify-self-start' />
-              {/* <SettingsButton /> */}
-          {/* <Tooltip text='Settings' >
-          </Tooltip> */}
+          <TcsData type='StatusBox' name='TimeUT' data={statusData.DateTimeUT} styles='hidden xl:text-base md:block md:col-start-11 md:col-end-12 md:row-start-1 md:row-end-2 md:justify-self-start' />
+          <TcsData type='StatusBox' name='Telescope' data={telescopeMode} styles='hidden xl:text-base md:block md:col-start-10 lg:col-start-6 lg:col-end-8 xl:col-start-10 xl:col-end-11 md:row-start-1 md:row-end-2 md:justify-self-start' />
+          <TcsData type='StatusBox' name='TimeST' data={statusData.TimeST} styles='hidden xl:text-base md:block md:col-start-11 md:col-end-12 md:row-start-2 md:row-end-3 md:justify-self-start' />
+          <TcsData type='StatusBox' name='Autoguider' data={autoguiderMode} styles='hidden xl:text-base md:block md:col-start-10 lg:col-start-6 lg:col-end-8 xl:col-start-10 xl:col-end-11 md:row-start-2 md:row-end-3 md:justify-self-start' />
         </HeaderContainer>
         <Dashboard />
         <FooterContainer>

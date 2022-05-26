@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import ChartContext from "../contexts/ChartContext"
 
-const DimensionLabel = ({ name }) => {
+const ChartLabel = ({ name }) => {
     const { dimensions, chartLabel } = useContext(ChartContext)
     
     return (
@@ -9,7 +9,7 @@ const DimensionLabel = ({ name }) => {
             <text
                 textAnchor="middle"
                 transform={`translate(${dimensions.boundedWidth / 2}, ${-dimensions.boundedHeight - 10})`}
-                className='text-sm sm:text-base lg:text-lg xl:text-base 2xl:text-lg'
+                className='text-sm sm:text-base lg:text-lg xl:text-base 4xl:text-lg'
             >
                 {name? name : chartLabel}
             </text>
@@ -18,4 +18,4 @@ const DimensionLabel = ({ name }) => {
     )
 }
 
-export default DimensionLabel
+export default ChartLabel

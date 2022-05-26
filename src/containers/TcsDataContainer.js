@@ -12,6 +12,10 @@ export const TcsDataContainer = ({ children }) => {
                 xs:basis-32
                 lg:grid
                 lg:content-center
+                lg:last:grow-0
+                lg:last:basis-[32.5%]
+                xl:last:basis-[48.7%]
+                4xl:last:basis-[48.85%]
                 px-4
                 py-3 
                 mx-3
@@ -32,6 +36,8 @@ export const TcsDataContainer = ({ children }) => {
                 sm:flex-[1_1_40%]
                 md:flex-[1_1_45%]
                 lg:flex-[1_1_30%]
+                xl:flex-[1_1_40%]
+                4xl:flex-[1_1_10%]
             `
         }>
             {children}

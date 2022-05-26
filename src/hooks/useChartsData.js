@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { linesData } from '../utils/linesData'
-import { floorData, scaleTypes } from "../utils/utils"
+import { floorData } from "../utils/utils"
 
 const useChartsData = (statusData, selectedScaleX, multiplier = 1, propertyNameY1 = '', propertyNameY2 = '') => {
     const [ lineData, setLineData ] = useState(linesData)
@@ -29,7 +29,7 @@ const useChartsData = (statusData, selectedScaleX, multiplier = 1, propertyNameY
                         TimeST: statusData.TimeST,
                         x: count.current, 
                         y1: floorData(statusData[propertyNameY1] * multiplier),
-                        y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : null
+                        y2: propertyNameY2 ? floorData(statusData[propertyNameY2] * multiplier) : 0
                     }]
                 })
             }

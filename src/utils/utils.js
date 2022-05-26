@@ -29,6 +29,7 @@ export const scaleTypes = (scaleType, scaleName) => {
         'Fiber Guider': ['Xfilter', 'Yfilter', 'Fiber Guider', 0.24],
         'Alt/Az Errors': ['AltitudePosErrArcsec', 'AzimuthPosErrArcsec', 'Alt/Az Errors'],
         'Guide-star FWHM': ['GeneralParameter186', 'GeneralParameter187', 'Guide-star FWHM (GenPar186/187)'],
+        // 'GeneralParameter171': ['GeneralParameter171', null, 'GeneralParameter171'],
     }
     
     if(scaleType === 'y') return yScales[scaleName]
@@ -41,7 +42,7 @@ export const scaleNames = (scaleName) => {
     const yScalesNames = ['Auto', '0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
     const xScalesNames = ['1 min', '5 mins', '15 mins', '30 mins', '60 mins']
     const xyScalesNames = ['0.1 arcsec', '0.3 arcsec','0.5 arcsec', '1 arcsec', '2 arcsec', '3 arcsec']
-    const chartNames = ['Fiber Guider', 'Alt/Az Errors', 'Guide-star FWHM']
+    const chartNames = ['Fiber Guider', 'Alt/Az Errors', 'Guide-star FWHM'] // <-- add to the array 'GeneralParameter171'
     
     if(scaleName === 'y') return yScalesNames
     if(scaleName === 'x') return xScalesNames

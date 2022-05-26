@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import ChartContext from '../contexts/ChartContext'
 
 const Line = ({ color, accessor }) => {
-  const { lineData, xAccessorScaled, y1AccessorScaled, y2AccessorScaled, dimensions } = useContext(ChartContext)
+  const { lineData, xAccessorScaled, y1AccessorScaled, y2AccessorScaled } = useContext(ChartContext)
   
   const path = d3.line()
     .x(xAccessorScaled)
