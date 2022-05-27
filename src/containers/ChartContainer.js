@@ -1,10 +1,4 @@
-import { useContext } from "react"
-import ChartContext from "../contexts/ChartContext"
-
-
-export const ChartContainer = ({ styles, children }) => {
-
-    const { chartType } = useContext(ChartContext)
+export const ChartContainer = ({ styles, children, chartType = '' }) => {
 
     return (
         // lg:pl-6 lg:pr-12

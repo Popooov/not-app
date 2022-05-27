@@ -1,5 +1,6 @@
-import { Fragment, useContext, useState } from 'react'
+import { Fragment, useContext } from 'react'
 import ChartContext from '../contexts/ChartContext'
+import CustomChartContext from '../contexts/CustomChartContext'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
@@ -8,6 +9,9 @@ export function ChartListBox({ chartNames }) {
   const {
     chartName,
     setChartName,
+  } = useContext(CustomChartContext)
+
+  const {
     reset
   } = useContext(ChartContext)
 
@@ -37,7 +41,7 @@ export function ChartListBox({ chartNames }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-xs bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute z-10 w-fit py-1 mt-1 overflow-auto text-xs bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {chartNames.map((name, index) => (
                 <Listbox.Option
                   key={index}

@@ -1,9 +1,9 @@
-import { useContext } from "react"
-import ChartContext from "../contexts/ChartContext"
+import { linesData } from "../utils/linesData"
+import useChartsData from "../hooks/useChartsData" 
 
-export const Button = () => {
+export const ChartsResetButton = ({ reset }) => {
 
-    const { reset } = useContext(ChartContext)
+    // const { reset } = useChartsData()
 
     return (
         <button 

@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import ChartContext from "../contexts/ChartContext"
+// import useChartScales from "../hooks/useChartScales"
 
 const Circles = () => {
   const {
@@ -9,7 +10,7 @@ const Circles = () => {
     colorAccessorScaled,
     dimensions,
   } = useContext(ChartContext)
-
+  
   return (
     <g>
       <defs>

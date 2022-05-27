@@ -9,9 +9,11 @@ const useChartsData = (statusData, selectedScaleX, multiplier = 1, propertyNameY
     const colorCount = useRef(0)
     const [ freezeLines, setFreezeLines ] = useState(true)
     const [ freezeScatter, setFreezeScatter ] = useState(true)
+    const resetRef = useRef(handleReset)
     
-    const handleReset = () => {
+    function handleReset() {
         count.current = -1
+        colorCount.current = 0
         setLineData(linesData)
         setCircleData([])
     }
@@ -90,7 +92,7 @@ const useChartsData = (statusData, selectedScaleX, multiplier = 1, propertyNameY
         return {
             lineData,
             circleData,
-            reset: handleReset
+            reset: resetRef.current
         }
     }
 }
