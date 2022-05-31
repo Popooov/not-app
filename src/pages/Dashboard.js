@@ -7,7 +7,8 @@ import useChartNameSelect from '../hooks/useChartNameSelect'
 import useModes from '../hooks/useModes'
 import { Axis, Line, Chart, Circles, ChartLabel, AutoHorizontalLine, AutoVerticalLine } from '../guide-charts/exports'
 import { TcsDataContainer, ChartContainer, ChartControlsContainer } from '../containers/exports'
-import { scaleNames, decdegToHms, decTimeToHms, toFixedNum, useWhenEmpty } from '../utils/utils'
+import { decdegToHms, decTimeToHms, toFixedNum, useWhenEmpty } from '../utils/utils'
+import { scaleNames } from '../utils/scales'
 import { ScaleListBox, Button as ResetButton, TcsData, ChartsList } from '../components/exports'
 
 export const Dashboard = () => {

@@ -2,9 +2,9 @@ import { useContext } from 'react'
 import { ChartContextProvider } from '../contexts/ChartContext'
 import CustomChartContext from '../contexts/CustomChartContext'
 import useChartScales from "../hooks/useChartScales"
-import { ChartContainer, ChartControlsContainer } from "../containers/exports"
+import { ChartControlsContainer } from "../containers/exports"
 import { ChartListBox, ScaleListBox, Button as ResetButton } from '../components/exports'
-import { scaleNames } from "../utils/utils"
+import { scaleNames } from "../utils/scales"
 import { Chart, Line, Axis, AutoHorizontalLine, ChartLabel } from "../guide-charts/exports"
 
 
