@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import EventSourceContext from '../contexts/EventSourceContext'
 import { useChartDimensions } from "./useChartDimensions"
 import useChartsData from "./useChartsData"
-import { scaleTypes, scaleNames } from "../utils/utils"
+import { scaleTypes, scaleNames } from "../utils/scales"
 import * as d3 from 'd3'
 
 const useChartScales = (propertyNameY1 = '', propertyNameY2 = '', chartType = '', multiplier = 1) => {

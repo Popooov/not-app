@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import ChartContext from "../contexts/ChartContext"
-import { scaleTypes } from "../utils/utils"
+import { scaleTypes } from "../utils/scales"
 
 const axisComponentsByDimension = {
     x: HorizontalAxis,

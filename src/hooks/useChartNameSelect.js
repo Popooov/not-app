@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { scaleNames, scaleTypes } from '../utils/utils'
+import { scaleNames, scaleTypes } from '../utils/scales'
 
 const useChartNameSelect = (defaultChartName = 0) => {
 
