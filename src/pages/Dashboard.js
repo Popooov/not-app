@@ -112,13 +112,14 @@ export const Dashboard = () => {
                     <TcsData name='EpochYears' data={statusData.ObjectPointedToEpochYears} />
                 </TcsDataContainer>
                 <TcsDataContainer>
-                    <TcsData name='Focus/Delta' data={
-                        statusData.FocusDeltaPos < 0 
-                            ? 
+                    <TcsData 
+                        name='Focus/Delta' 
+                        data={statusData.FocusDeltaPos < 0 
+                        ? 
                         `${statusData.FocusMainPos}/${statusData.FocusDeltaPos}` 
-                            : 
-                        `${statusData.FocusMainPos}/+${statusData.FocusDeltaPos}`
-                    }/>
+                        : 
+                        `${statusData.FocusMainPos}/+${statusData.FocusDeltaPos}`}
+                    />
                 </TcsDataContainer>
                 <TcsDataContainer>
                     <TcsData name='filterName' data={statusData.CCDfiltName} />
@@ -133,10 +134,15 @@ export const Dashboard = () => {
                     <TcsData name='RotatorPosDeg' data={toFixedNum(statusData.RotatorPosDeg)} />
                     <TcsData name='FieldRotationDeg' data={statusData.FieldRotationDeg} />
                 </TcsDataContainer>
-                <TcsDataContainer>
-                    <TcsData name='CtrXdist' data={statusData.CtrXdist} />
-                    <TcsData name='CtrYdist' data={statusData.CtrYdist} />
-                </TcsDataContainer>
+                {cameraProbe === 'FIES' 
+                    ? 
+                    <TcsDataContainer>
+                        <TcsData name='CtrXdist' data={statusData.CtrXdist} />
+                        <TcsData name='CtrYdist' data={statusData.CtrYdist} />
+                    </TcsDataContainer>
+                    :
+                    null
+                }
                 <TcsDataContainer>
                     <TcsData name='AirMass' data={toFixedNum(statusData.AirMass)} />
                     <TcsData name='Rain' data={statusData.Rain} />
