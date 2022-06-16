@@ -148,6 +148,9 @@ export const Dashboard = () => {
                     <TcsData name='AirMass' data={toFixedNum(statusData.AirMass)} />
                     <TcsData name='Rain' data={statusData.Rain} />
                 </TcsDataContainer>
+                <TcsDataContainer>
+                    <TcsData name='CPUload' data={toFixedNum(statusData.CPUloadPercentAverageMinute)} />
+                </TcsDataContainer>
                 {/* <TcsDataContainer>
                     <TcsData name='dummyLabel' data={'DummyData'} />
                     <TcsData name='dummyLabel' data={'DummyData'} />
