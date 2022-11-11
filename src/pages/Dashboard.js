@@ -101,8 +101,8 @@ export const Dashboard = () => {
                             xl:justify-self-center xl:divide-y-4 
                             sm:gap-3 sm:mx-6 divide-white'>
                 <TcsDataContainer>
-                    <TcsData name='RA' data={decTimeToHms(statusData.ActualRAhours)} />
-                    <TcsData name='DEC' data={decdegToHms(statusData.ActualDECdeg)} />
+                    <TcsData name='RA' data={decTimeToHms(statusData.RAactualRadJ2000 * 12 / Math.PI)} />
+                    <TcsData name='DEC' data={decdegToHms(statusData.DECactualRadJ2000 * 180 / Math.PI)} />
                 </TcsDataContainer>
                 <TcsDataContainer>
                     <TcsData name='Altitude' data={decdegToHms(statusData.AltitudePosDeg)} />
